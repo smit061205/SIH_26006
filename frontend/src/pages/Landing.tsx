@@ -254,9 +254,18 @@ function CoverageStats() {
             <dt className="mt-2 text-[13.5px] leading-snug text-ink-3">{label}</dt>
           </div>
         ))}
-        <div className="col-span-2 rounded-xl border border-rule bg-surface px-5 py-5 lg:col-span-1">
-          <dd className="serif text-[34px] font-semibold leading-none text-ink">{t("30 min")}</dd>
-          <dt className="mt-2 text-[13.5px] leading-snug text-ink-3">{t("between refreshes of every port's sea forecast")}</dt>
+        <div className="col-span-2 rounded-xl border border-accent/25 bg-accent-tint px-5 py-5 lg:col-span-1">
+          <dd className="serif text-[34px] font-semibold leading-none text-accent">
+            {d ? t("{p}% lower", { p: d.savings.median_saving_pct }) : <Skeleton className="h-8 w-24" />}
+          </dd>
+          <dt className="mt-2 text-[13.5px] leading-snug text-ink-2">
+            {d
+              ? t("hire on 6-month contracts planned this way than fixing spot month by month, cheaper in {p}% of months since {year}", {
+                  p: d.savings.cheaper_share_pct,
+                  year: d.savings.since.slice(0, 4),
+                })
+              : " "}
+          </dt>
         </div>
       </dl>
     </section>

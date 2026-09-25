@@ -112,6 +112,10 @@ def rank_options(
     tolerance_pct: float = 0.0,
     vessel_class: str | None = None,
     port: str | None = None,
+    hire_multiplier: float = 1.0,
+    bunker_multiplier: float = 1.0,
+    extra_wait_days: float = 0.0,
+    closed_ports: tuple[str, ...] = (),
 ) -> pd.DataFrame:
     """Every (port, vessel class) that fits, costed and ranked by landed cost.
 
@@ -123,13 +127,16 @@ def rank_options(
     - tolerance_pct is the charter party's more-or-less quantity: the cargo may
       be shipped up to that much short if it saves a voyage.
     - vessel_class / port fix the choice when the planner has decided.
+    - hire_multiplier, bunker_multiplier, extra_wait_days and closed_ports
+      are stress-test shocks: a freight or fuel move, longer berth queues, a
+      port shut.
     """
     from src.data_loader import bunker_price_usd_per_tonne, origin_wait_days, route_distance_nm
 
     origin_row = origin_row_for(origin, origin_transit_df)
     fallback_transit = float(origin_row["transit_days_est"])
     speed = float(cost_assumptions.get("service_speed_knots", 13.5))
-    bunker_price = bunker_price_usd_per_tonne(cost_assumptions)
+    bunker_price = bunker_price_usd_per_tonne(cost_assumptions) * bunker_multiplier
     load_wait = origin_wait_days(origin_row, cost_assumptions)
     tolerance = max(0.0, min(0.2, tolerance_pct / 100))
 
@@ -140,7 +147,7 @@ def rank_options(
 
     rows = []
     for port_row in _rows(ports_df):
-        if port is not None and port_row["name"] != port:
+        if (port is not None and port_row["name"] != port) or port_row["name"] in closed_ports:
             continue
         rail_row = rail_row_for(port_row, plant_name, rail_df)
         if rail_row is None:
@@ -174,6 +181,8 @@ def rank_options(
                 weather_days=weather_days,
                 bunker_price_usd_per_tonne=bunker_price,
                 load_wait_days=load_wait,
+                hire_multiplier=hire_multiplier,
+                extra_wait_days=extra_wait_days,
             )
             rail_days = float(rail_row["rail_transit_days"])
             rows.append(

@@ -186,7 +186,11 @@ def compute_landed_cost(
     weather_days: float = 0.0,
     bunker_price_usd_per_tonne: float | None = None,
     load_wait_days: float = 0.0,
+    hire_multiplier: float = 1.0,
+    extra_wait_days: float = 0.0,
 ) -> CostBreakdown:
+    """Landed cost of one shipment. hire_multiplier and extra_wait_days are
+    stress-test shocks (a freight-market move, a longer berth queue)."""
     if cargo_tonnes <= 0:
         raise ValueError("cargo_tonnes must be positive")
 
@@ -202,11 +206,11 @@ def compute_landed_cost(
     load_days = tonnes_per_voyage / load_rate if load_rate else 0.0
 
     # Idle days per call: the berth queue plus days lost to swell.
-    wait_days = (wait_days_override if wait_days_override is not None else expected_wait_days(port_row)) + weather_days
+    wait_days = (wait_days_override if wait_days_override is not None else expected_wait_days(port_row)) + weather_days + extra_wait_days
     free_laytime = float(cost_assumptions["free_laytime_days"])
     chargeable_wait_days = max(0.0, wait_days - free_laytime)
 
-    rate = hire_rate_for(vessel_row)
+    rate = hire_rate_for(vessel_row) * hire_multiplier
     hire_cost = rate * (transit_days + load_days + berth_days) * voyages
     # Waiting for a berth at either end is hire paid for nothing.
     waiting_hire = rate * (wait_days + load_wait_days) * voyages

@@ -26,6 +26,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=False)
 
+import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -85,6 +86,8 @@ from src.rank import origin_row_for, rank_options
 from src.route_freight import route_outlook, route_series, route_terms
 from src.row_utils import opt_float, opt_int, opt_str
 from src.scenario import idle_time_analysis, recommend_contract_split, simulate_port_exclusion, simulate_wait_scenarios
+from src.savings import simulate as simulate_savings
+from src.savings import summarise as savings_summary
 from src.schedule import MONTH_NAMES, build_contract_schedule
 from src.stock import cover_for_plant, cover_vs_lead_time, plant_stock_cover
 from src.timing import best_fix_week, contract_for_duration, fix_signal, fix_window_dict, forecast_horizon_for
@@ -292,13 +295,63 @@ def _rank(
 # so recent ones are kept: reopening a plan, or another planner asking for the
 # same shipment, doesn't redo the work (it takes seconds on a small server).
 @lru_cache(maxsize=256)
-def _ranked(cargo_tonnes, month, origin, plant_name, tolerance_pct, vessel_class, port) -> pd.DataFrame:
+def _ranked(cargo_tonnes, month, origin, plant_name, tolerance_pct, vessel_class, port, stress: tuple = ()) -> pd.DataFrame:
+    """stress: ((name, value), ...) shocks passed to rank_options (the stress test)."""
     refs = _refs()
     return rank_options(
         cargo_tonnes, month, origin, plant_name,
         refs["ports_df"], refs["vessels_df"], refs["rail_df"], refs["origin_transit_df"], refs["cost_assumptions"],
         tariff_df=load_gangavaram_tariff(), tolerance_pct=tolerance_pct, vessel_class=vessel_class, port=port,
+        **dict(stress),
     )
+
+
+class StressRequest(RankRequest):
+    """A shipment and the shocks to test it against."""
+
+    freight_change_pct: float = Field(0.0, ge=-60, le=150)
+    bunker_change_pct: float = Field(0.0, ge=-60, le=150)
+    extra_wait_days: float = Field(0.0, ge=0, le=30)
+    closed_port: str | None = None
+    port: str | None = None
+    vessel_class: str | None = None
+
+
+@app.post("/api/stress")
+def post_stress(req: StressRequest):
+    """The recommendation under a shock: a freight or bunker move, longer berth
+    queues, a port shut. Returns the recommended option before and under the
+    shock, and whether the shock changes what to charter."""
+    refs = _refs()
+    _validate_port(refs, req.closed_port)
+    _validate_port(refs, req.port)
+    _validate_class(refs, req.vessel_class)
+    base = _rank(req, refs, vessel_class=req.vessel_class, port=req.port)
+    if base.empty:
+        return {"baseline": None, "same_option": None, "best": None, "changed": False, "options": []}
+    stress = (
+        ("hire_multiplier", 1 + req.freight_change_pct / 100),
+        ("bunker_multiplier", 1 + req.bunker_change_pct / 100),
+        ("extra_wait_days", req.extra_wait_days),
+        ("closed_ports", (req.closed_port,) if req.closed_port else ()),
+    )
+    _validate_shipment(refs, req.origin, req.plant_name)
+    _validate_grade(refs, req.origin, req.coal_grade)
+    try:
+        shocked = _ranked(req.cargo_tonnes, req.month, req.origin, req.plant_name, req.tolerance_pct, req.vessel_class, req.port, stress).copy()
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    top = base.iloc[0]
+    same = shocked[(shocked["port"] == top["port"]) & (shocked["vessel_class"] == top["vessel_class"])]
+    best = shocked.iloc[0] if not shocked.empty else None
+    return {
+        "baseline": _records(top.to_frame().T)[0],
+        # The same port and class under the shock; None when the shock closes its port.
+        "same_option": _records(same.head(1))[0] if not same.empty else None,
+        "best": _records(best.to_frame().T)[0] if best is not None else None,
+        "changed": best is None or (best["port"], best["vessel_class"]) != (top["port"], top["vessel_class"]),
+        "options": _records(shocked.head(5)),
+    }
 
 
 @app.post("/api/rank")
@@ -459,6 +512,48 @@ def _run_backtest(series_class: str, horizon: int) -> list[dict]:
         models["gbrt_drivers"] = partial(gbrt_drivers_forecast, drivers=drivers)
     comparison = compare_models(series, models, horizon=horizon, min_train_size=150, step=20, season_length=52)
     return _records(comparison)
+
+
+# --- what the advice would have saved -----------------------------------------------
+
+SAVINGS_DURATIONS = (3, 6, 12)
+
+
+@lru_cache(maxsize=1)
+def _savings_code() -> str:
+    """The rules the savings replay applies; a change to them recomputes it."""
+    h = hashlib.sha256()
+    for name in ("savings.py", "timing.py", "scenario.py"):
+        h.update((ROOT / "src" / name).read_bytes())
+    return h.hexdigest()[:16]
+
+
+def _forecast_fn(series_class: str, as_of: str):
+    """The forecast the app uses for this series, as a function of the history so far."""
+    if _chosen_model(series_class, as_of) == "gbrt_drivers":
+        drivers = market_drivers_weekly(load_freight_series(series_class).index)
+        if drivers is not None:
+            return partial(gbrt_drivers_forecast, drivers=drivers)
+    return arima_forecast
+
+
+@lru_cache(maxsize=16)
+def _savings(series_class: str, duration_months: int, as_of: str) -> dict:
+    return _disk_cached(
+        "savings", series_class, (duration_months, as_of, FIX_WINDOW_WEEKS, _savings_code()),
+        lambda: savings_summary(simulate_savings(load_freight_series(series_class), _forecast_fn(series_class, as_of), duration_months, FIX_WINDOW_WEEKS)),
+    )
+
+
+@app.get("/api/savings")
+def get_savings(vessel_class: str = "Panamax", duration_months: int = Query(6, ge=1, le=12)):
+    """Planning this way against fixing every voyage on the spot market as it
+    comes up, replayed on the freight history (src/savings.py). The nearest
+    precomputed contract length (3, 6 or 12 months) is used."""
+    series_class = _series_class_or_400(vessel_class)
+    as_of = load_freight_series(series_class).index[-1].strftime("%Y-%m-%d")
+    duration = min(SAVINGS_DURATIONS, key=lambda d: (abs(d - duration_months), d))
+    return {"vessel_class": vessel_class, "series_class": series_class, "duration_months": duration, **_savings(series_class, duration, as_of)}
 
 
 @app.get("/api/backtest")
@@ -1435,8 +1530,16 @@ def public_summary():
     for cls in FREIGHT_SERIES_CLASSES:
         series = load_freight_series(cls)
         rates[cls] = {"rate": float(series.iloc[-1]), "as_of": series.index[-1].strftime("%Y-%m-%d")}
+    # What 6-month contracts planned with the forecast saved against month-by-month spot fixing.
+    six = [_savings(c, 6, load_freight_series(c).index[-1].strftime("%Y-%m-%d")) for c in FREIGHT_SERIES_CLASSES]
     return {
         "rates": rates,
+        "savings": {
+            "duration_months": 6,
+            "median_saving_pct": round(float(np.median([x["median_saving_pct"] for x in six])), 1),
+            "cheaper_share_pct": round(float(np.mean([x["cheaper_share_pct"] for x in six])), 0),
+            "since": min(x["first_start"] for x in six),
+        },
         "ports": len(load_ports()),
         "load_ports": len(load_origin_transit_days()),
         "plants": len(load_plants()),

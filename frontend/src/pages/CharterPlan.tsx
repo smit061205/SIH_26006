@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { putPlantStock } from "../api";
-import { Button, NumberField, Segmented } from "../components/ui/inputs";
+import { Button, NumberField, Segmented, Select, Slider } from "../components/ui/inputs";
 import { ScheduleStrip } from "../components/charts/ScheduleStrip";
 import { ForecastSparkline } from "../components/charts/Sparkline";
 import { StockMeter } from "../components/charts/StockMeter";
@@ -21,7 +21,7 @@ import { useMoney } from "../lib/currency";
 import { actionable } from "../lib/alerts";
 import { dayRate, days, longDate, metres, monthLong, monthShort, num, perDayUnit, perTonne, perTonneUnit, pct, shortDate, splitPercents, tonnes, total } from "../lib/format";
 import { planNote, plantShort } from "../lib/labels";
-import { useAlerts, useCharterPlan, useDrivers, usePlants, usePorts } from "../lib/queries";
+import { useAlerts, useCharterPlan, useDrivers, usePlants, usePorts, useSavings, useStress } from "../lib/queries";
 import { driversSentence } from "../lib/drivers";
 import { signalReason } from "../lib/timing";
 import { Link, useSearchParam } from "../lib/router";
@@ -173,6 +173,7 @@ export default function CharterPlan() {
       {header}
       <Refreshing active={plan.isPlaceholderData}>
         <Verdict support={verdict.support}>{verdict.main}</Verdict>
+        <SavingsCard plan={data} duration={shipment.duration} />
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)] lg:grid-rows-[auto_1fr] lg:gap-x-10">
           <div className="lg:col-start-1 lg:row-start-1">
@@ -196,6 +197,8 @@ export default function CharterPlan() {
               </PlanCard>
             )}
 
+            <StressTest plan={data} />
+
             {data.schedule && <ScheduleCard schedule={data.schedule} />}
           </div>
 
@@ -213,6 +216,182 @@ export default function CharterPlan() {
         <ComparePlans />
       </div>
     </>
+  );
+}
+
+/** A value that settles `ms` after its last change: sliders don't fire a request per step. */
+function useSettled<T>(value: T, ms = 350) {
+  const [settled, setSettled] = useState(value);
+  useEffect(() => {
+    const id = setTimeout(() => setSettled(value), ms);
+    return () => clearTimeout(id);
+  }, [value, ms]);
+  return settled;
+}
+
+/**
+ * What if the market or a port turns against the plan: a freight or fuel move,
+ * longer berth queues, a port shut. Shows what the recommended option would
+ * cost and whether a different vessel or port becomes the better choice.
+ */
+function StressTest({ plan }: { plan: CharterPlanResponse }) {
+  const tr = useT();
+  const money = useMoney();
+  const { request, shipment } = useShipment();
+  const ports = usePorts();
+  const [shock, setShock] = useState({ freight_change_pct: 0, bunker_change_pct: 0, extra_wait_days: 0, closed_port: null as string | null });
+  const settled = useSettled(shock);
+  const q = useStress(
+    request && shipment ? { ...request, ...settled, port: shipment.fixedPort ?? null, vessel_class: shipment.fixedClass ?? null } : null
+  );
+  const top = plan.recommendation!.top;
+  const d = q.data;
+  const quiet = !shock.freight_change_pct && !shock.bunker_change_pct && !shock.extra_wait_days && !shock.closed_port;
+  const set = (patch: Partial<typeof shock>) => setShock((s) => ({ ...s, ...patch }));
+  const signed = (v: number) => (v > 0 ? `+${v}%` : `${v}%`);
+  return (
+    <PlanCard title="Stress test" link={{ to: "/scenarios", label: "More scenarios" }}>
+      <p className="mb-4 text-[14.5px] text-ink-2">{tr("Move the market or shut a port and see whether the plan still holds.")}</p>
+      <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+        <Slider label="Freight market" value={shock.freight_change_pct} min={-40} max={60} step={5} onChange={(v) => set({ freight_change_pct: v })} format={signed} />
+        <Slider label="Bunker fuel price" value={shock.bunker_change_pct} min={-40} max={60} step={5} onChange={(v) => set({ bunker_change_pct: v })} format={signed} />
+        <Slider
+          label="Extra wait at the discharge port"
+          value={shock.extra_wait_days}
+          min={0}
+          max={15}
+          step={1}
+          onChange={(v) => set({ extra_wait_days: v })}
+          format={(v) => tr("{n} days", { n: v })}
+        />
+        <div>
+          <p className="mb-2 text-[14px] text-ink-2">{tr("Port closed")}</p>
+          <Select
+            label={tr("Port closed")}
+            value={shock.closed_port ?? ""}
+            onChange={(v) => set({ closed_port: v || null })}
+            options={[{ value: "", label: tr("None") }, ...(ports.data?.ports ?? []).map((p) => ({ value: p.name, label: tr(p.name) }))]}
+          />
+        </div>
+      </div>
+      <div className="mt-5 border-t border-rule pt-4" aria-live="polite">
+        {q.isError ? (
+          <p className="text-[14px] text-negative">{tr("Couldn't run the stress test. Try again in a moment.")}</p>
+        ) : !d ? (
+          <Skeleton className="h-16 w-full" />
+        ) : quiet ? (
+          <p className="text-[14px] text-ink-3">{tr("Move a slider to test the plan.")}</p>
+        ) : (
+          <Refreshing active={q.isPlaceholderData || settled !== shock}>
+            <FigureRow>
+              {d.same_option ? (
+                <Figure
+                  label={tr("{cls} into {port}", { cls: tr(top.vessel_class), port: tr(top.port) })}
+                  value={perTonne(d.same_option.usd_per_tonne, money)}
+                  unit={perTonneUnit()}
+                  note={
+                    <Delta value={d.same_option.usd_per_tonne - top.usd_per_tonne}>
+                      {perTonne(d.same_option.usd_per_tonne - top.usd_per_tonne, money, true)}
+                      {perTonneUnit()} {tr("vs the plan")}
+                    </Delta>
+                  }
+                />
+              ) : (
+                <Figure label={tr("{cls} into {port}", { cls: tr(top.vessel_class), port: tr(top.port) })} value={tr("Port closed")} />
+              )}
+            </FigureRow>
+            {d.best && (
+              <div className={`mt-4 rounded-[var(--radius-control)] border px-3 py-2.5 ${d.changed ? "border-caution/40 bg-caution/10" : "border-rule bg-sunken/50"}`}>
+                <p className="text-[13px] font-semibold text-ink-3">{tr(d.changed ? "Better choice under this stress" : "Still the best choice")}</p>
+                <p className="serif mt-0.5 text-[18px] text-ink">
+                  {tr("{cls} into {port}", { cls: tr(d.best.vessel_class), port: tr(d.best.port) })}
+                  <span className="ml-2 font-sans text-[14px] tabular-nums text-ink-2">
+                    {perTonne(d.best.usd_per_tonne, money)}
+                    {perTonneUnit()}
+                  </span>
+                </p>
+              </div>
+            )}
+            <p className={`mt-3 text-[14px] ${d.changed ? "text-caution" : "text-ink-2"}`}>
+              {!d.best
+                ? tr("No port can take this cargo under this stress.")
+                : d.changed
+                  ? tr("Under this stress the plan should switch to {cls} into {port}.", { cls: tr(d.best.vessel_class), port: tr(d.best.port) })
+                  : tr("The plan holds: {cls} into {port} is still the cheapest way to the plant.", { cls: tr(top.vessel_class), port: tr(top.port) })}
+            </p>
+          </Refreshing>
+        )}
+      </div>
+    </PlanCard>
+  );
+}
+
+/** "8% more to 9% less": a saving range in words, so the sign can't be misread. */
+function savingRange(worst: number, best: number, tr: T) {
+  const side = (v: number) => (v < 0 ? tr("{p}% more", { p: num(-v, 0) }) : tr("{p}% less", { p: num(v, 0) }));
+  return tr("{a} to {b}", { a: side(worst), b: side(best) });
+}
+
+/**
+ * The plan's answer to SIH26006's goal: what planning this way (the forecast's
+ * fixing signal and contract split) has cost against fixing every voyage on
+ * the spot market as it comes up, replayed on the freight history.
+ */
+function SavingsCard({ plan, duration }: { plan: CharterPlanResponse; duration: number }) {
+  const tr = useT();
+  const money = useMoney();
+  const top = plan.recommendation!.top;
+  const months = duration > 0 ? duration : 6;
+  const q = useSavings(top.vessel_class, months);
+  if (q.isError) return null;
+  const s = q.data;
+  if (!s) return <Skeleton className="mb-8 h-[132px] w-full" />;
+  const median = s.median_saving_pct;
+  // Hire is the part the timing and contract advice changes.
+  const onThisPlan = duration > 0 ? (median / 100) * top.hire_cost_usd * duration : null;
+  const since = monthShort(Number(s.first_start.slice(5, 7))) + " " + s.first_start.slice(0, 4);
+  const maxAbs = Math.max(1, ...s.windows.map((w) => Math.abs(w.saving_pct)));
+  return (
+    <section className="mb-8 grid gap-6 rounded-[var(--radius-surface)] border border-rule bg-surface p-4 md:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] md:p-5">
+      <div>
+        <p className="text-[13px] font-semibold text-ink-3">
+          {duration > 0 ? tr("Against fixing every voyage on spot") : tr("A {n}-month contract, planned this way", { n: s.duration_months })}
+        </p>
+        <p className="serif mt-1 text-[34px] font-semibold leading-none tabular-nums text-ink">
+          {median >= 0 ? tr("{p}% lower", { p: num(Math.abs(median), 1) }) : tr("{p}% higher", { p: num(Math.abs(median), 1) })}
+        </p>
+        <p className="mt-2 text-[14px] text-ink-2">
+          {tr("median hire cost for {cls}, {n}-month programmes started since {since}", { cls: tr(top.vessel_class), n: s.duration_months, since })}
+        </p>
+      </div>
+      <div className="min-w-0">
+        <FigureRow>
+          <Figure label="Cheaper than spot" value={`${num(s.cheaper_share_pct, 0)}%`} note={tr("of {n} start months", { n: s.n_windows })} />
+          <Figure label="Range" value={savingRange(s.worst_saving_pct, s.best_saving_pct, tr)} note="worst to best start month" />
+          {onThisPlan != null && <Figure label="On this plan, at the median" value={total(onThisPlan, money)} note="less hire than spot" />}
+        </FigureRow>
+        <div className="mt-4 flex h-10 items-center gap-[2px]" role="img" aria-label={tr("Saving for each start month, from {from} to {to}", { from: shortDate(s.first_start), to: shortDate(s.last_start) })}>
+          {s.windows.map((w) => {
+            const h = Math.max(2, (Math.abs(w.saving_pct) / maxAbs) * 20);
+            return (
+              <span key={w.start} className="flex h-full flex-1 flex-col justify-center" title={`${shortDate(w.start)}: ${pct(w.saving_pct, 1, true)}`}>
+                <span className="block w-full" style={{ height: 20 }}>
+                  {w.saving_pct > 0 && <span className="block w-full rounded-t-[2px] bg-positive" style={{ height: h, marginTop: 20 - h }} />}
+                </span>
+                <span className="block w-full" style={{ height: 20 }}>
+                  {w.saving_pct < 0 && <span className="block w-full rounded-b-[2px] bg-signal-fill/80" style={{ height: h }} />}
+                </span>
+              </span>
+            );
+          })}
+        </div>
+        <p className="mt-1.5 flex justify-between text-[12px] text-ink-3">
+          <span>{shortDate(s.first_start)}</span>
+          <span>{tr("above the line: cheaper than spot")}</span>
+          <span>{shortDate(s.last_start)}</span>
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -270,8 +449,45 @@ function WhatToCharter({ plan, duration, month }: { plan: CharterPlanResponse; d
         {top.part_loaded && tr(", part-loaded for the draft")}
       </p>
       <FixtureLine plan={plan} top={top} />
+      <div className="mt-5">
+        <FigureRow>
+          <Figure
+            label={duration > 0 ? "Landed cost, contract average" : "Landed cost"}
+            value={perTonne(perTonneOver, money)}
+            unit={perTonneUnit()}
+          />
+          <Figure
+            label={duration > 0 ? tr("Over {n} months", { n: duration }) : "Shipment total"}
+            value={total(rec.total_usd_over_contract, money)}
+            note={duration > 0 ? tr("{n} voyages", { n: rec.total_voyages }) : undefined}
+          />
+          <Figure label="At the plant in" value={days(top.total_lead_days)} note="from loading" />
+        </FigureRow>
+      </div>
+      {next && (
+        <p className="mt-5 text-[14px] text-ink-2">
+          {rec.basis === "contract"
+            ? tr("Next best for the whole contract: {cls},", { cls: tr(next.vessel_class) })
+            : tr("Next best: {cls}, {port},", { cls: tr(next.vessel_class), port: tr(next.port) })}{" "}
+          <Delta value={next.usd_per_tonne_over_contract - perTonneOver}>
+            {perTonne(next.usd_per_tonne_over_contract - perTonneOver, money, true)}
+            {perTonneUnit()}
+          </Delta>
+        </p>
+      )}
+      {cheapest && rec.basis === "contract" && (
+        <p className="mt-2 text-[14px] text-ink-2">
+          {tr("For {month} alone a {cls} into {port} is {diff} cheaper, but it can't be held for every month of the contract as cheaply.", {
+            month: monthLong(month),
+            cls: tr(cheapest.vessel_class),
+            port: tr(cheapest.port),
+            diff: perTonne(top.usd_per_tonne - cheapest.usd_per_tonne, money) + perTonneUnit(),
+          })}
+        </p>
+      )}
+      {rec.note && <p className="mt-2 text-[14px] text-caution">{planNote(rec.note, tr)}</p>}
       {vessel && (
-        <div className="mt-4 overflow-hidden rounded-[var(--radius-control)] bg-sunken">
+        <div className="mt-5 overflow-hidden rounded-[var(--radius-control)] bg-sunken">
           {port && (
             <div className="flex items-center justify-end border-b border-rule bg-surface px-2 py-1.5 print:hidden">
               <Segmented
@@ -313,43 +529,6 @@ function WhatToCharter({ plan, duration, month }: { plan: CharterPlanResponse; d
           )}
         </div>
       )}
-      <div className="mt-5">
-        <FigureRow>
-          <Figure
-            label={duration > 0 ? "Landed cost, contract average" : "Landed cost"}
-            value={perTonne(perTonneOver, money)}
-            unit={perTonneUnit()}
-          />
-          <Figure
-            label={duration > 0 ? tr("Over {n} months", { n: duration }) : "Shipment total"}
-            value={total(rec.total_usd_over_contract, money)}
-            note={duration > 0 ? tr("{n} voyages", { n: rec.total_voyages }) : undefined}
-          />
-          <Figure label="At the plant in" value={days(top.total_lead_days)} note="from loading" />
-        </FigureRow>
-      </div>
-      {next && (
-        <p className="mt-5 text-[14px] text-ink-2">
-          {rec.basis === "contract"
-            ? tr("Next best for the whole contract: {cls},", { cls: tr(next.vessel_class) })
-            : tr("Next best: {cls}, {port},", { cls: tr(next.vessel_class), port: tr(next.port) })}{" "}
-          <Delta value={next.usd_per_tonne_over_contract - perTonneOver}>
-            {perTonne(next.usd_per_tonne_over_contract - perTonneOver, money, true)}
-            {perTonneUnit()}
-          </Delta>
-        </p>
-      )}
-      {cheapest && rec.basis === "contract" && (
-        <p className="mt-2 text-[14px] text-ink-2">
-          {tr("For {month} alone a {cls} into {port} is {diff} cheaper, but it can't be held for every month of the contract as cheaply.", {
-            month: monthLong(month),
-            cls: tr(cheapest.vessel_class),
-            port: tr(cheapest.port),
-            diff: perTonne(top.usd_per_tonne - cheapest.usd_per_tonne, money) + perTonneUnit(),
-          })}
-        </p>
-      )}
-      {rec.note && <p className="mt-2 text-[14px] text-caution">{planNote(rec.note, tr)}</p>}
     </PlanCard>
   );
 }

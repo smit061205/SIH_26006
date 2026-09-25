@@ -186,6 +186,8 @@ export const auth = {
 
 export interface PublicSummary {
   rates: Record<string, { rate: number; as_of: string }>;
+  /** 6-month contracts planned with the forecast against month-by-month spot fixing, replayed on the history. */
+  savings: { duration_months: number; median_saving_pct: number; cheaper_share_pct: number; since: string };
   ports: number;
   load_ports: number;
   plants: number;
@@ -263,6 +265,26 @@ function qs(params: Record<string, string | number | boolean | null | undefined>
 
 export function getForecast(horizon: number, vesselClass: string, signal?: AbortSignal) {
   return request<ForecastResponse>(`/api/forecast?${qs({ horizon, vessel_class: vesselClass })}`, { signal });
+}
+
+/** Planning with the forecast against fixing every voyage on spot as it comes up, replayed on the history. */
+export interface SavingsResponse {
+  vessel_class: string;
+  series_class: string;
+  duration_months: number;
+  n_windows: number;
+  first_start: string;
+  last_start: string;
+  median_saving_pct: number;
+  mean_saving_pct: number;
+  cheaper_share_pct: number;
+  best_saving_pct: number;
+  worst_saving_pct: number;
+  windows: { start: string; signal: string; contract_pct: number; saving_pct: number }[];
+}
+
+export function getSavings(vesselClass: string, durationMonths: number, signal?: AbortSignal) {
+  return request<SavingsResponse>(`/api/savings?${qs({ vessel_class: vesselClass, duration_months: durationMonths })}`, { signal });
 }
 
 export function getBacktest(horizon: number, vesselClass: string, signal?: AbortSignal) {
@@ -374,6 +396,26 @@ export function postCharterPlan(
   signal?: AbortSignal
 ) {
   return post<CharterPlanResponse>("/api/charter-plan", body, signal);
+}
+
+export interface StressShock {
+  freight_change_pct: number;
+  bunker_change_pct: number;
+  extra_wait_days: number;
+  closed_port: string | null;
+}
+
+export interface StressResponse {
+  baseline: RankedRow | null;
+  /** The same port and class under the shock; null when the shock closes its port. */
+  same_option: RankedRow | null;
+  best: RankedRow | null;
+  changed: boolean;
+  options: RankedRow[];
+}
+
+export function postStress(body: ShipmentRequest & StressShock & { port?: string | null; vessel_class?: string | null }, signal?: AbortSignal) {
+  return post<StressResponse>("/api/stress", body, signal);
 }
 
 export function postWaitScenario(body: ShipmentRequest, signal?: AbortSignal) {

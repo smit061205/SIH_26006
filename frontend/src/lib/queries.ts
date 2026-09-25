@@ -12,7 +12,9 @@ import {
   postEmployment,
   getRouteFreight,
   getRouteSeries,
+  getSavings,
   getTiming,
+  postStress,
   getWeather,
   postCharterPlan,
   postExcludePort,
@@ -89,6 +91,25 @@ export function useBacktest(horizon: number, vesselClass: string) {
     queryFn: ({ signal }) => getBacktest(horizon, vesselClass, signal),
     staleTime: 30 * 60_000,
     placeholderData: keepPreviousData,
+  });
+}
+
+export function useStress(body: Parameters<typeof postStress>[0] | null) {
+  return useQuery({
+    queryKey: ["stress", body],
+    queryFn: ({ signal }) => postStress(body!, signal),
+    enabled: !!body,
+    staleTime: 10 * 60_000,
+    placeholderData: keepPreviousData,
+  });
+}
+
+export function useSavings(vesselClass: string | null, durationMonths: number) {
+  return useQuery({
+    queryKey: ["savings", vesselClass, durationMonths],
+    queryFn: ({ signal }) => getSavings(vesselClass!, durationMonths, signal),
+    enabled: !!vesselClass,
+    staleTime: Infinity,
   });
 }
 

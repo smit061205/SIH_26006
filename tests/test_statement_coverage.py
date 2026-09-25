@@ -161,3 +161,17 @@ def test_public_ports_give_live_sea_state_and_activity_per_discharge_port():
     assert body["weather"] in {"live", "partial", "unavailable"}
     for p in body["ports"]:
         assert set(p) == {"name", "dates", "wave_height_max_m", "activity_vs_normal_pct"}
+
+
+def test_stress_test_moves_costs_the_right_way_and_can_change_the_choice():
+    base = client.post("/api/stress", json=BODY).json()
+    assert base["changed"] is False and base["same_option"]["usd_per_tonne"] == base["baseline"]["usd_per_tonne"]
+    dearer = client.post("/api/stress", json={**BODY, "freight_change_pct": 50, "bunker_change_pct": 30, "extra_wait_days": 5}).json()
+    assert dearer["same_option"]["usd_per_tonne"] > base["baseline"]["usd_per_tonne"]
+    assert dearer["same_option"]["hire_rate_usd_per_day"] > base["baseline"]["hire_rate_usd_per_day"]
+    assert dearer["same_option"]["waiting_hire_usd"] > base["baseline"]["waiting_hire_usd"]
+    # Closing the recommended port forces another choice.
+    shut = client.post("/api/stress", json={**BODY, "closed_port": base["baseline"]["port"]}).json()
+    assert shut["same_option"] is None and shut["changed"] is True
+    assert all(o["port"] != base["baseline"]["port"] for o in shut["options"])
+    assert client.post("/api/stress", json={**BODY, "freight_change_pct": 500}).status_code == 422

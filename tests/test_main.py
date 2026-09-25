@@ -410,6 +410,7 @@ def test_shipped_forecast_results_match_the_data_and_model_code():
         for series_class, as_of, horizons in targets()
         for name in [main._cache_name("backtest", series_class, (h, as_of)) for h in horizons]
         + [main._cache_name("forecast", series_class, (as_of, main.MAX_FORECAST_WEEKS))]
+        + [main._cache_name("savings", series_class, (d, as_of, main.FIX_WINDOW_WEEKS, main._savings_code())) for d in main.SAVINGS_DURATIONS]
         if not (main.FORECAST_BUNDLE / name).exists()
     ]
     assert not missing, f"stale data/forecast-cache, run: python -m scripts.precompute_forecasts --bundle ({len(missing)} missing)"
