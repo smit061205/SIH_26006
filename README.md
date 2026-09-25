@@ -22,15 +22,17 @@ each data source is, and what is out of scope.
 
 | Page | What it answers |
 |---|---|
-| **Charter plan** (`/plan`) | The verdict, with four decisions: what to charter (with the fixture terms), when to fix, contract or spot (the spot alternative priced at each month's forecast), and the voyage schedule. Also what to watch, whether the plant's stock lasts until the first cargo (the planner can enter the real stock) and the voyage on a globe. |
-| **Vessel & port** | Every feasible class and port, ranked by landed cost at the plant: hire, bunkers, cargo handling, port charges, waiting (berth and loading-port queues), transshipment and rail. Why a class can't use a port. Each port's unloading equipment. The five ship types in 3D. |
-| **Freight outlook** | Each class's weekly time-charter forecast (ARIMA or trees with coal, oil and the rupee, whichever backtests better), the best week to fix, freight by trade route in $/t, market drivers, the contract split and forecast accuracy. |
+| **Charter plan** (`/plan`) | The saving against fixing every voyage on spot (replayed on the history), then the verdict, with four decisions: what to charter (with the fixture terms), when to fix, contract or spot (the spot alternative priced at each month's forecast), and the voyage schedule. Also a stress test (freight, bunkers, berth delays, a closed port), what to watch, arriving when the berth is free (virtual arrival), whether the plant's stock lasts until the first cargo (the planner can enter the real stock), the voyage on a globe, and CSV or printable export. |
+| **Vessel & port** | Every feasible class and port, ranked by landed cost at the plant: hire, bunkers, cargo handling, port charges, waiting (berth and loading-port queues), transshipment and rail. Why a class can't use a port. Each port's unloading equipment. Time charter against voyage charter with laytime and demurrage. The five ship types in 3D. |
+| **Freight outlook** | Each class's weekly time-charter forecast (ARIMA or trees with coal, oil and the rupee, whichever backtests better), the best week to fix, what's behind the forecast, freight by trade route in $/t, market drivers, the contract split and forecast accuracy. |
 | **Scenarios** | Idle time and how to cut it; the cost of waiting; keeping an idle ship earning (sublet, backhaul, low-demand periods); a port closed; several shipments competing for berth slots (OR-Tools CP-SAT). |
 | **Ports** | Each discharge port's usable draft this month, equipment, activity against normal and the sea state ahead. The port in 3D. The loading terminals and their congestion. |
 | **Developer tools** (`/kit`) | The component gallery, the 3D test bench and the disruption notices that feed the alerts. Developer accounts anywhere; open without sign-in in development builds. |
 
 Everything is in English and Hindi, light and dark, and USD or INR, with
-alerts, saved plans, print and keyboard shortcuts.
+alerts, saved plans, print, CSV and keyboard shortcuts. **Try the live demo**
+on the landing page opens the planner on a throwaway account (no sign-up;
+deleted after a day).
 
 ## How it's built
 
@@ -50,7 +52,7 @@ alerts, saved plans, print and keyboard shortcuts.
   and drei, with a WebGL2 post-processing chain (see "Ships and the 3D
   world"). See `frontend/README.md` and `frontend/DESIGN.md`.
 - **Tests:**
-  - `pytest tests/` runs the backend tests (221);
+  - `pytest tests/` runs the backend tests (238);
   - `npm run check:hull` runs the geometry and data checks;
   - `npm run lint` runs oxlint;
   - `npm run build` type-checks and bundles.
