@@ -59,18 +59,37 @@ Redeploy the service after changing them.
 ## 4. Check it
 
 - `https://<app>.vercel.app/api/health` returns `{"status":"ok"}` through the rewrite.
-- The landing page shows live port conditions (from `/api/public/ports`).
+- The landing page shows live port conditions (from `/api/public/ports`); the
+  3D ship and the globe load with no Content-Security-Policy errors in the console.
 - Sign up, confirm the email, sign in: the browser's cookie list shows
   `fw_session` on the Vercel domain, `Secure`, `HttpOnly`, `SameSite=Lax`.
-- Sign out clears it.
+- The Charter plan, Ports (with the port in 3D) and Vessel & port load; Hindi
+  and a phone-width window work.
+- Sign out clears the cookie.
 
-## Notes
+## Free-tier caveats
 
-- Render's free tier sleeps after 15 minutes idle; the first request then
-  takes up to a minute. The app shows "Can't reach the Freightwise service …
-  retrying" meanwhile and recovers by itself. A paid instance avoids it.
+- **The API sleeps.** Render's free web service sleeps after about 15 minutes
+  idle; the first request then takes up to a minute (the app shows "Can't
+  reach the Freightwise service … retrying" and recovers by itself). Before a
+  demo, open `/api/health` a few minutes ahead, or ping it every 10 minutes
+  with a free uptime monitor. Render's Starter plan doesn't sleep.
+- **The free database expires.** Render deletes a free Postgres database about
+  30 days after it's created. Before then, upgrade it, or point `AUTH_DB_URL`
+  at a permanent free Postgres such as Neon (`postgres://` URLs are accepted).
 - The free web service's disk is wiped on each deploy: accounts live in
   Postgres, never in `backend/var/`.
+
+## Before a public launch
+
 - Fill in the operator's name, address and grievance officer in the privacy
-  notice and terms (`/privacy`, `/terms`) before a real launch.
-- `docker compose up --build` still runs both services locally, as before.
+  notice and terms (`/privacy`, `/terms`).
+- Optional custom domain: add it in Vercel, then set `APP_URL` and
+  `ALLOWED_ORIGINS` on Render to it.
+
+## After that
+
+Every push to `main` redeploys both: Vercel rebuilds the app, Render rebuilds
+the API image. Vercel also builds a preview for other branches (allow them
+with `ALLOWED_ORIGIN_REGEX` if they need direct API calls).
+`docker compose up --build` still runs both services locally, as before.

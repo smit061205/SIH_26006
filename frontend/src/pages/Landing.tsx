@@ -3,21 +3,14 @@ import {
   Anchor,
   ArrowRight,
   Bell,
-  Box,
   CalendarClock,
   Check,
   Clock3,
   Database,
-  Factory,
-  Globe2,
   KeyRound,
-  Languages,
   Layers,
   LineChart,
   Lock,
-  Network,
-  Radar,
-  Route,
   Scale,
   ShieldCheck,
   Ship,
@@ -42,14 +35,6 @@ const SingleShip = lazy(() => import("../components/ship3d/ShipStage").then((m) 
 
 // Particulars from data/vessel_classes.csv (the reference API needs a sign-in).
 const SUPRAMAX: ShipSpec = { name: "Supramax", loa_m: 190, beam_m: 32.26, depth_m: 18.3, draft_laden_m: 12.8, holds: 5, cranes: 4, payload_tonnes: 57000, tpc: 57, block_coefficient: 0.84, hatch_cover_type: "folding", crane_swl_t: 35 };
-const FLEET: ShipSpec[] = [
-  { name: "Handysize", loa_m: 180, beam_m: 29.8, depth_m: 14.3, draft_laden_m: 10.5, holds: 5, cranes: 4 },
-  SUPRAMAX,
-  { name: "Panamax", loa_m: 225, beam_m: 32.3, depth_m: 19.6, draft_laden_m: 14.2, holds: 7, cranes: 0 },
-  { name: "Post-Panamax", loa_m: 250, beam_m: 40, depth_m: 20, draft_laden_m: 15, holds: 7, cranes: 0 },
-  { name: "Capesize", loa_m: 290, beam_m: 45, depth_m: 24.5, draft_laden_m: 18, holds: 9, cranes: 0 },
-];
-
 const wrap = "mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8";
 
 /** The landing page is always in the light theme; the viewer's own choice returns when they leave it. */
@@ -322,28 +307,9 @@ function Problem() {
 
 /* Small drawings for the feature cards, in the app's own style. Shapes, not figures. */
 
-function MiniRanking() {
-  const t = useT();
-  const rows = [
-    ["Panamax", 0.58, true],
-    ["Capesize", 0.7, false],
-    ["Supramax", 0.84, false],
-  ] as const;
-  return (
-    <div className="space-y-2.5">
-      {rows.map(([cls, w, best]) => (
-        <div key={cls} className="flex items-center gap-3">
-          <span className={`w-[74px] text-[12.5px] ${best ? "font-semibold text-ink" : "text-ink-3"}`}>{t(cls)}</span>
-          <span className="h-2 rounded-full" style={{ width: `${w * 100}%`, background: best ? "var(--color-accent)" : "var(--color-rule-strong)" }} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function MiniForecast() {
   return (
-    <svg viewBox="0 0 220 70" className="h-[70px] w-full" aria-hidden>
+    <svg viewBox="0 0 220 70" className="h-[60px] w-full" aria-hidden>
       <path d="M110 30 L140 22 L170 16 L220 8 L220 50 L170 44 L140 40 L110 30 Z" fill="var(--color-band)" />
       <path d="M0 44 L22 40 L44 48 L66 34 L88 38 L110 30" fill="none" stroke="var(--color-series-1)" strokeWidth="2.2" strokeLinejoin="round" />
       <path d="M110 30 L140 31 L170 28 L220 30" fill="none" stroke="var(--color-signal)" strokeWidth="2.2" strokeDasharray="5 4" />
@@ -408,43 +374,6 @@ function MiniAlerts() {
   );
 }
 
-function MiniRadar() {
-  return (
-    <svg viewBox="0 0 220 80" className="h-[80px] w-full" aria-hidden>
-      <rect x="0" y="0" width="220" height="80" rx="8" fill="var(--color-accent-tint)" />
-      <path d="M0 58 C 40 50, 70 66, 110 56 S 180 46, 220 54 L220 80 L0 80 Z" fill="var(--color-rule)" opacity="0.8" />
-      {[
-        [34, 22, 20],
-        [70, 34, -30],
-        [102, 18, 70],
-        [140, 30, 10],
-        [168, 20, -60],
-        [190, 38, 40],
-        [120, 42, 0],
-      ].map(([x, y, r], i) => (
-        <path key={i} d="M-4 2 L0 -5 L4 2 Z" transform={`translate(${x} ${y}) rotate(${r})`} fill={i === 2 ? "var(--color-signal-fill)" : "var(--color-series-1)"} />
-      ))}
-      <circle cx="102" cy="18" r="9" fill="none" stroke="var(--color-signal-fill)" strokeOpacity="0.5" />
-    </svg>
-  );
-}
-
-function MiniFleet() {
-  const t = useT();
-  return (
-    <div className="grid grid-cols-[128px_1fr] items-end gap-x-4 gap-y-1">
-      {FLEET.map((s) => (
-        <div key={s.name} className="contents">
-          <span className="whitespace-nowrap pb-1 text-[12.5px] text-ink-2">
-            {t(s.name)} <span className="text-ink-3">· {s.loa_m} m</span>
-          </span>
-          <ShipProfile spec={s} scaleLength={290} label="" className="h-[36px]" aboveWater />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function MiniFit() {
   const t = useT();
   const months = ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"];
@@ -472,60 +401,6 @@ function MiniFit() {
   );
 }
 
-function MiniSlots() {
-  const t = useT();
-  const ports = ["Paradip", "Dhamra", "Vizag"];
-  const booked = [[1, 1, 0, 2], [2, 0, 1, 0], [0, 2, 2, 1]];
-  const color = ["var(--color-rule)", "var(--color-series-1)", "var(--color-series-3)"];
-  return (
-    <div className="space-y-1.5">
-      {ports.map((p, i) => (
-        <div key={p} className="flex items-center gap-3">
-          <span className="w-[58px] text-[12.5px] text-ink-2">{t(p)}</span>
-          <span className="flex flex-1 gap-1">
-            {booked[i].map((b, j) => (
-              <span key={j} className="h-3.5 flex-1 rounded-[3px]" style={{ background: color[b] }} />
-            ))}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function MiniGlobe() {
-  return (
-    <svg viewBox="0 0 220 80" className="h-[80px] w-full" aria-hidden>
-      <defs>
-        <radialGradient id="mini-globe" cx="40%" cy="35%" r="70%">
-          <stop offset="0" stopColor="#2c5d8f" />
-          <stop offset="1" stopColor="#0d213a" />
-        </radialGradient>
-      </defs>
-      <rect width="220" height="80" rx="8" fill="#0b1626" />
-      <circle cx="110" cy="92" r="72" fill="url(#mini-globe)" />
-      <circle cx="110" cy="92" r="73.5" fill="none" stroke="#7fb4e8" strokeOpacity="0.35" strokeWidth="2" />
-      <path d="M62 48 Q 110 4 160 40" fill="none" stroke="#ffb357" strokeWidth="2.2" strokeLinecap="round" />
-      <circle cx="62" cy="48" r="3" fill="#fff" />
-      <circle cx="160" cy="40" r="3" fill="#fff" />
-      <circle cx="104" cy="23" r="4" fill="#ffb357" />
-    </svg>
-  );
-}
-
-function MiniDesk() {
-  const chips = ["English", "हिन्दी", "US$", "₹", "Light", "Dark", "Save", "Compare", "Print"];
-  return (
-    <div className="flex flex-wrap gap-1.5">
-      {chips.map((c) => (
-        <span key={c} className="rounded-md border border-rule bg-surface px-2 py-1 text-[12px] font-semibold text-ink-2">
-          {c}
-        </span>
-      ))}
-    </div>
-  );
-}
-
 function MiniEmployment() {
   const t = useT();
   const rows = [
@@ -545,70 +420,73 @@ function MiniEmployment() {
   );
 }
 
-function MiniStock() {
-  const t = useT();
-  return (
-    <div>
-      <div className="relative h-3 rounded-full bg-sunken">
-        <span className="absolute inset-y-0 left-0 rounded-full bg-positive" style={{ width: "72%" }} />
-        <span className="absolute -top-1 -bottom-1 w-[2px] bg-ink" style={{ left: "55%" }} />
-        <span className="absolute -top-1.5 -bottom-1.5 border-l-2 border-dashed border-signal-fill" style={{ left: "64%" }} />
-      </div>
-      <div className="mt-2 flex justify-between text-[12.5px] text-ink-3">
-        <span>{t("Stock")}</span>
-        <span>{t("First cargo")}</span>
-      </div>
-    </div>
-  );
-}
-
 interface Feature {
   icon: typeof Ship;
   title: string;
   body: string;
-  mini?: ReactNode;
-  wide?: boolean;
-  tag?: string;
+  mini: ReactNode;
 }
 
+/** What SIH26006 asks for, one card per requirement. */
 function Features() {
   const t = useT();
   const features: Feature[] = [
-    { icon: Ship, title: "Charter plan", body: "One screen with the answer: what to charter, when to fix, how much to put on contract, the month-by-month voyage schedule, what to watch and whether the plant's stock lasts.", mini: <MiniRanking />, wide: true },
-    { icon: LineChart, title: "Freight forecast", body: "Weekly time-charter rates for every vessel type, 26 weeks ahead with the likely range, using coal, oil and the rupee, and the best week to fix.", mini: <MiniForecast /> },
-    { icon: Route, title: "Freight by trade route", body: "Sea freight per tonne on every load-port to discharge-port route, now and ahead: hire for the voyage days, bunkers and port costs.", mini: <MiniRoutes /> },
-    { icon: Scale, title: "Contract or spot", body: "How much of a 3, 6 or 12-month programme to fix on time charter, and what the same voyages would cost month by month on the spot market.", mini: <MiniSplit /> },
-    { icon: Radar, title: "Live vessel traffic", body: "The ships at and around each port right now on a live AIS map, next to the port's dry-bulk calls against normal from IMF PortWatch.", mini: <MiniRadar />, tag: "Live" },
-    { icon: Box, title: "Ships in 3D", body: "All five vessel types built from their real particulars: folding or side-rolling hatch covers, cranes and grabs, draft marks and the load line, and a view below the waterline.", mini: <MiniFleet />, wide: true, tag: "3D" },
-    { icon: Bell, title: "Early warnings", body: "Rough seas from the marine forecast, busy discharge and loading ports, long berth waits, disruption notices and freight moves, with your own thresholds.", mini: <MiniAlerts />, tag: "Live" },
-    { icon: Layers, title: "Vessel and port fit", body: "Every vessel type checked against draft, length, beam and unloading equipment at both ends, month by month, with the landed cost of every combination.", mini: <MiniFit /> },
-    { icon: Anchor, title: "Keep an idle ship earning", body: "When a chartered ship isn't needed, compare waiting, subletting it or carrying a backhaul cargo, and see when such spells are likely.", mini: <MiniEmployment /> },
-    { icon: Factory, title: "Plant stock and supply", body: "Days of coking coal at the plant against its buffer and against when the first cargo arrives, with your own stock figure.", mini: <MiniStock /> },
-    { icon: Network, title: "Several shipments together", body: "Shipments arriving in the same month planned jointly with an optimiser, so no port is booked beyond its berth slots.", mini: <MiniSlots /> },
-    { icon: Globe2, title: "The voyage on a globe", body: "The real sea route on a 3D Earth, with the ship part-way along: which sea it's in and how far is left.", mini: <MiniGlobe />, tag: "3D" },
-    { icon: Languages, title: "Built for the desk", body: "English and हिन्दी, US$ and ₹ at the day's reference rate, light and dark, saved and compared plans, and a print-ready plan.", mini: <MiniDesk /> },
+    {
+      icon: LineChart,
+      title: "Freight forecasts by vessel and route",
+      body: "Weekly time-charter rates for every vessel type and freight per tonne on every trade route, 26 weeks ahead, driven by coal, oil and the rupee.",
+      mini: <MiniRoutes />,
+    },
+    {
+      icon: CalendarClock,
+      title: "When to enter the market",
+      body: "The best week to fix inside the laycan, and whether to fix now, wait or stagger, with what each saves.",
+      mini: <MiniForecast />,
+    },
+    {
+      icon: Layers,
+      title: "The right ship for both ports",
+      body: "Every vessel type checked against draft, length and cargo-handling equipment at the load and discharge ports, month by month, with loading-port congestion.",
+      mini: <MiniFit />,
+    },
+    {
+      icon: Anchor,
+      title: "Idle time and alternative employment",
+      body: "What idle days cost and how to cut them, and when a ship isn't needed: wait, sublet it or carry a backhaul cargo.",
+      mini: <MiniEmployment />,
+    },
+    {
+      icon: Bell,
+      title: "Early warnings",
+      body: "Rough seas, busy ports, long berth waits, disruption notices and freight moves, against your own thresholds.",
+      mini: <MiniAlerts />,
+    },
+    {
+      icon: Scale,
+      title: "From spot to multi-voyage contracts",
+      body: "A 3, 6 or 12-month programme on one vessel type, how much to fix on contract, and each month priced at spot too.",
+      mini: <MiniSplit />,
+    },
   ];
   return (
-    <section className="py-24">
+    <section className="py-20">
       <div className={wrap}>
-        <SectionHead id="features" eyebrow="What it does" title="Everything a chartering desk needs, in one place" intro="From the market to the berth to the plant: each answer comes with the figures behind it, so the choice can be explained and challenged." />
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {features.map(({ icon, title, body, mini, wide, tag }) => (
+        <SectionHead
+          id="features"
+          eyebrow="What SIH26006 asks"
+          title="Every question in the problem statement, answered"
+          intro="Six decisions the Ministry of Steel's statement asks for, each with the figures behind it."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {features.map(({ icon, title, body, mini }) => (
             <article
               key={title}
-              className={`group flex flex-col rounded-2xl border border-rule bg-surface p-6 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-20px_rgba(21,23,27,0.3)] ${wide ? "lg:col-span-2" : ""}`}
+              className="flex flex-col rounded-2xl border border-rule bg-surface p-6 transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-20px_rgba(21,23,27,0.3)]"
             >
-              <div className="flex items-center justify-between gap-3">
-                <IconTile icon={icon} />
-                {tag && (
-                  <span className={`rounded-full px-2.5 py-1 text-[11.5px] font-semibold uppercase tracking-[0.06em] ${tag === "Live" ? "bg-positive/10 text-positive" : "bg-signal-tint text-signal"}`}>
-                    {t(tag)}
-                  </span>
-                )}
-              </div>
-              <h3 className="serif mt-5 text-[21px] font-semibold text-ink">{t(title)}</h3>
+              <IconTile icon={icon} />
+              <h3 className="serif mt-5 text-[20px] font-semibold text-ink">{t(title)}</h3>
               <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-2">{t(body)}</p>
-              {mini && <div className="mt-6 rounded-xl border border-rule bg-paper p-4">{mini}</div>}
+              <div className="mt-5 rounded-xl border border-rule bg-paper px-4 py-3.5">{mini}</div>
             </article>
           ))}
         </div>
