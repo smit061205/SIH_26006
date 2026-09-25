@@ -29,6 +29,7 @@ import { Skeleton } from "../components/ui/feedback";
 import { pct, shortDate } from "../lib/format";
 import { useT } from "../lib/i18n";
 import { Link } from "../lib/router";
+import { DemoButton } from "../components/shell/PublicShell";
 import { type ThemeChoice, useTheme } from "../lib/theme";
 
 const SingleShip = lazy(() => import("../components/ship3d/ShipStage").then((m) => ({ default: m.SingleShip })));
@@ -182,15 +183,16 @@ function Hero() {
           <p className="mt-6 max-w-[54ch] text-[17px] leading-relaxed text-ink-2 sm:text-[18px]">
             {t("Which ship to charter, when to fix it, how much to put on contract and what could go wrong, worked out from freight markets, port depths, sea forecasts and rail links to five steel plants.")}
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Link to="/signup" className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-[15px] font-semibold text-surface shadow-[0_6px_18px_-6px_rgba(30,58,95,0.55)] transition-colors hover:bg-accent-hover">
-              {t("Start planning")}
+          <div className="mt-9 flex flex-wrap items-start gap-3">
+            <DemoButton className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-[15px] font-semibold text-surface shadow-[0_6px_18px_-6px_rgba(30,58,95,0.55)] transition-colors hover:bg-accent-hover disabled:opacity-70">
+              {t("Try the live demo")}
               <ArrowRight size={16} aria-hidden />
+            </DemoButton>
+            <Link to="/signup" className="inline-flex items-center gap-2 rounded-lg border border-rule-strong bg-surface px-5 py-3 text-[15px] font-semibold text-ink transition-colors hover:bg-hover">
+              {t("Create an account")}
             </Link>
-            <a href="#features" className="inline-flex items-center gap-2 rounded-lg border border-rule-strong bg-surface px-5 py-3 text-[15px] font-semibold text-ink transition-colors hover:bg-hover">
-              {t("See what it does")}
-            </a>
           </div>
+          <p className="mt-3 text-[13.5px] text-ink-3">{t("The demo needs no sign-up: a fresh account opens straight into the planner.")}</p>
           <ul className="mt-9 grid gap-2.5 text-[14.5px] text-ink-2 sm:grid-cols-2">
             {[
               "Live sea state and port traffic at every port",
@@ -782,12 +784,12 @@ function FinalCta() {
           <h2 className="serif mx-auto max-w-[24ch] text-[32px] font-semibold leading-tight text-white sm:text-[40px]">{t("Plan your next coking-coal shipment with the whole voyage in view.")}</h2>
           <p className="mx-auto mt-4 max-w-[56ch] text-[16.5px] leading-relaxed text-white/80">{t("Create an account in a minute. Your plant is chosen for you when you plan a shipment.")}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/signup" className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-[15px] font-semibold text-accent shadow-sm hover:bg-white/90">
-              {t("Create your account")}
+            <DemoButton className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-[15px] font-semibold text-accent shadow-sm hover:bg-white/90 disabled:opacity-70">
+              {t("Try the live demo")}
               <ArrowRight size={16} aria-hidden />
-            </Link>
-            <Link to="/login" className="rounded-lg border border-white/40 px-5 py-3 text-[15px] font-semibold text-white hover:bg-white/10">
-              {t("Sign in")}
+            </DemoButton>
+            <Link to="/signup" className="rounded-lg border border-white/40 px-5 py-3 text-[15px] font-semibold text-white hover:bg-white/10">
+              {t("Create your account")}
             </Link>
           </div>
         </div>

@@ -27,12 +27,18 @@ services:
         value: "1"
       - key: COOKIE_SAMESITE
         value: lax
-      # Accounts in Postgres: the free web service's disk is wiped on every deploy.
+      # Accounts in Postgres. Render's free database is deleted 30 days after
+      # it's created, so use a permanent free one (Neon: neon.tech) and paste
+      # its connection string here in the dashboard.
       - key: AUTH_DB_URL
-        fromDatabase:
-          name: freightwise-db
-          property: connectionString
-      # Secrets: entered in the Render dashboard, never in this file.
+        sync: false
+      # Email: Render's free plan blocks outgoing SMTP, so send through Brevo's
+      # HTTPS API (free, 300 a day; MAIL_FROM must be a sender verified there).
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      # Only for a paid instance or another host that allows SMTP.
       - key: SMTP_HOST
         sync: false
       - key: SMTP_PORT
@@ -41,11 +47,5 @@ services:
         sync: false
       - key: SMTP_PASSWORD
         sync: false
-      - key: MAIL_FROM
-        sync: false
       - key: DEVELOPER_ACCESS_CODE
         sync: false
-
-databases:
-  - name: freightwise-db
-    plan: free

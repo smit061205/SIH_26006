@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { ApiError } from "./api";
 import App from "./App";
 import { SharedCanvasHost } from "./components/ship3d/SharedCanvasHost";
 import { TooltipProvider } from "./components/ui/overlay";
@@ -10,7 +11,13 @@ import "./index.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { retry: 1, refetchOnWindowFocus: false, staleTime: 5 * 60_000 },
+    queries: {
+      // One retry for a dropped connection or a server hiccup; none for an answer that was
+      // refused (4xx) or never came (a timeout would only double the wait).
+      retry: (count, error) => count < 1 && !(error instanceof ApiError && (error.timedOut || (error.status >= 400 && error.status < 500))),
+      refetchOnWindowFocus: false,
+      staleTime: 5 * 60_000,
+    },
   },
 });
 

@@ -59,6 +59,8 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=now)
     # Developer accounts (a valid developer access code) also get the dev tools.
     is_developer: Mapped[bool] = mapped_column(Boolean, default=False)
+    # "Try the demo" accounts: no email or password of the visitor's, deleted after a day.
+    is_demo: Mapped[bool] = mapped_column(Boolean, default=False)
 
 
 class UserSession(Base):
@@ -155,6 +157,9 @@ def _add_missing_columns(engine) -> None:
     if "is_developer" not in columns:
         with engine.begin() as conn:
             conn.execute(text("ALTER TABLE users ADD COLUMN is_developer BOOLEAN NOT NULL DEFAULT FALSE"))
+    if "is_demo" not in columns:
+        with engine.begin() as conn:
+            conn.execute(text("ALTER TABLE users ADD COLUMN is_demo BOOLEAN NOT NULL DEFAULT FALSE"))
 
 
 def db_url() -> str:

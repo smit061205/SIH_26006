@@ -1,13 +1,20 @@
 """Sends account emails (verify address, reset password).
 
-Configure SMTP with SMTP_HOST, SMTP_PORT (587, STARTTLS), SMTP_USER,
-SMTP_PASSWORD and MAIL_FROM - for Gmail: smtp.gmail.com, your address and a
-16-character App Password (see the README). Without SMTP_HOST (local
-development) the email is written to the server log instead, and outside
-production the page shows the link, so it can still be followed.
+Two ways to send, the first one configured wins:
 
-Mail goes out on a worker thread: a slow or failing mail server never holds up
-or breaks the request, and failures are logged.
+- BREVO_API_KEY: Brevo's email API over HTTPS (free for 300 emails a day).
+  Use this on hosts that block outgoing SMTP, such as Render's free plan.
+  MAIL_FROM must be a sender verified in Brevo.
+- SMTP_HOST, SMTP_PORT (587, STARTTLS), SMTP_USER, SMTP_PASSWORD and
+  MAIL_FROM - for Gmail: smtp.gmail.com, your address and a 16-character App
+  Password (see the README).
+
+With neither (local development) the email is written to the server log
+instead, and outside production the page shows the link, so it can still be
+followed.
+
+Mail goes out on a worker thread: a slow or failing mail service never holds
+up or breaks the request, and failures are logged.
 """
 import html
 import logging
@@ -15,9 +22,14 @@ import os
 import smtplib
 from concurrent.futures import ThreadPoolExecutor
 from email.message import EmailMessage
+from email.utils import parseaddr
+
+import requests
 
 log = logging.getLogger("freightwise.mail")
 logging.basicConfig(level=logging.INFO)
+
+BREVO_URL = "https://api.brevo.com/v3/smtp/email"
 
 
 def smtp_configured() -> bool:
@@ -25,27 +37,63 @@ def smtp_configured() -> bool:
     return bool(os.environ.get("SMTP_HOST")) and (bool(os.environ.get("SMTP_USER")) or os.environ.get("SMTP_NO_AUTH") == "1")
 
 
+def api_configured() -> bool:
+    return bool(os.environ.get("BREVO_API_KEY"))
+
+
+def mail_configured() -> bool:
+    """Emails actually go out (rather than to the log)."""
+    return api_configured() or smtp_configured()
+
+
 _pool = ThreadPoolExecutor(max_workers=2, thread_name_prefix="mail")
 
 
 def send_email(to: str, subject: str, text: str, html: str) -> None:
-    if not smtp_configured():
-        log.info("Email (SMTP not configured) to %s: %s\n%s", to, subject, text)
+    if not mail_configured():
+        log.info("Email (no mail service configured) to %s: %s\n%s", to, subject, text)
         return
     _pool.submit(_deliver, to, subject, text, html)
 
 
 def _deliver(to: str, subject: str, text: str, html: str) -> None:
     try:
-        _smtp_send(to, subject, text, html)
+        if api_configured():
+            _api_send(to, subject, text, html)
+        else:
+            _smtp_send(to, subject, text, html)
         log.info("Email sent to %s: %s", to, subject)
     except Exception:  # noqa: BLE001 - any mail failure is logged, never raised into a request
-        log.exception("Email to %s failed (%s). Check SMTP_* settings in .env.", to, subject)
+        log.exception("Email to %s failed (%s). Check the mail settings (BREVO_API_KEY or SMTP_*).", to, subject)
+
+
+def _sender() -> tuple[str, str]:
+    """(name, address) from MAIL_FROM ("Freightwise <me@example.com>" or a bare address)."""
+    name, address = parseaddr(os.environ.get("MAIL_FROM") or os.environ.get("SMTP_USER", ""))
+    return name or "Freightwise", address or "no-reply@localhost"
+
+
+def _api_send(to: str, subject: str, text: str, html: str) -> None:
+    name, address = _sender()
+    res = requests.post(
+        BREVO_URL,
+        headers={"api-key": os.environ["BREVO_API_KEY"], "accept": "application/json"},
+        json={
+            "sender": {"name": name, "email": address},
+            "to": [{"email": to}],
+            "subject": subject,
+            "textContent": text,
+            "htmlContent": html,
+        },
+        timeout=20,
+    )
+    res.raise_for_status()
 
 
 def _smtp_send(to: str, subject: str, text: str, html: str) -> None:
+    name, address = _sender()
     msg = EmailMessage()
-    msg["From"] = os.environ.get("MAIL_FROM") or f"Freightwise <{os.environ.get('SMTP_USER', 'no-reply@localhost')}>"
+    msg["From"] = f"{name} <{address}>"
     msg["To"] = to
     msg["Subject"] = subject
     msg.set_content(text)

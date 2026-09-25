@@ -40,11 +40,17 @@ export interface ShipmentRequest {
 /** An API error with the server's own message (shown on the auth forms). */
 export class ApiError extends Error {
   status: number;
-  constructor(status: number, message: string) {
+  /** No answer in time: the server is busy or waking up. Not retried automatically. */
+  timedOut: boolean;
+  constructor(status: number, message: string, timedOut = false) {
     super(message);
     this.status = status;
+    this.timedOut = timedOut;
   }
 }
+
+/** Longest wait for an answer; a sleeping free-tier server can take most of a minute to wake. */
+const REQUEST_TIMEOUT_MS = 60_000;
 
 /** Fired when a signed-in request comes back 401: the session ended. */
 export const UNAUTHORIZED_EVENT = "fw:unauthorized";
@@ -63,17 +69,33 @@ function validationMessage(detail: unknown): string | null {
 }
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  // Our own deadline, alongside the caller's signal (a query cancelled when the page changes).
+  const controller = new AbortController();
+  let timedOut = false;
+  const timer = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, REQUEST_TIMEOUT_MS);
+  const outer = init.signal;
+  const forward = () => controller.abort();
+  if (outer?.aborted) controller.abort();
+  else outer?.addEventListener("abort", forward, { once: true });
   let res: Response;
   try {
     res = await fetch(`${API_BASE}${path}`, {
       ...init,
+      signal: controller.signal,
       // The session is an HttpOnly cookie; the header marks the request as the app's own (CSRF check).
       credentials: "include",
       headers: { "X-Requested-With": "freightwise", ...(init.headers ?? {}) },
     });
   } catch (e) {
+    if (timedOut) throw new ApiError(0, "The server took too long to answer. It may be starting up; try again in a minute.", true);
     if (e instanceof DOMException && e.name === "AbortError") throw e;
     throw new ApiError(0, "Can't reach the server. Check your connection and try again.");
+  } finally {
+    clearTimeout(timer);
+    outer?.removeEventListener("abort", forward);
   }
   if (!res.ok) {
     let detail = res.status >= 500 ? "Something went wrong on the server. Try again shortly." : `${path} returned ${res.status}`;
@@ -115,6 +137,8 @@ export interface Me {
   created_at: string;
   /** Signed up (or upgraded) with the developer access code: has the dev tools. */
   is_developer: boolean;
+  /** A "Try the demo" account: no email or password, deleted after a day. */
+  is_demo: boolean;
 }
 
 export interface SessionInfo {
@@ -134,6 +158,7 @@ export const auth = {
   session: () => request<{ user: Me | null }>("/api/auth/session").then((r) => r.user),
   login: (email: string, password: string, remember: boolean) => post<Me>("/api/auth/login", { email, password, remember }),
   logout: () => post<Message>("/api/auth/logout", {}),
+  demo: () => post<Me>("/api/auth/demo", {}),
   signup: (body: {
     name: string;
     email: string;

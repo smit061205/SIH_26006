@@ -53,6 +53,36 @@ function useActiveSection(enabled: boolean) {
   return active;
 }
 
+/**
+ * One click into the planner on a fresh demo account: no email, no password.
+ * Signing in sends the visitor on to the Charter plan (see App).
+ */
+export function DemoButton({ className = "", children }: { className?: string; children?: ReactNode }) {
+  const t = useT();
+  const { startDemo } = useAuth();
+  const [state, setState] = useState<"idle" | "starting" | "failed">("idle");
+  const start = async () => {
+    setState("starting");
+    try {
+      await startDemo();
+    } catch {
+      setState("failed");
+    }
+  };
+  return (
+    <span className="inline-flex flex-col items-start gap-1.5">
+      <button type="button" onClick={start} disabled={state === "starting"} aria-busy={state === "starting"} className={className}>
+        {state === "starting" ? t("Opening the demo…") : (children ?? t("Try the live demo"))}
+      </button>
+      {state === "failed" && (
+        <span role="alert" className="text-[13px] text-negative">
+          {t("Couldn't open the demo. Try again in a moment.")}
+        </span>
+      )}
+    </span>
+  );
+}
+
 /** Header for pages anyone can see: the landing page and the account forms. */
 export function PublicHeader({ sections = false }: { sections?: boolean }) {
   const t = useT();

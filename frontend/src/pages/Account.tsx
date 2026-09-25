@@ -179,7 +179,8 @@ function DeveloperAccess() {
 
 function YourData() {
   const t = useT();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
+  const demo = !!user?.is_demo;
   const [confirming, setConfirming] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -231,9 +232,9 @@ function YourData() {
           ) : (
             <form onSubmit={remove} className="max-w-md space-y-3">
               {error && <FormError>{error}</FormError>}
-              <PasswordInput label="Enter your password to confirm" value={password} onChange={setPassword} autoComplete="current-password" />
+              {!demo && <PasswordInput label="Enter your password to confirm" value={password} onChange={setPassword} autoComplete="current-password" />}
               <div className="flex gap-3">
-                <button type="submit" disabled={!password} className="h-[34px] rounded-[var(--radius-control)] bg-negative px-3 text-[14px] font-semibold text-surface disabled:opacity-60">
+                <button type="submit" disabled={!password && !demo} className="h-[34px] rounded-[var(--radius-control)] bg-negative px-3 text-[14px] font-semibold text-surface disabled:opacity-60">
                   {t("Delete my account")}
                 </button>
                 <Button onClick={() => setConfirming(false)}>{t("Cancel")}</Button>
@@ -256,9 +257,10 @@ export default function Account() {
         description={t("Member since {date}.", { date: user ? longDate(user.created_at.slice(0, 10)) : "–" })}
       />
       <Profile />
-      <ChangePassword />
+      {/* A demo account has no password of its own, and can't become a developer account. */}
+      {!user?.is_demo && <ChangePassword />}
       <Sessions />
-      <DeveloperAccess />
+      {!user?.is_demo && <DeveloperAccess />}
       <YourData />
     </>
   );

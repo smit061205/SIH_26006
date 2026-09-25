@@ -8,7 +8,7 @@ import { Shortcuts } from "./components/shell/Shortcuts";
 import { TopBar } from "./components/shell/TopBar";
 import { ErrorState, PageSkeleton } from "./components/ui/feedback";
 import { useAuth } from "./lib/auth";
-import { translate, useLang } from "./lib/i18n";
+import { translate, useLang, useT } from "./lib/i18n";
 import { safeNext } from "./lib/nextPath";
 import { focusInitialHash, redirect, usePathname } from "./lib/router";
 import { ShipmentProvider } from "./lib/shipment";
@@ -163,6 +163,23 @@ function SkipLink() {
   );
 }
 
+/** Tells a demo visitor what the account is and how to get their own. */
+function DemoBanner() {
+  const t = useT();
+  const { user, logout } = useAuth();
+  if (!user?.is_demo) return null;
+  return (
+    <div className="border-b border-rule bg-accent-tint">
+      <div className="mx-auto flex max-w-[1264px] flex-wrap items-center justify-between gap-x-4 gap-y-1.5 px-4 py-2 sm:px-6 lg:px-8">
+        <p className="text-[13.5px] text-ink-2">{t("You're using a demo account. Everything in it is deleted after a day.")}</p>
+        <button type="button" onClick={() => void logout("/signup")} className="text-[13.5px] font-semibold text-accent underline-offset-4 hover:underline">
+          {t("Create your own account")}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function AppShell({ path, nav, children }: { path: string; nav: (typeof NAV)[number] | undefined; children: ReactNode }) {
   // Anchored sections scroll clear of the sticky header, whose height changes
   // with the shipment bar (see [id] in index.css).
@@ -189,6 +206,7 @@ function AppShell({ path, nav, children }: { path: string; nav: (typeof NAV)[num
       </div>
       <div className="print:hidden">
         <ServiceStatus />
+        <DemoBanner />
       </div>
       <main id="main" className="mx-auto w-full max-w-[1264px] px-4 pb-20 pt-8 sm:px-6 md:pt-12 lg:px-8">
         <PageBoundary resetKey={path}>

@@ -1,16 +1,33 @@
 import { useT, useTx } from "../../lib/i18n";
-import type { ReactNode } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { Button } from "./inputs";
 
 export function Skeleton({ className = "" }: { className?: string }) {
   return <div aria-hidden className={`rounded-[var(--radius-control)] bg-sunken ${className}`} />;
 }
 
+/** True once `ms` have passed since mount: for "still working" hints on slow loads. */
+function useAfter(ms: number) {
+  const [done, setDone] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setDone(true), ms);
+    return () => clearTimeout(id);
+  }, [ms]);
+  return done;
+}
+
 /** Placeholder shaped like a page: header, figure row, a table. */
 export function PageSkeleton() {
   const t = useT();
+  const slow = useAfter(6000);
   return (
     <div aria-busy="true" aria-label={t("Loading")}>
+      {slow && (
+        <p role="status" className="mb-5 inline-flex items-center gap-2 rounded-[var(--radius-control)] bg-accent-tint px-3 py-2 text-[14px] text-ink-2">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-accent" aria-hidden />
+          {t("Still working. If the server has been idle it takes up to a minute to start.")}
+        </p>
+      )}
       <Skeleton className="h-4 w-40 mb-3" />
       <Skeleton className="h-9 w-72 mb-3" />
       <Skeleton className="h-4 w-full max-w-lg mb-11" />

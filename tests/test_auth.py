@@ -337,3 +337,73 @@ def test_blank_names_are_refused():
         json={"name": "   ", "email": _email(), "password": PASSWORD, "accept_privacy": True, "accept_terms": True},
     )
     assert r.status_code == 422
+
+
+def test_demo_signs_in_at_once_without_an_email_or_password():
+    c = new_client()
+    r = c.post("/api/auth/demo")
+    assert r.status_code == 200 and r.json()["is_demo"] is True
+    assert c.get("/api/auth/me").json()["is_demo"] is True
+    # The planner works for it like any account.
+    body = {"cargo_tonnes": 75000, "month": 10, "origin": "Australia (Hay Point/Dalrymple Bay)", "plant_name": "Bhilai Steel Plant"}
+    assert c.post("/api/rank", json=body).status_code == 200
+
+
+def test_demo_accounts_are_separate_and_limited():
+    a, b = new_client(), new_client()
+    a.post("/api/auth/demo")
+    b.post("/api/auth/demo")
+    assert a.get("/api/auth/me").json()["email"] != b.get("/api/auth/me").json()["email"]
+    assert a.post("/api/auth/change-password", json={"current_password": "x", "new_password": "Another-pass9!"}).status_code == 403
+    assert a.post("/api/auth/developer", json={"code": "test-dev-code"}).status_code == 403
+    # Leaving deletes it without a password.
+    assert a.request("DELETE", "/api/auth/account", json={"password": ""}).status_code == 200
+
+
+def test_old_demo_accounts_are_deleted_with_their_data():
+    from src.users import PlantStock, User, db
+
+    c = new_client()
+    email = c.post("/api/auth/demo").json()["email"]
+    c.put("/api/plants/stock", json={"plant_name": "Bhilai Steel Plant", "tonnes": 5000})
+    with db() as s:
+        u = s.query(User).filter(User.email == email).one()
+        u.created_at = u.created_at - timedelta(days=2)
+        s.commit()
+    new_client().post("/api/auth/demo")
+    with db() as s:
+        assert s.query(User).filter(User.email == email).first() is None
+        assert s.query(PlantStock).count() == s.query(PlantStock).join(User, User.id == PlantStock.user_id).count()
+
+
+def test_demo_starts_are_rate_limited_per_network():
+    from backend import auth
+
+    c = new_client()
+    for _ in range(auth.DEMO_PER_IP):
+        assert c.post("/api/auth/demo").status_code == 200
+    assert c.post("/api/auth/demo").status_code == 429
+    auth._demo_attempts.clear()
+
+
+def test_brevo_api_is_used_when_configured(monkeypatch):
+    from src import mailer
+
+    sent = {}
+
+    class Ok:
+        def raise_for_status(self):
+            return None
+
+    def fake_post(url, headers, json, timeout):
+        sent.update(url=url, key=headers["api-key"], body=json)
+        return Ok()
+
+    monkeypatch.setenv("BREVO_API_KEY", "test-key")
+    monkeypatch.setenv("MAIL_FROM", "Freightwise <planner@example.com>")
+    monkeypatch.setattr(mailer.requests, "post", fake_post)
+    assert mailer.mail_configured()
+    mailer._deliver("x@example.com", "Subject", "text", "<p>html</p>")
+    assert sent["url"] == mailer.BREVO_URL and sent["key"] == "test-key"
+    assert sent["body"]["sender"] == {"name": "Freightwise", "email": "planner@example.com"}
+    assert sent["body"]["to"] == [{"email": "x@example.com"}]

@@ -3,6 +3,7 @@ import { useT } from "../lib/i18n";
 import { navigate, useSearchParam } from "../lib/router";
 import { SignInForm } from "./Login";
 import { type SignupResult, SignUpForm, SignupDone } from "./Signup";
+import { DemoButton } from "../components/shell/PublicShell";
 
 type Tab = "signin" | "signup";
 
@@ -95,6 +96,12 @@ export default function Auth({ tab }: { tab: Tab }) {
             )}
           </div>
         </div>
+        {!result && (
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-rule bg-sunken/60 px-6 py-4 sm:px-8">
+            <p className="text-[14px] text-ink-2">{t("Just looking? Open the planner without an account.")}</p>
+            <DemoButton className="rounded-[var(--radius-control)] border border-rule-strong bg-surface px-3.5 py-2 text-[14px] font-semibold text-ink hover:bg-hover disabled:opacity-70" />
+          </div>
+        )}
       </div>
     </div>
   );

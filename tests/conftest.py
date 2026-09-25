@@ -12,6 +12,7 @@ os.environ.setdefault("SCRYPT_LOG_N", "12")
 os.environ["DEV_SHOW_EMAIL_LINKS"] = "1"
 # Set (not removed), so a local .env can never switch on real mail or change the code in tests.
 os.environ["SMTP_HOST"] = ""
+os.environ["BREVO_API_KEY"] = ""
 os.environ["APP_ENV"] = "test"
 os.environ["DEVELOPER_ACCESS_CODE"] = "test-dev-code"
 
@@ -80,4 +81,5 @@ def _fresh_network_limit():
 
     auth._ip_attempts.clear()
     auth._mail_attempts.clear()
+    auth._demo_attempts.clear()
     yield

@@ -1,6 +1,5 @@
 # Build context is the project root (see docker-compose.yml), because this
-# image needs src/ and data/ which live outside backend/. The Hugging Face
-# Space uses this same file as its root Dockerfile (scripts/build_hf_space.sh).
+# image needs src/ and data/ which live outside backend/.
 FROM python:3.13-slim
 
 WORKDIR /app
@@ -21,8 +20,8 @@ ENV OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 LOKY_MAX_CPU_COUN
 # The freight models' results ship in data/forecast-cache; this only fills in
 # anything missing, so the build normally takes a second here.
 RUN python -m scripts.precompute_forecasts
-# Hugging Face Spaces run the container as user 1000: let it own the app so
-# the forecast cache stays writable (hosts that run as root are unaffected).
+# Some hosts run the container as an unprivileged user (uid 1000): let it own
+# the app so the forecast cache stays writable (root is unaffected).
 RUN useradd -m -u 1000 app && chown -R app /app
 
 # Browsers calling the API must come from one of these origins (comma-separated).

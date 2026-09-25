@@ -12,7 +12,9 @@ interface AuthState {
   /** The service couldn't be reached to check the session. */
   unavailable: boolean;
   login: (email: string, password: string, remember: boolean) => Promise<Me>;
-  logout: () => Promise<void>;
+  /** Signs in to a fresh demo account: no email or password needed. */
+  startDemo: () => Promise<Me>;
+  logout: (to?: string) => Promise<void>;
   setUser: (user: Me | null) => void;
   retry: () => void;
 }
@@ -48,15 +50,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [setUser]
   );
 
-  const logout = useCallback(async () => {
+  const startDemo = useCallback(async () => {
+    const user = await auth.demo();
+    setUser(user);
+    return user;
+  }, [setUser]);
+
+  const logout = useCallback(async (to = "/") => {
     try {
       await auth.logout();
     } catch {
       // Already signed out (or offline): leave anyway.
     } finally {
-      // A full page load to the landing page: nothing from the signed-in
+      // A full page load (to the landing page by default): nothing from the signed-in
       // session stays in memory, and no page briefly redirects to sign-in.
-      window.location.replace("/");
+      window.location.replace(to);
     }
   }, []);
 
@@ -66,11 +74,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       status: me.isLoading ? "loading" : me.data ? "signed-in" : me.isError ? "unavailable" : "signed-out",
       unavailable: me.isError && !me.data,
       login,
+      startDemo,
       logout,
       setUser,
       retry: () => void me.refetch(),
     }),
-    [me, login, logout, setUser]
+    [me, login, startDemo, logout, setUser]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

@@ -8,6 +8,7 @@ password changes.
 """
 import hmac
 import os
+import secrets
 import threading
 import time
 from collections import defaultdict, deque
@@ -25,6 +26,7 @@ from src.users import (
     AuditEvent,
     EmailToken,
     LoginThrottle,
+    PlantStock,
     User,
     UserSession,
     _aware,
@@ -83,7 +85,7 @@ def _show_links() -> bool:
     development (APP_ENV=development) with no mail server. Anywhere else a
     response carrying a reset link would let anyone take over an account, so
     the default is off. DEV_SHOW_EMAIL_LINKS=0/1 overrides, for tests."""
-    if mailer.smtp_configured():
+    if mailer.mail_configured():
         return False
     flag = os.environ.get("DEV_SHOW_EMAIL_LINKS")
     if flag in ("0", "1"):
@@ -177,6 +179,7 @@ def _public(u: User) -> dict:
         "email_verified": u.email_verified_at is not None,
         "created_at": u.created_at.isoformat(),
         "is_developer": bool(u.is_developer),
+        "is_demo": bool(u.is_demo),
     }
 
 
@@ -299,6 +302,7 @@ class DeveloperRequest(BaseModel):
 @router.post("/developer")
 def become_developer(req: DeveloperRequest, request: Request, user: User = Depends(require_user)):
     """Adds developer access to the signed-in account."""
+    _no_demo(user)
     _check_developer_code(req.code, request)
     with db() as s:
         u = s.get(User, user.id)
@@ -437,6 +441,76 @@ def logout(request: Request, response: Response, fw_session: str | None = Cookie
     return {"message": "Signed out."}
 
 
+# --- "Try the demo" ------------------------------------------------------------
+# One click, no email: a throwaway account signed in at once, so anyone can see
+# the planner working. Each visitor gets their own (their plant stock and plans
+# don't mix with anyone else's); accounts older than a day are deleted.
+
+DEMO_TTL = timedelta(days=1)
+DEMO_PER_IP = 10  # demo accounts per network per hour
+_demo_attempts: dict[str, deque] = defaultdict(deque)
+
+
+def _erase_user(s, user: User) -> None:
+    """Remove an account and everything tied to it; sign-in records stay as anonymous events."""
+    s.execute(delete(UserSession).where(UserSession.user_id == user.id))
+    s.execute(delete(EmailToken).where(EmailToken.user_id == user.id))
+    s.execute(delete(PlantStock).where(PlantStock.user_id == user.id))
+    for e in s.scalars(select(AuditEvent).where(AuditEvent.user_id == user.id)):
+        e.user_id = None
+        e.ip = ""
+    s.execute(delete(LoginThrottle).where(LoginThrottle.email_hash == sha256(user.email)))
+    s.delete(user)
+
+
+@router.post("/demo")
+def start_demo(request: Request, response: Response):
+    ip = _ip(request)
+    cutoff = time.monotonic() - 3600
+    window = _demo_attempts[ip]
+    while window and window[0] < cutoff:
+        window.popleft()
+    if len(window) >= DEMO_PER_IP:
+        raise HTTPException(status_code=429, detail="Too many demo sessions from this network. Try again later.")
+    window.append(time.monotonic())
+    with db() as s:
+        for old in s.scalars(select(User).where(User.is_demo.is_(True), User.created_at < now() - DEMO_TTL)).all():
+            _erase_user(s, old)
+        user = User(
+            email=f"demo-{secrets.token_hex(8)}@demo.invalid",
+            name="Demo planner",
+            # Unusable: nobody knows it, so the account can only be reached through this session.
+            password_hash=hash_password(secrets.token_urlsafe(32)),
+            email_verified_at=now(),
+            consent_version=CONSENT_VERSION,
+            consent_at=now(),
+            is_demo=True,
+        )
+        s.add(user)
+        s.flush()
+        token, token_hash = new_token()
+        s.add(
+            UserSession(
+                token_hash=token_hash,
+                user_id=user.id,
+                expires_at=session_expiry(False),
+                remember=False,
+                user_agent=request.headers.get("user-agent", "")[:300],
+                ip=ip,
+            )
+        )
+        audit(s, "demo_start", user.id, ip)
+        s.commit()
+        body = _public(user)
+    _set_cookie(response, token, False)
+    return body
+
+
+def _no_demo(user: User) -> None:
+    if user.is_demo:
+        raise HTTPException(status_code=403, detail="The demo account can't do this. Create your own account to use it.")
+
+
 @router.get("/me")
 def me(user: User = Depends(require_user)):
     return _public(user)
@@ -527,6 +601,7 @@ class ChangePassword(BaseModel):
 
 @router.post("/change-password")
 def change_password(req: ChangePassword, request: Request, user: User = Depends(require_user)):
+    _no_demo(user)
     if not verify_password(req.current_password, user.password_hash):
         raise HTTPException(status_code=400, detail="Your current password is incorrect.")
     problem = check_password(req.new_password, user.email, user.name)
@@ -597,16 +672,10 @@ class DeleteRequest(BaseModel):
 def delete_account(req: DeleteRequest, request: Request, response: Response, user: User = Depends(require_user)):
     """Erase the account and withdraw consent (DPDP). Sign-in records are
     kept only as anonymous events without the person's id."""
-    if not verify_password(req.password, user.password_hash):
+    if not user.is_demo and not verify_password(req.password, user.password_hash):
         raise HTTPException(status_code=400, detail="Your password is incorrect.")
     with db() as s:
-        s.execute(delete(UserSession).where(UserSession.user_id == user.id))
-        s.execute(delete(EmailToken).where(EmailToken.user_id == user.id))
-        for e in s.scalars(select(AuditEvent).where(AuditEvent.user_id == user.id)):
-            e.user_id = None
-            e.ip = ""
-        s.execute(delete(LoginThrottle).where(LoginThrottle.email_hash == sha256(user.email)))
-        s.delete(s.get(User, user.id))
+        _erase_user(s, s.get(User, user.id))
         audit(s, "account_deleted", None, "")
         s.commit()
     response.delete_cookie(COOKIE, **_cookie_attrs())
