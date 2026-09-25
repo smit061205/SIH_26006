@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_BASE: http://localhost:8000
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  # Optional - NOT required to run the app (backend/main.py still reads
+  # data/*.csv directly by default). Included so `docker compose --profile
+  # postgres up` gives a real Postgres to load data/*.csv into via
+  # scripts/load_postgres.py, for whenever the app's data layer actually
+  # moves off flat files. Not started by a plain `docker compose up`.
+  postgres:
+    image: postgres:16-alpine
+    profiles: ["postgres"]
+    environment:
+      POSTGRES_USER: freightwise
+      POSTGRES_PASSWORD: freightwise
+      POSTGRES_DB: freightwise
+    ports:
+      - "5432:5432"
+    volumes:
+      - freightwise-pgdata:/var/lib/postgresql/data
+
+volumes:
+  freightwise-pgdata:

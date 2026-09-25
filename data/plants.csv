@@ -1,0 +1,6 @@
+plant_id,name,monthly_coking_coal_demand_tonnes,current_inventory_tonnes,buffer_days_target,data_confidence
+1,Bhilai Steel Plant,420000,280000,30,synthetic_placeholder_pending_SAIL_data
+2,Rourkela Steel Plant,350000,210000,30,synthetic_placeholder_pending_SAIL_data
+3,Durgapur Steel Plant,180000,95000,25,synthetic_placeholder_pending_SAIL_data
+4,Bokaro Steel Plant,480000,300000,30,synthetic_placeholder_pending_SAIL_data
+5,IISCO Burnpur,150000,80000,25,synthetic_placeholder_pending_SAIL_data

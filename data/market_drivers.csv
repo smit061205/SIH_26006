@@ -1,0 +1,1015 @@
+date,series,value,unit,frequency,source,data_confidence
+2018-01-01,coal_au,111.9326,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-02-01,coal_au,111.4773,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-03-01,coal_au,105.7281,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-04-01,coal_au,99.2234,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-05-01,coal_au,109.375,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-06-01,coal_au,121.5245,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-07-01,coal_au,125.0859,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-08-01,coal_au,123.7349,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-09-01,coal_au,122.2291,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-10-01,coal_au,114.7621,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-11-01,coal_au,107.5529,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-12-01,coal_au,106.1436,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-01-01,coal_au,105.4013,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-02-01,coal_au,101.3571,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-03-01,coal_au,99.6699,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-04-01,coal_au,88.7646,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-05-01,coal_au,89.5643,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-06-01,coal_au,77.6298,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-07-01,coal_au,77.8458,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-08-01,coal_au,69.7393,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-09-01,coal_au,66.9587,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-10-01,coal_au,69.1943,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-11-01,coal_au,69.7291,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2019-12-01,coal_au,70.4646,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-01-01,coal_au,72.1062,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-02-01,coal_au,71.0502,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-03-01,coal_au,70.2049,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-04-01,coal_au,64.62,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-05-01,coal_au,54.1483,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-06-01,coal_au,55.0028,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-07-01,coal_au,51.6722,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-08-01,coal_au,51.3825,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-09-01,coal_au,52.0057,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-10-01,coal_au,58.0695,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-11-01,coal_au,62.9464,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2020-12-01,coal_au,80.5898,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-01-01,coal_au,90.9954,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-02-01,coal_au,92.4857,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-03-01,coal_au,95.2309,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-04-01,coal_au,97.8477,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-05-01,coal_au,104.2071,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-06-01,coal_au,132.1529,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-07-01,coal_au,153.1982,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-08-01,coal_au,173.5684,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-09-01,coal_au,188.1229,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-10-01,coal_au,240.7321,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-11-01,coal_au,177.8016,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2021-12-01,coal_au,181.474,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-01-01,coal_au,231.7602,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-02-01,coal_au,272.4868,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-03-01,coal_au,353.4405,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-04-01,coal_au,334.7182,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-05-01,coal_au,418.4939,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-06-01,coal_au,427.425,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-07-01,coal_au,433.6265,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-08-01,coal_au,447.4476,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-09-01,coal_au,467.7837,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-10-01,coal_au,426.9092,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-11-01,coal_au,368.2583,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2022-12-01,coal_au,427.687,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-01-01,coal_au,404.5352,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-02-01,coal_au,244.2054,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-03-01,coal_au,195.9992,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-04-01,coal_au,200.6762,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-05-01,coal_au,179.2623,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-06-01,coal_au,138.6317,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-07-01,coal_au,141.0296,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-08-01,coal_au,152.7925,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-09-01,coal_au,168.4791,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-10-01,coal_au,150.7383,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-11-01,coal_au,132.1193,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2023-12-01,coal_au,149.3622,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-01-01,coal_au,140.8179,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-02-01,coal_au,128.7005,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-03-01,coal_au,137.7032,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-04-01,coal_au,137.4954,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-05-01,coal_au,148.0061,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-06-01,coal_au,143.5093,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-07-01,coal_au,141.9943,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-08-01,coal_au,151.635,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-09-01,coal_au,148.7432,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-10-01,coal_au,153.2175,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-11-01,coal_au,150.57,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2024-12-01,coal_au,140.2243,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-01-01,coal_au,125.3229,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-02-01,coal_au,113.1739,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-03-01,coal_au,104.7686,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-04-01,coal_au,101.1429,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-05-01,coal_au,104.0379,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-06-01,coal_au,110.1386,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-07-01,coal_au,116.2993,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-08-01,coal_au,119.2136,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-09-01,coal_au,112.5343,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-10-01,coal_au,111.4982,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-11-01,coal_au,115.4368,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2025-12-01,coal_au,115.6843,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2026-01-01,coal_au,115.815,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2026-02-01,coal_au,122.2093,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2026-03-01,coal_au,140.0561,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2026-04-01,coal_au,142.11,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2026-05-01,coal_au,141.4532,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2026-06-01,coal_au,150.3621,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2026-07-01,coal_au,140.3968,USD/t,monthly,"FRED PCOALAUUSDM (IMF Primary Commodity Prices, Australian coal)",real_public_data
+2018-01-05,brent,67.81,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-01-12,brent,69.47,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-01-19,brent,69.388,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-01-26,brent,70.04,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-02-02,brent,68.004,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-02-09,brent,65.496,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-02-16,brent,62.718,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-02-23,brent,65.52,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-03-02,brent,66.024,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-03-09,brent,65.12,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-03-16,brent,64.138,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-03-23,brent,67.396,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-03-29,brent,68.6475,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-04-06,brent,67.0275,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-04-13,brent,71.244,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-04-20,brent,73.392,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-04-27,brent,74.982,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-05-04,brent,74.422,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-05-11,brent,76.68,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-05-18,brent,78.754,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-05-25,brent,78.59,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-06-01,brent,75.3475,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-06-08,brent,73.978,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-06-15,brent,74.26,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-06-22,brent,74.116,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-06-29,brent,75.238,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-07-06,brent,76.328,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-07-13,brent,75.29,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-07-20,brent,71.27,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-07-27,brent,74.0,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-08-03,brent,73.372,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-08-10,brent,71.416,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-08-17,brent,69.824,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-08-24,brent,72.772,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-08-31,brent,76.076,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-09-07,brent,76.644,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-09-14,brent,78.108,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-09-21,brent,78.966,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-09-28,brent,81.846,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-10-05,brent,85.442,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-10-12,brent,83.052,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-10-19,brent,80.406,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-10-26,brent,78.232,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-11-02,brent,74.088,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-11-09,brent,70.344,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-11-16,brent,66.208,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-11-23,brent,61.218,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-11-30,brent,58.65,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-12-07,brent,60.466,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-12-14,brent,59.51,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-12-21,brent,54.644,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-12-28,brent,51.03,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-01-04,brent,54.31,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-01-11,brent,58.636,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-01-18,brent,59.83,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-01-25,brent,61.342,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-02-01,brent,61.38,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-02-08,brent,61.706,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-02-15,brent,63.36,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-02-22,brent,66.582,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-03-01,brent,64.564,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-03-08,brent,64.734,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-03-15,brent,65.714,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-03-22,brent,67.344,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-03-29,brent,67.248,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-04-05,brent,69.54,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-04-12,brent,71.328,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-04-18,brent,70.8725,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-04-26,brent,72.932,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-05-03,brent,71.586,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-05-10,brent,71.252,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-05-17,brent,73.322,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-05-24,brent,70.888,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-05-31,brent,69.29,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-06-07,brent,63.146,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-06-14,brent,63.188,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-06-21,brent,64.038,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-06-28,brent,66.51,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-07-05,brent,63.84,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-07-12,brent,65.978,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-07-19,brent,63.628,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-07-26,brent,62.8,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-08-02,brent,62.586,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-08-09,brent,57.328,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-08-16,brent,58.252,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-08-23,brent,59.574,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-08-30,brent,59.826,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-09-06,brent,60.228,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-09-13,brent,62.738,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-09-20,brent,65.556,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-09-27,brent,63.152,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-10-04,brent,59.222,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-10-11,brent,59.394,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-10-18,brent,59.322,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-10-25,brent,60.748,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-11-01,brent,60.226,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-11-08,brent,62.39,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-11-15,brent,62.564,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-11-22,brent,63.762,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-11-29,brent,64.74,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-12-06,brent,64.714,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-12-13,brent,66.498,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-12-20,brent,68.902,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2019-12-27,brent,68.73,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-01-03,brent,68.05,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-01-10,brent,67.93,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-01-17,brent,64.112,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-01-24,brent,62.2,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-01-31,brent,58.572,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-02-07,brent,54.594,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-02-14,brent,55.328,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-02-21,brent,58.614,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-02-28,brent,54.092,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-03-06,brent,50.702,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-03-13,brent,33.724,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-03-20,brent,25.654,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-03-27,brent,23.962,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-04-03,brent,18.716,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-04-09,brent,22.5325,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-04-17,brent,19.995,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-04-24,brent,14.236,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-05-01,brent,17.046,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-05-07,brent,23.5725,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-05-15,brent,28.182,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-05-22,brent,33.94,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-05-29,brent,33.7025,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-06-05,brent,38.37,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-06-12,brent,39.518,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-06-19,brent,40.948,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-06-26,brent,41.694,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-07-03,brent,42.302,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-07-10,brent,43.06,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-07-17,brent,43.404,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-07-24,brent,43.568,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-07-31,brent,43.224,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-08-07,brent,44.356,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-08-14,brent,44.538,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-08-21,brent,44.792,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-08-28,brent,45.258,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-09-04,brent,43.06,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-09-11,brent,39.45,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-09-18,brent,40.77,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-09-25,brent,40.89,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-10-02,brent,39.994,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-10-09,brent,41.06,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-10-16,brent,41.32,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-10-23,brent,40.998,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-10-30,brent,37.906,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-11-06,brent,38.636,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-11-13,brent,41.87,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-11-20,brent,43.008,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-11-27,brent,46.426,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-12-04,brent,47.828,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-12-11,brent,49.324,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-12-18,brent,51.048,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-12-24,brent,50.605,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2020-12-31,brent,50.82,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-01-08,brent,53.308,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-01-15,brent,55.38,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-01-22,brent,55.23,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-01-29,brent,55.178,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-02-05,brent,58.222,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-02-12,brent,61.128,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-02-19,brent,63.898,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-02-26,brent,65.858,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-03-05,brent,65.94,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-03-12,brent,68.154,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-03-19,brent,66.114,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-03-26,brent,62.506,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-04-01,brent,63.6775,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-04-09,brent,61.8275,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-04-16,brent,64.686,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-04-23,brent,65.344,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-04-30,brent,66.964,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-05-07,brent,68.9925,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-05-14,brent,68.732,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-05-21,brent,67.482,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-05-28,brent,69.022,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-06-04,brent,70.66,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-06-11,brent,71.458,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-06-18,brent,73.11,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-06-25,brent,75.406,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-07-02,brent,76.26,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-07-09,brent,76.134,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-07-16,brent,75.8,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-07-23,brent,72.202,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-07-30,brent,75.754,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-08-06,brent,72.26,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-08-13,brent,71.094,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-08-20,brent,68.078,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-08-27,brent,71.016,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-09-03,brent,73.0175,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-09-10,brent,72.014,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-09-17,brent,74.128,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-09-24,brent,75.32,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-10-01,brent,78.444,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-10-08,brent,82.012,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-10-15,brent,83.868,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-10-22,brent,84.984,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-10-29,brent,84.116,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-11-05,brent,82.522,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-11-12,brent,83.39,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-11-19,brent,81.63,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-11-26,brent,80.238,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-12-03,brent,71.0,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-12-10,brent,74.788,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-12-17,brent,73.762,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-12-24,brent,73.91,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2021-12-31,brent,78.16,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-01-07,brent,80.502,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-01-14,brent,85.068,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-01-21,brent,89.158,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-01-28,brent,90.124,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-02-04,brent,92.774,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-02-11,brent,96.434,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-02-18,brent,97.798,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-02-25,brent,99.364,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-03-04,brent,114.434,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-03-11,brent,122.286,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-03-18,brent,109.592,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-03-25,brent,123.598,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-04-01,brent,111.26,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-04-08,brent,103.33,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-04-14,brent,105.415,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-04-22,brent,105.7225,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-04-29,brent,103.92,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-05-06,brent,110.36,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-05-13,brent,107.432,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-05-20,brent,112.928,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-05-27,brent,117.662,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-06-03,brent,124.105,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-06-10,brent,127.398,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-06-17,brent,125.084,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-06-24,brent,116.832,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-07-01,brent,120.338,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-07-08,brent,113.636,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-07-15,brent,109.8,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-07-22,brent,113.534,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-07-29,brent,109.276,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-08-05,brent,102.544,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-08-12,brent,104.644,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-08-19,brent,96.726,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-08-26,brent,98.872,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-09-02,brent,95.305,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-09-09,brent,90.43,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-09-16,brent,91.406,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-09-23,brent,88.5425,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-09-30,brent,87.276,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-10-07,brent,94.66,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-10-14,brent,94.624,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-10-21,brent,91.036,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-10-28,brent,93.014,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-11-04,brent,95.862,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-11-11,brent,96.078,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-11-18,brent,92.086,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-11-25,brent,86.396,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-12-02,brent,85.03,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-12-09,brent,78.556,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-12-16,brent,80.802,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-12-23,brent,80.678,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2022-12-30,brent,81.8267,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-01-06,brent,77.2025,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-01-13,brent,80.606,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-01-20,brent,84.57,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-01-27,brent,85.904,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-02-03,brent,81.87,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-02-10,brent,83.298,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-02-17,brent,84.172,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-02-24,brent,81.774,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-03-03,brent,83.604,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-03-10,brent,82.858,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-03-17,brent,74.978,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-03-24,brent,74.244,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-03-31,brent,78.004,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-04-06,brent,85.99,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-04-14,brent,87.3625,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-04-21,brent,84.62,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-04-28,brent,81.396,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-05-05,brent,74.6175,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-05-12,brent,76.08,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-05-19,brent,75.752,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-05-26,brent,76.482,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-06-02,brent,73.885,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-06-09,brent,76.06,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-06-16,brent,74.388,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-06-23,brent,75.258,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-06-30,brent,73.55,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-07-07,brent,76.596,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-07-14,brent,79.786,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-07-21,brent,79.48,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-07-28,brent,83.548,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-08-04,brent,85.628,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-08-11,brent,87.83,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-08-18,brent,85.866,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-08-25,brent,84.714,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-09-01,brent,87.565,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-09-08,brent,91.294,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-09-15,brent,93.868,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-09-22,brent,94.862,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-09-29,brent,95.614,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-10-06,brent,90.328,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-10-13,brent,90.476,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-10-20,brent,92.468,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-10-27,brent,89.84,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-11-03,brent,88.208,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-11-10,brent,83.52,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-11-17,brent,81.928,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-11-24,brent,81.62,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-12-01,brent,80.914,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-12-08,brent,75.982,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-12-15,brent,75.578,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-12-22,brent,80.154,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2023-12-29,brent,79.2333,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-01-05,brent,76.88,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-01-12,brent,78.4,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-01-19,brent,80.108,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-01-26,brent,82.312,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-02-02,brent,82.57,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-02-09,brent,81.506,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-02-16,brent,84.444,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-02-23,brent,85.018,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-03-01,brent,84.256,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-03-08,brent,85.632,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-03-15,brent,84.52,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-03-22,brent,85.878,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-03-28,brent,85.8,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-04-05,brent,90.34,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-04-12,brent,92.008,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-04-19,brent,89.594,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-04-26,brent,88.532,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-05-03,brent,85.726,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-05-10,brent,82.9475,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-05-17,brent,81.61,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-05-24,brent,80.24,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-05-31,brent,80.9175,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-06-07,brent,76.586,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-06-14,brent,80.638,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-06-21,brent,85.044,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-06-28,brent,86.716,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-07-05,brent,88.02,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-07-12,brent,86.804,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-07-19,brent,86.046,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-07-26,brent,82.516,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-08-02,brent,80.262,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-08-09,brent,78.844,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-08-16,brent,82.474,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-08-23,brent,79.57,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-08-30,brent,80.825,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-09-06,brent,75.248,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-09-13,brent,72.102,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-09-20,brent,74.984,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-09-27,brent,74.066,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-10-04,brent,75.88,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-10-11,brent,79.342,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-10-18,brent,74.584,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-10-25,brent,74.69,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-11-01,brent,72.61,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-11-08,brent,75.632,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-11-15,brent,72.89,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-11-22,brent,74.838,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-11-29,brent,74.164,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-12-06,brent,73.97,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-12-13,brent,74.032,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-12-20,brent,73.794,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2024-12-27,brent,73.13,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-01-03,brent,75.42,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-01-10,brent,78.136,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-01-17,brent,82.794,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-01-24,brent,79.916,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-01-31,brent,77.372,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-02-07,brent,75.4,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-02-14,brent,76.012,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-02-21,brent,76.088,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-02-28,brent,74.252,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-03-07,brent,71.93,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-03-14,brent,71.542,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-03-21,brent,72.21,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-03-28,brent,74.35,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-04-04,brent,74.636,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-04-11,brent,66.098,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-04-17,brent,67.7575,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-04-25,brent,67.92,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-05-02,brent,63.496,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-05-09,brent,62.29,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-05-16,brent,65.536,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-05-23,brent,65.864,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-05-30,brent,64.74,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-06-06,brent,67.176,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-06-13,brent,71.054,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-06-20,brent,78.246,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-06-27,brent,69.962,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-07-04,brent,69.606,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-07-11,brent,71.774,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-07-18,brent,70.656,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-07-25,brent,70.086,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-08-01,brent,72.408,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-08-08,brent,68.166,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-08-15,brent,67.166,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-08-22,brent,67.822,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-08-29,brent,67.77,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-09-05,brent,66.854,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-09-12,brent,67.23,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-09-19,brent,68.328,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-09-26,brent,69.22,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-10-03,brent,67.152,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-10-10,brent,66.65,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-10-17,brent,62.358,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-10-24,brent,63.222,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-10-31,brent,65.022,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-11-07,brent,64.3,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-11-14,brent,62.868,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-11-21,brent,63.644,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-11-28,brent,64.376,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-12-05,brent,63.982,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-12-12,brent,62.604,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-12-19,brent,60.826,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2025-12-24,brent,63.2067,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-01-02,brent,62.1825,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-01-09,brent,62.926,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-01-16,brent,66.996,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-01-23,brent,66.986,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-01-30,brent,70.426,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-02-06,brent,69.84,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-02-13,brent,70.696,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-02-20,brent,71.656,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-02-27,brent,71.356,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-03-06,brent,85.282,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-03-13,brent,96.156,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-03-20,brent,111.398,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-03-27,brent,111.242,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-04-02,brent,123.935,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-04-10,brent,124.605,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-04-17,brent,114.432,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-04-24,brent,109.618,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-05-01,brent,119.634,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-05-08,brent,105.8775,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-05-15,brent,110.526,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-05-22,brent,110.608,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-05-29,brent,97.0525,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-06-05,brent,98.948,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-06-12,brent,93.764,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-06-19,brent,81.0,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-06-26,brent,73.634,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-07-03,brent,69.7,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-07-10,brent,73.328,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-07-17,brent,82.926,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-07-24,brent,96.118,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-07-31,brent,91.628,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-08-07,brent,87.858,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-08-14,brent,92.514,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-08-21,brent,94.202,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-08-28,brent,89.73,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-09-04,brent,99.0925,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-09-11,brent,111.828,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-09-18,brent,124.146,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2026-09-22,brent,115.52,USD/bbl,weekly,"FRED DCOILBRENTEU (US EIA, Europe Brent spot, weekly average of daily)",real_public_data
+2018-01-05,usd_inr,63.435,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-01-12,usd_inr,63.596,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-01-19,usd_inr,63.9,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-01-26,usd_inr,63.686,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-02-02,usd_inr,63.776,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-02-09,usd_inr,64.232,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-02-16,usd_inr,64.16,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-02-23,usd_inr,64.8275,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-03-02,usd_inr,65.052,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-03-09,usd_inr,65.018,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-03-16,usd_inr,64.92,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-03-23,usd_inr,65.136,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-03-30,usd_inr,65.038,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-04-06,usd_inr,65.012,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-04-13,usd_inr,65.142,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-04-20,usd_inr,65.736,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-04-27,usd_inr,66.636,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-05-04,usd_inr,66.648,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-05-11,usd_inr,67.204,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-05-18,usd_inr,67.838,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-05-25,usd_inr,68.126,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-06-01,usd_inr,67.4075,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-06-08,usd_inr,67.16,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-06-15,usd_inr,67.644,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-06-22,usd_inr,68.056,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-06-29,usd_inr,68.46,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-07-06,usd_inr,68.7625,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-07-13,usd_inr,68.616,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-07-20,usd_inr,68.678,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-07-27,usd_inr,68.752,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-08-03,usd_inr,68.536,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-08-10,usd_inr,68.742,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-08-17,usd_inr,70.034,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-08-24,usd_inr,69.918,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-08-31,usd_inr,70.504,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-09-07,usd_inr,71.7625,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-09-14,usd_inr,72.236,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-09-21,usd_inr,72.406,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-09-28,usd_inr,72.604,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-10-05,usd_inr,73.31,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-10-12,usd_inr,74.055,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-10-19,usd_inr,73.526,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-10-26,usd_inr,73.39,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-11-02,usd_inr,73.376,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-11-09,usd_inr,72.664,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-11-16,usd_inr,72.215,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-11-23,usd_inr,71.26,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-11-30,usd_inr,70.33,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-12-07,usd_inr,70.6525,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-12-14,usd_inr,71.9912,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-12-21,usd_inr,70.504,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2018-12-28,usd_inr,70.11,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-01-04,usd_inr,69.8375,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-01-11,usd_inr,70.224,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-01-18,usd_inr,71.0675,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-01-25,usd_inr,71.1,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-02-01,usd_inr,71.21,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-02-08,usd_inr,71.452,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-02-15,usd_inr,71.022,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-02-22,usd_inr,71.1767,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-03-01,usd_inr,70.944,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-03-08,usd_inr,70.314,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-03-15,usd_inr,69.446,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-03-22,usd_inr,68.84,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-03-29,usd_inr,69.076,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-04-05,usd_inr,68.962,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-04-12,usd_inr,69.228,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-04-19,usd_inr,69.422,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-04-26,usd_inr,69.89,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-05-03,usd_inr,69.488,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-05-10,usd_inr,69.796,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-05-17,usd_inr,70.3,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-05-24,usd_inr,69.588,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-05-31,usd_inr,69.7,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-06-07,usd_inr,69.274,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-06-14,usd_inr,69.52,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-06-21,usd_inr,69.62,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-06-28,usd_inr,69.138,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-07-05,usd_inr,68.7525,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-07-12,usd_inr,68.492,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-07-19,usd_inr,68.738,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-07-26,usd_inr,68.948,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-08-02,usd_inr,69.002,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-08-09,usd_inr,70.882,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-08-16,usd_inr,71.378,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-08-23,usd_inr,71.56,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-08-30,usd_inr,71.682,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-09-06,usd_inr,71.9575,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-09-13,usd_inr,71.416,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-09-20,usd_inr,71.304,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-09-27,usd_inr,70.83,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-10-04,usd_inr,70.962,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-10-11,usd_inr,71.032,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-10-18,usd_inr,71.2525,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-10-25,usd_inr,70.862,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-11-01,usd_inr,70.86,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-11-08,usd_inr,70.99,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-11-15,usd_inr,71.865,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-11-22,usd_inr,71.802,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-11-29,usd_inr,71.5525,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-12-06,usd_inr,71.468,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-12-13,usd_inr,70.802,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-12-20,usd_inr,71.016,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2019-12-27,usd_inr,71.3,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-01-03,usd_inr,71.44,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-01-10,usd_inr,71.462,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-01-17,usd_inr,70.862,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-01-24,usd_inr,71.25,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-01-31,usd_inr,71.428,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-02-07,usd_inr,71.256,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-02-14,usd_inr,71.322,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-02-21,usd_inr,71.67,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-02-28,usd_inr,71.898,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-03-06,usd_inr,73.38,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-03-13,usd_inr,74.03,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-03-20,usd_inr,74.582,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-03-27,usd_inr,75.876,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-04-03,usd_inr,75.94,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-04-10,usd_inr,75.944,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-04-17,usd_inr,76.446,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-04-24,usd_inr,76.41,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-05-01,usd_inr,75.694,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-05-08,usd_inr,75.76,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-05-15,usd_inr,75.506,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-05-22,usd_inr,75.7,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-05-29,usd_inr,75.6425,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-06-05,usd_inr,75.39,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-06-12,usd_inr,75.706,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-06-19,usd_inr,76.188,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-06-26,usd_inr,75.62,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-07-02,usd_inr,75.3325,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-07-10,usd_inr,74.926,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-07-17,usd_inr,75.138,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-07-24,usd_inr,74.69,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-07-31,usd_inr,74.876,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-08-07,usd_inr,74.994,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-08-14,usd_inr,74.786,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-08-21,usd_inr,74.828,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-08-28,usd_inr,73.918,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-09-04,usd_inr,73.24,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-09-11,usd_inr,73.51,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-09-18,usd_inr,73.534,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-09-25,usd_inr,73.644,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-10-02,usd_inr,73.528,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-10-09,usd_inr,73.216,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-10-16,usd_inr,73.3975,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-10-23,usd_inr,73.582,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-10-30,usd_inr,74.15,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-11-06,usd_inr,74.274,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-11-13,usd_inr,74.3825,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-11-20,usd_inr,74.242,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-11-25,usd_inr,74.0133,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-12-04,usd_inr,73.764,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-12-11,usd_inr,73.734,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-12-18,usd_inr,73.582,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-12-23,usd_inr,73.8833,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2020-12-31,usd_inr,73.2425,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-01-08,usd_inr,73.224,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-01-15,usd_inr,73.204,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-01-22,usd_inr,73.0467,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-01-29,usd_inr,72.942,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-02-05,usd_inr,72.936,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-02-12,usd_inr,72.768,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-02-19,usd_inr,72.705,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-02-26,usd_inr,72.792,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-03-05,usd_inr,73.096,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-03-12,usd_inr,72.894,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-03-19,usd_inr,72.548,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-03-26,usd_inr,72.564,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-04-02,usd_inr,73.206,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-04-09,usd_inr,74.084,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-04-16,usd_inr,74.932,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-04-23,usd_inr,75.15,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-04-30,usd_inr,74.378,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-05-07,usd_inr,73.668,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-05-14,usd_inr,73.408,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-05-21,usd_inr,73.078,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-05-28,usd_inr,72.672,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-06-04,usd_inr,72.92,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-06-11,usd_inr,73.01,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-06-18,usd_inr,73.624,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-06-25,usd_inr,74.192,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-07-02,usd_inr,74.396,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-07-09,usd_inr,74.67,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-07-16,usd_inr,74.554,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-07-23,usd_inr,74.568,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-07-30,usd_inr,74.392,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-08-06,usd_inr,74.208,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-08-13,usd_inr,74.322,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-08-20,usd_inr,74.314,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-08-27,usd_inr,74.016,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-09-03,usd_inr,73.04,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-09-10,usd_inr,73.58,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-09-17,usd_inr,73.578,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-09-24,usd_inr,73.734,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-10-01,usd_inr,74.132,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-10-08,usd_inr,74.738,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-10-15,usd_inr,75.2375,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-10-22,usd_inr,74.976,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-10-29,usd_inr,74.946,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-11-05,usd_inr,74.544,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-11-12,usd_inr,74.1675,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-11-19,usd_inr,74.322,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-11-26,usd_inr,74.58,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-12-03,usd_inr,75.036,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-12-10,usd_inr,75.492,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-12-17,usd_inr,76.06,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-12-23,usd_inr,75.49,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2021-12-30,usd_inr,74.6525,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-01-07,usd_inr,74.364,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-01-14,usd_inr,73.936,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-01-21,usd_inr,74.3875,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-01-28,usd_inr,74.9,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-02-04,usd_inr,74.694,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-02-11,usd_inr,74.92,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-02-18,usd_inr,75.102,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-02-25,usd_inr,74.9875,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-03-04,usd_inr,75.85,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-03-11,usd_inr,76.638,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-03-18,usd_inr,76.2,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-03-25,usd_inr,76.228,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-04-01,usd_inr,75.846,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-04-08,usd_inr,75.696,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-04-15,usd_inr,76.104,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-04-22,usd_inr,76.314,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-04-29,usd_inr,76.616,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-05-06,usd_inr,76.532,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-05-13,usd_inr,77.37,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-05-20,usd_inr,77.646,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-05-27,usd_inr,77.566,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-06-03,usd_inr,77.545,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-06-10,usd_inr,77.812,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-06-17,usd_inr,78.042,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-06-24,usd_inr,78.17,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-07-01,usd_inr,78.848,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-07-08,usd_inr,79.165,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-07-15,usd_inr,79.654,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-07-22,usd_inr,79.902,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-07-29,usd_inr,79.7,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-08-05,usd_inr,79.028,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-08-12,usd_inr,79.498,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-08-19,usd_inr,79.55,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-08-26,usd_inr,79.852,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-09-02,usd_inr,79.672,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-09-09,usd_inr,79.75,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-09-16,usd_inr,79.546,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-09-23,usd_inr,80.3,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-09-30,usd_inr,81.55,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-10-07,usd_inr,81.778,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-10-14,usd_inr,82.2575,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-10-21,usd_inr,82.528,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-10-28,usd_inr,82.508,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-11-04,usd_inr,82.572,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-11-10,usd_inr,81.2975,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-11-18,usd_inr,81.366,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-11-25,usd_inr,81.7025,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-12-02,usd_inr,81.446,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-12-09,usd_inr,82.25,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-12-16,usd_inr,82.624,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-12-23,usd_inr,82.766,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2022-12-30,usd_inr,82.7925,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-01-06,usd_inr,82.7175,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-01-13,usd_inr,81.612,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-01-20,usd_inr,81.2925,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-01-27,usd_inr,81.512,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-02-03,usd_inr,81.826,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-02-10,usd_inr,82.628,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-02-17,usd_inr,82.766,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-02-24,usd_inr,82.7975,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-03-03,usd_inr,82.416,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-03-10,usd_inr,81.902,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-03-17,usd_inr,82.494,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-03-24,usd_inr,82.442,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-03-31,usd_inr,82.224,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-04-07,usd_inr,82.034,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-04-14,usd_inr,81.912,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-04-21,usd_inr,82.08,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-04-28,usd_inr,81.848,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-05-05,usd_inr,81.82,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-05-12,usd_inr,82.012,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-05-19,usd_inr,82.474,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-05-26,usd_inr,82.734,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-06-02,usd_inr,82.5275,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-06-09,usd_inr,82.562,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-06-16,usd_inr,82.196,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-06-23,usd_inr,82.0225,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-06-30,usd_inr,82.018,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-07-07,usd_inr,82.3825,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-07-14,usd_inr,82.238,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-07-21,usd_inr,82.026,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-07-28,usd_inr,82.008,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-08-04,usd_inr,82.528,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-08-11,usd_inr,82.8,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-08-18,usd_inr,83.106,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-08-25,usd_inr,82.788,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-09-01,usd_inr,82.7,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-09-08,usd_inr,83.0775,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-09-15,usd_inr,82.998,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-09-22,usd_inr,83.134,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-09-29,usd_inr,83.148,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-10-06,usd_inr,83.2,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-10-13,usd_inr,83.2425,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-10-20,usd_inr,83.198,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-10-27,usd_inr,83.214,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-11-03,usd_inr,83.222,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-11-09,usd_inr,83.235,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-11-17,usd_inr,83.244,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-11-24,usd_inr,83.305,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-12-01,usd_inr,83.322,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-12-08,usd_inr,83.35,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-12-15,usd_inr,83.29,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-12-22,usd_inr,83.15,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2023-12-29,usd_inr,83.215,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-01-05,usd_inr,83.245,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-01-12,usd_inr,83.036,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-01-19,usd_inr,83.1075,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-01-26,usd_inr,83.102,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-02-02,usd_inr,83.024,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-02-09,usd_inr,83.002,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-02-16,usd_inr,83.01,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-02-23,usd_inr,82.89,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-03-01,usd_inr,82.878,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-03-08,usd_inr,82.806,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-03-15,usd_inr,82.796,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-03-22,usd_inr,83.152,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-03-29,usd_inr,83.354,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-04-05,usd_inr,83.368,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-04-12,usd_inr,83.316,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-04-19,usd_inr,83.51,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-04-26,usd_inr,83.372,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-05-03,usd_inr,83.444,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-05-10,usd_inr,83.498,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-05-17,usd_inr,83.448,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-05-24,usd_inr,83.254,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-05-31,usd_inr,83.3,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-06-07,usd_inr,83.376,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-06-14,usd_inr,83.526,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-06-21,usd_inr,83.5225,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-06-28,usd_inr,83.428,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-07-05,usd_inr,83.4725,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-07-12,usd_inr,83.494,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-07-19,usd_inr,83.596,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-07-26,usd_inr,83.69,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-08-02,usd_inr,83.734,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-08-09,usd_inr,83.914,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-08-16,usd_inr,83.938,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-08-23,usd_inr,83.876,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-08-30,usd_inr,83.87,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-09-06,usd_inr,83.94,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-09-13,usd_inr,83.926,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-09-20,usd_inr,83.728,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-09-27,usd_inr,83.606,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-10-04,usd_inr,83.874,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-10-11,usd_inr,83.972,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-10-18,usd_inr,84.03,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-10-25,usd_inr,84.06,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-11-01,usd_inr,84.05,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-11-08,usd_inr,84.246,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-11-15,usd_inr,84.4,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-11-22,usd_inr,84.412,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-11-29,usd_inr,84.35,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-12-06,usd_inr,84.692,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-12-13,usd_inr,84.796,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-12-20,usd_inr,84.972,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2024-12-27,usd_inr,85.255,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-01-03,usd_inr,85.63,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-01-10,usd_inr,85.832,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-01-17,usd_inr,86.562,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-01-24,usd_inr,86.385,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-01-31,usd_inr,86.512,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-02-07,usd_inr,87.266,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-02-14,usd_inr,86.964,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-02-21,usd_inr,86.8175,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-02-28,usd_inr,87.158,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-03-07,usd_inr,87.11,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-03-14,usd_inr,87.118,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-03-21,usd_inr,86.408,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-03-28,usd_inr,85.668,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-04-04,usd_inr,85.418,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-04-11,usd_inr,86.296,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-04-18,usd_inr,85.65,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-04-25,usd_inr,85.304,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-05-02,usd_inr,84.772,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-05-09,usd_inr,84.918,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-05-16,usd_inr,85.406,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-05-23,usd_inr,85.558,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-05-30,usd_inr,85.42,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-06-06,usd_inr,85.646,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-06-13,usd_inr,85.67,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-06-20,usd_inr,86.3525,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-06-27,usd_inr,85.96,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-07-03,usd_inr,85.58,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-07-11,usd_inr,85.75,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-07-18,usd_inr,85.99,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-07-25,usd_inr,86.39,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-08-01,usd_inr,87.216,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-08-08,usd_inr,87.704,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-08-15,usd_inr,87.588,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-08-22,usd_inr,87.236,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-08-29,usd_inr,87.756,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-09-05,usd_inr,88.1575,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-09-12,usd_inr,88.236,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-09-19,usd_inr,88.054,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-09-26,usd_inr,88.626,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-10-03,usd_inr,88.75,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-10-10,usd_inr,88.768,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-10-17,usd_inr,88.135,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-10-24,usd_inr,87.898,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-10-31,usd_inr,88.408,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-11-07,usd_inr,88.688,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-11-14,usd_inr,88.67,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-11-21,usd_inr,88.798,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-11-28,usd_inr,89.2725,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-12-05,usd_inr,89.92,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-12-12,usd_inr,90.152,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-12-19,usd_inr,90.384,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2025-12-26,usd_inr,89.725,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-01-02,usd_inr,89.945,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-01-09,usd_inr,90.108,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-01-16,usd_inr,90.336,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-01-23,usd_inr,91.565,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-01-30,usd_inr,91.876,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-02-06,usd_inr,90.63,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-02-13,usd_inr,90.66,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-02-20,usd_inr,90.7475,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-02-27,usd_inr,90.946,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-03-06,usd_inr,91.666,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-03-13,usd_inr,92.168,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-03-20,usd_inr,92.8,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-03-27,usd_inr,94.118,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-04-03,usd_inr,93.526,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-04-10,usd_inr,92.736,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-04-17,usd_inr,93.246,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-04-24,usd_inr,93.756,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-05-01,usd_inr,94.678,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-05-08,usd_inr,94.752,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-05-15,usd_inr,95.672,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-05-22,usd_inr,96.318,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-05-29,usd_inr,95.515,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-06-05,usd_inr,95.342,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-06-12,usd_inr,95.44,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-06-18,usd_inr,94.5475,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-06-26,usd_inr,94.572,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-07-02,usd_inr,94.96,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-07-10,usd_inr,95.33,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-07-17,usd_inr,96.142,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-07-24,usd_inr,96.478,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-07-31,usd_inr,95.694,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-08-07,usd_inr,95.256,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-08-14,usd_inr,95.388,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-08-21,usd_inr,95.688,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-08-28,usd_inr,95.502,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-09-04,usd_inr,94.812,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-09-11,usd_inr,95.225,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data
+2026-09-18,usd_inr,95.852,INR/USD,weekly,"FRED DEXINUS (Federal Reserve H.10, weekly average of daily)",real_public_data

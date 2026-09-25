@@ -1,0 +1,51 @@
+# Render Blueprint for the Freightwise API and its account database.
+# The web app itself is hosted on Vercel (frontend/vercel.json), which forwards
+# /api/* here, so the browser only ever talks to one origin. See docs/DEPLOY.md.
+#
+# Render: New -> Blueprint -> pick this repository. Fill in the secrets marked
+# sync: false when prompted, then set APP_URL and ALLOWED_ORIGINS to the
+# Vercel address once it's known.
+services:
+  - type: web
+    name: freightwise-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      # The Vercel address of the web app: links in emails point here.
+      - key: APP_URL
+        value: https://freightwise.vercel.app
+      # Browsers normally reach the API through Vercel (same origin); this covers direct calls.
+      - key: ALLOWED_ORIGINS
+        value: https://freightwise.vercel.app
+      # Same-origin through the Vercel rewrite, so a first-party, Secure, Lax cookie is enough.
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: COOKIE_SAMESITE
+        value: lax
+      # Accounts in Postgres: the free web service's disk is wiped on every deploy.
+      - key: AUTH_DB_URL
+        fromDatabase:
+          name: freightwise-db
+          property: connectionString
+      # Secrets: entered in the Render dashboard, never in this file.
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: DEVELOPER_ACCESS_CODE
+        sync: false
+
+databases:
+  - name: freightwise-db
+    plan: free

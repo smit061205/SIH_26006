@@ -1,0 +1,6 @@
+port_name,portwatch_portid,history_start,history_end,total_days,avg_dry_bulk_calls_per_day,avg_dry_bulk_import_tonnes_per_day,monsoon_jun_sep_avg_calls_per_day,non_monsoon_avg_calls_per_day,monsoon_vs_non_monsoon_pct,data_confidence
+Visakhapatnam,port1367,2019-01-01,2026-09-18,2818,3.21,109541.0,3.47,3.08,12.7,real_verified_api_pulled_2026-09-24
+Paradip,port883,2019-01-01,2026-09-18,2818,2.92,59071.0,3.1,2.82,10.2,real_verified_api_pulled_2026-09-24
+Haldia,port442,2019-01-01,2026-09-18,2818,1.91,43898.0,1.94,1.9,2.1,real_verified_api_pulled_2026-09-24
+Dhamra,port290,2019-01-01,2026-09-18,2818,1.0,40959.0,1.06,0.96,9.8,real_verified_api_pulled_2026-09-24
+Gopalpur,port2299,2019-01-01,2026-09-18,2818,0.31,6847.0,0.34,0.29,17.8,real_verified_api_pulled_2026-09-24

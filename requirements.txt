@@ -1,0 +1,17 @@
+# Runtime dependencies, pinned to the versions the test suite runs against.
+# Test-only packages are in requirements-dev.txt.
+pandas==3.0.6
+numpy==2.5.3
+scipy==1.18.1
+statsmodels==0.15.0
+scikit-learn==1.9.1
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+ortools==9.15.6755
+requests==2.34.2
+sqlalchemy==2.0.54
+psycopg2-binary==2.9.13
+pydantic==2.13.5
+email-validator==2.3.0
+dnspython==2.8.0
+python-dotenv==1.2.3

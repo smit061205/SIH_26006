@@ -1,0 +1,18 @@
+charge_type,gt_band_min,gt_band_max,rate,unit,minimum_charge,notes,data_confidence
+Port Dues,,45000,0.075,USD per GT per entry,750 USD per vessel per entry,"Base rate for GT<=45000",verified_official_source_2024_tariff_doc
+Port Dues,45000,,0.083,USD per GT per entry,750 USD per vessel per entry,"Rate for GT>45000",verified_official_source_2024_tariff_doc
+Pilotage,,5000,1.510,USD per GT,3745 USD,"Includes one berthing + one unberthing + tug hire",verified_official_source_2024_tariff_doc
+Pilotage,5000,10000,1.510,USD per GT,7788 USD,"Includes one berthing + one unberthing + tug hire",verified_official_source_2024_tariff_doc
+Pilotage,10000,15000,1.510,USD per GT,14044 USD,"Includes one berthing + one unberthing + tug hire",verified_official_source_2024_tariff_doc
+Pilotage,15000,45000,1.510,USD per GT,16853 USD,"Includes one berthing + one unberthing + tug hire",verified_official_source_2024_tariff_doc
+Pilotage,45000,,1.698,USD per GT,16853 USD,"Rate for GT>45000; top-band minimum carried forward",verified_official_source_2024_tariff_doc
+Mooring,,,0.0410,USD per GT per VCN,210 USD,"Applicable to all vessels",verified_official_source_2024_tariff_doc
+Port Environment/Dredging,,10000,,USD flat,400 USD,"Flat charge for GT up to 10000",verified_official_source_2024_tariff_doc
+Port Environment/Dredging,10000,30000,,USD flat,600 USD,"Flat charge for GT 10001-30000",verified_official_source_2024_tariff_doc
+Port Environment/Dredging,30000,,,USD flat,800 USD,"Flat charge for GT above 30000",verified_official_source_2024_tariff_doc
+Sustainability Charge,,,0.115,USD per GT per VCN,,"Applicable to all vessels calling",verified_official_source_2024_tariff_doc
+Berth Hire,,45000,0.013,USD per GT per hour,960 USD per day,"Port's own occupancy charge, separate from vessel owner's charter hire rate",verified_official_source_2024_tariff_doc
+Berth Hire,45000,,0.014,USD per GT per hour,960 USD per day,"Rate for GT>45000",verified_official_source_2024_tariff_doc
+Lay-up Berth Hire,,45000,0.013,USD per GT per hour,960 USD per day,"Charged when vessel occupies berth without active cargo operations - port-side analogue of a waiting fine, distinct from ship-owner charter-party demurrage",verified_official_source_2024_tariff_doc
+Lay-up Berth Hire,45000,,0.014,USD per GT per hour,960 USD per day,"Rate for GT>45000",verified_official_source_2024_tariff_doc
+Cargo Lightening (Cape vessels),,,3.00,USD per MT on entire BL quantity,,"Applies to Cape-size vessels requiring lightening - not currently applied in cost_engine.py",verified_official_source_2024_tariff_doc

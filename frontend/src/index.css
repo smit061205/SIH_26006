@@ -1,0 +1,298 @@
+@import "tailwindcss";
+@import "@fontsource-variable/source-serif-4/opsz.css";
+@import "@fontsource-variable/source-sans-3/index.css";
+
+/* Light "analyst report" theme, with a dark "operations console" theme below
+   (its own steps, validated against its own surface, not an inversion).
+   Every component reads these tokens, never raw colours. `static` emits every
+   token even when only referenced from TypeScript (chart props, inline styles). */
+@theme static {
+  /* Devanagari falls back to Noto, which loads only when Hindi is chosen. */
+  --font-serif: "Source Serif 4 Variable", "Source Serif 4", "Noto Serif Devanagari", Georgia, serif;
+  --font-sans: "Source Sans 3 Variable", "Source Sans 3", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: #f6f5f1;
+  --color-surface: #ffffff;
+  --color-sunken: #efede7;
+  --color-hover: #f1efea;
+
+  --color-rule: #ddd9d0;
+  --color-rule-strong: #b9b3a7;
+
+  --color-ink: #15171b;
+  --color-ink-2: #454a53;
+  --color-ink-3: #60656e;
+
+  --color-accent: #1e3a5f;
+  --color-accent-hover: #16304f;
+  --color-accent-tint: #e7ecf2;
+
+  --color-signal: #a8431a;
+  --color-signal-fill: #c4501a;
+  --color-signal-tint: #f8e9df;
+
+  --color-positive: #2e7549;
+  --color-negative: #b42318;
+  --color-caution: #8f6200;
+
+  /* Chart categorical slots, fixed order. Validated with the dataviz script
+     (light, surface #fff): lightness band, chroma floor, CVD ΔE ≥ 11.9,
+     normal-vision ΔE ≥ 19.4, contrast ≥ 3:1 all pass. */
+  --color-series-1: #2f63a3;
+  --color-series-2: #c4501a;
+  --color-series-3: #00897b;
+  --color-series-4: #b8860b;
+  --color-series-5: #8a5ba8;
+  --color-grid: #ebe8e1;
+  /* Forecast range wash and the dimmed backdrop behind sheets. */
+  --color-band: rgba(196, 80, 26, 0.12);
+  --color-scrim: rgba(21, 23, 27, 0.32);
+  --color-overlay-border: #ddd9d0;
+
+  --radius-control: 3px;
+  --radius-surface: 4px;
+
+  --shadow-overlay: 0 8px 24px rgba(20, 18, 14, 0.12), 0 1px 2px rgba(20, 18, 14, 0.08);
+}
+
+
+/* Dark theme: chosen explicitly (data-theme="dark"), or following the OS when
+   no choice is stored. index.html sets data-theme before first paint. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #111214;
+  --color-surface: #18191c;
+  --color-sunken: #0c0d0e;
+  --color-hover: #1f2024;
+  --color-rule: rgba(255, 255, 255, 0.08);
+  --color-rule-strong: rgba(255, 255, 255, 0.16);
+  --color-ink: #eceae5;
+  --color-ink-2: #b3b0a9;
+  --color-ink-3: #8e8b85;
+  --color-accent: #8db0d8;
+  --color-accent-hover: #a9c4e3;
+  --color-accent-tint: rgba(141, 176, 216, 0.12);
+  --color-signal: #e6905a;
+  --color-signal-fill: #d9773f;
+  --color-signal-tint: rgba(217, 119, 63, 0.16);
+  --color-positive: #67bb8c;
+  --color-negative: #ef8378;
+  --color-caution: #d8a54c;
+  /* Same five hues stepped for the dark surface; validated with the dataviz
+     script (--mode dark --surface #18191C): band, chroma, CVD ΔE ≥ 12.4,
+     normal-vision ΔE ≥ 19.0, contrast ≥ 3:1 all pass. */
+  --color-series-1: #3986e4;
+  --color-series-2: #e16b3a;
+  --color-series-3: #18a292;
+  --color-series-4: #bb8806;
+  --color-series-5: #a869cf;
+  --color-grid: rgba(255, 255, 255, 0.06);
+  --color-band: rgba(217, 119, 63, 0.16);
+  --color-scrim: rgba(0, 0, 0, 0.55);
+  --color-overlay-border: rgba(255, 255, 255, 0.16);
+  --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  color-scheme: dark;
+  --color-paper: #111214;
+  --color-surface: #18191c;
+  --color-sunken: #0c0d0e;
+  --color-hover: #1f2024;
+  --color-rule: rgba(255, 255, 255, 0.08);
+  --color-rule-strong: rgba(255, 255, 255, 0.16);
+  --color-ink: #eceae5;
+  --color-ink-2: #b3b0a9;
+  --color-ink-3: #8e8b85;
+  --color-accent: #8db0d8;
+  --color-accent-hover: #a9c4e3;
+  --color-accent-tint: rgba(141, 176, 216, 0.12);
+  --color-signal: #e6905a;
+  --color-signal-fill: #d9773f;
+  --color-signal-tint: rgba(217, 119, 63, 0.16);
+  --color-positive: #67bb8c;
+  --color-negative: #ef8378;
+  --color-caution: #d8a54c;
+  /* Same five hues stepped for the dark surface; validated with the dataviz
+     script (--mode dark --surface #18191C): band, chroma, CVD ΔE ≥ 12.4,
+     normal-vision ΔE ≥ 19.0, contrast ≥ 3:1 all pass. */
+  --color-series-1: #3986e4;
+  --color-series-2: #e16b3a;
+  --color-series-3: #18a292;
+  --color-series-4: #bb8806;
+  --color-series-5: #a869cf;
+  --color-grid: rgba(255, 255, 255, 0.06);
+  --color-band: rgba(217, 119, 63, 0.16);
+  --color-scrim: rgba(0, 0, 0, 0.55);
+  --color-overlay-border: rgba(255, 255, 255, 0.16);
+  --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+}
+/* Light text on dark blooms; a touch lighter and looser reads the same. */
+:root[data-theme="dark"] body {
+  font-weight: 380;
+}
+:root[data-theme="dark"] .text-\[12\.5px\],
+:root[data-theme="dark"] .text-\[13px\] {
+  letter-spacing: 0.01em;
+}
+
+html {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-paper);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection {
+  background: var(--color-accent-tint);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Both families ship tabular lining figures by default; this keeps display
+   figures from inheriting any proportional setting and forces lining. */
+.figures {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@keyframes hairline {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+.animate-hairline {
+  animation: hairline 1.1s ease-in-out infinite;
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-sheet-up {
+  animation: sheet-up 0.2s ease-out;
+}
+.animate-overlay-in {
+  animation: overlay-in 0.15s ease-out;
+}
+.animate-menu-in {
+  animation: menu-in 0.12s ease-out;
+}
+
+/* Anchored sections (e.g. #watch-out, #contract) land below the sticky header. */
+[id] {
+  scroll-margin-top: calc(var(--header-h, 120px) + 16px);
+}
+
+/* Printing: a one-page memo on white paper, whatever the screen theme. */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  :root,
+  :root[data-theme="dark"] {
+    color-scheme: light;
+    --color-paper: #f6f5f1 !important;
+    --color-surface: #ffffff !important;
+    --color-sunken: #efede7 !important;
+    --color-hover: #f1efea !important;
+    --color-rule: #ddd9d0 !important;
+    --color-rule-strong: #b9b3a7 !important;
+    --color-ink: #15171b !important;
+    --color-ink-2: #454a53 !important;
+    --color-ink-3: #60656e !important;
+    --color-accent: #1e3a5f !important;
+    --color-accent-hover: #16304f !important;
+    --color-accent-tint: #e7ecf2 !important;
+    --color-signal: #a8431a !important;
+    --color-signal-fill: #c4501a !important;
+    --color-signal-tint: #f8e9df !important;
+    --color-positive: #2e7549 !important;
+    --color-negative: #b42318 !important;
+    --color-caution: #8f6200 !important;
+    --color-series-1: #2f63a3 !important;
+    --color-series-2: #c4501a !important;
+    --color-series-3: #00897b !important;
+    --color-series-4: #b8860b !important;
+    --color-series-5: #8a5ba8 !important;
+    --color-grid: #ebe8e1 !important;
+    --color-band: rgba(196, 80, 26, 0.12) !important;
+    --color-scrim: rgba(21, 23, 27, 0.32) !important;
+    --color-overlay-border: #ddd9d0 !important;
+    --color-surface: #ffffff !important;
+    --color-paper: #ffffff !important;
+    --shadow-overlay: none !important;
+  }
+  html {
+    font-size: 12px;
+  }
+  body {
+    font-weight: 400 !important;
+  }
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .break-inside-avoid {
+    break-inside: avoid;
+  }
+}
