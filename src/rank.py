@@ -57,6 +57,33 @@ def _reason_string(
     )
 
 
+# Reference tables as plain dicts, built once per table. A plan ranks every
+# port and vessel for each contract month; reading pandas rows cell by cell
+# was most of its cost on a small server. The table is kept alongside so its
+# id can't be reused by another.
+_ROWS: dict[int, tuple[pd.DataFrame, list[dict]]] = {}
+_RAIL: dict[int, tuple[pd.DataFrame, dict[tuple[str, str], dict]]] = {}
+
+
+def _rows(df: pd.DataFrame) -> list[dict]:
+    cached = _ROWS.get(id(df))
+    if cached is None or cached[0] is not df:
+        cached = (df, df.to_dict(orient="records"))
+        _ROWS[id(df)] = cached
+    return cached[1]
+
+
+def _rail_index(rail_df: pd.DataFrame) -> dict[tuple[str, str], dict]:
+    cached = _RAIL.get(id(rail_df))
+    if cached is None or cached[0] is not rail_df:
+        index: dict[tuple[str, str], dict] = {}
+        for row in _rows(rail_df):
+            index.setdefault((row["port"], row["plant"]), row)
+        cached = (rail_df, index)
+        _RAIL[id(rail_df)] = cached
+    return cached[1]
+
+
 def origin_row_for(origin: str, origin_transit_df: pd.DataFrame) -> pd.Series:
     match = origin_transit_df[origin_transit_df["origin"] == origin]
     if match.empty:
@@ -64,12 +91,11 @@ def origin_row_for(origin: str, origin_transit_df: pd.DataFrame) -> pd.Series:
     return match.iloc[0]
 
 
-def rail_row_for(port_row: pd.Series, plant_name: str, rail_df: pd.DataFrame) -> pd.Series | None:
+def rail_row_for(port_row: pd.Series | dict, plant_name: str, rail_df: pd.DataFrame) -> dict | None:
     """Rail leg to the plant. An anchorage that transships to another port
     (e.g. Sagar-Sandheads to Haldia) uses that port's rail link."""
     rail_port = opt_str(port_row, "rail_via_port") or port_row["name"]
-    lookup = rail_df[(rail_df["port"] == rail_port) & (rail_df["plant"] == plant_name)]
-    return None if lookup.empty else lookup.iloc[0]
+    return _rail_index(rail_df).get((rail_port, plant_name))
 
 
 def rank_options(
@@ -113,7 +139,7 @@ def rank_options(
         tariff_df = load_gangavaram_tariff()
 
     rows = []
-    for _, port_row in ports_df.iterrows():
+    for port_row in _rows(ports_df):
         if port is not None and port_row["name"] != port:
             continue
         rail_row = rail_row_for(port_row, plant_name, rail_df)
@@ -122,7 +148,7 @@ def rank_options(
         nm = route_distance_nm(origin, port_row["name"])
         transit_days = round(nm / (speed * 24), 1) if nm else fallback_transit
 
-        for _, vessel in vessels_df.iterrows():
+        for vessel in _rows(vessels_df):
             if vessel_class is not None and vessel["vessel_class"] != vessel_class:
                 continue
             fit = check_feasibility(vessel, port_row, month, origin_row)

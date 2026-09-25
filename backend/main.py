@@ -4,11 +4,15 @@ of re-implementing feasibility/cost/forecast logic in JavaScript.
 
 Run from the project root: uvicorn backend.main:app --reload --port 8000
 """
+import copy
 import hashlib
 import json
+import logging
 import os
 import sys
+import threading
 import time
+from contextlib import asynccontextmanager
 from datetime import date, datetime, timedelta
 from functools import lru_cache, partial
 from pathlib import Path
@@ -85,7 +89,27 @@ from src.schedule import MONTH_NAMES, build_contract_schedule
 from src.stock import cover_for_plant, cover_vs_lead_time, plant_stock_cover
 from src.timing import best_fix_week, contract_for_duration, fix_signal, fix_window_dict, forecast_horizon_for
 
-app = FastAPI(title="FREIGHTWISE API")
+def _warm_up() -> None:
+    """Loads the reference data and forecasts and fetches the live sea
+    forecast in the background after a (re)start, so the first visitor
+    doesn't wait for them; on a small server that's several seconds."""
+    try:
+        _refs()
+        for series_class in FREIGHT_SERIES_CLASSES:
+            _forecast(series_class, 1)
+        _port_activity_all()
+        _weather(5)
+    except Exception:  # a failed warm-up only means the first request does the work
+        logging.getLogger("freightwise").exception("Warm-up failed")
+
+
+@asynccontextmanager
+async def _lifespan(_app):
+    threading.Thread(target=_warm_up, name="warm-up", daemon=True).start()
+    yield
+
+
+app = FastAPI(title="FREIGHTWISE API", lifespan=_lifespan)
 
 # Open to anyone: the landing page's figures, sign-in itself, and the health check.
 PUBLIC_PATHS = ("/api/health", "/api/public/", "/api/auth/")
@@ -259,13 +283,22 @@ def _rank(
     _validate_shipment(refs, req.origin, req.plant_name)
     _validate_grade(refs, req.origin, req.coal_grade)
     try:
-        return rank_options(
-            req.cargo_tonnes, month or req.month, req.origin, req.plant_name,
-            refs["ports_df"], refs["vessels_df"], refs["rail_df"], refs["origin_transit_df"], refs["cost_assumptions"],
-            tariff_df=load_gangavaram_tariff(), tolerance_pct=req.tolerance_pct, vessel_class=vessel_class, port=port,
-        )
+        return _ranked(req.cargo_tonnes, month or req.month, req.origin, req.plant_name, req.tolerance_pct, vessel_class, port).copy()
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+# Rankings and schedules depend only on the shipment and the reference data,
+# so recent ones are kept: reopening a plan, or another planner asking for the
+# same shipment, doesn't redo the work (it takes seconds on a small server).
+@lru_cache(maxsize=256)
+def _ranked(cargo_tonnes, month, origin, plant_name, tolerance_pct, vessel_class, port) -> pd.DataFrame:
+    refs = _refs()
+    return rank_options(
+        cargo_tonnes, month, origin, plant_name,
+        refs["ports_df"], refs["vessels_df"], refs["rail_df"], refs["origin_transit_df"], refs["cost_assumptions"],
+        tariff_df=load_gangavaram_tariff(), tolerance_pct=tolerance_pct, vessel_class=vessel_class, port=port,
+    )
 
 
 @app.post("/api/rank")
@@ -718,14 +751,21 @@ def _schedule(req: ScheduleRequest, refs: dict) -> dict:
     _validate_class(refs, req.vessel_class)
     _validate_port(refs, req.port)
     try:
-        return build_contract_schedule(
-            req.monthly_cargo_tonnes, req.start_month, req.duration_months, req.origin, req.plant_name,
-            refs["ports_df"], refs["vessels_df"], refs["rail_df"], refs["origin_transit_df"], refs["cost_assumptions"],
-            vessel_class=req.vessel_class, tariff_df=load_gangavaram_tariff(),
-            spot_rates_by_month=_spot_rates_by_month(req.duration_months), tolerance_pct=req.tolerance_pct, port=req.port,
-        )
+        return copy.deepcopy(_scheduled(tuple(sorted(req.model_dump().items()))))
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+@lru_cache(maxsize=128)
+def _scheduled(fields: tuple) -> dict:
+    req = ScheduleRequest(**dict(fields))
+    refs = _refs()
+    return build_contract_schedule(
+        req.monthly_cargo_tonnes, req.start_month, req.duration_months, req.origin, req.plant_name,
+        refs["ports_df"], refs["vessels_df"], refs["rail_df"], refs["origin_transit_df"], refs["cost_assumptions"],
+        vessel_class=req.vessel_class, tariff_df=load_gangavaram_tariff(),
+        spot_rates_by_month=_spot_rates_by_month(req.duration_months), tolerance_pct=req.tolerance_pct, port=req.port,
+    )
 
 
 @app.post("/api/schedule")
