@@ -410,7 +410,11 @@ function SavingsCard({ plan, duration }: { plan: CharterPlanResponse; duration: 
       <div className="min-w-0">
         <FigureRow>
           <Figure label="Cheaper than spot" value={`${num(s.cheaper_share_pct, 0)}%`} note={tr("of {n} start months", { n: s.n_windows })} />
-          <Figure label="Range" value={savingRange(s.worst_saving_pct, s.best_saving_pct, tr)} note="worst to best start month" />
+          <Figure
+            label="Range"
+            value={<span className="block text-[18px] leading-snug md:text-[20px]">{savingRange(s.worst_saving_pct, s.best_saving_pct, tr)}</span>}
+            note="worst to best start month"
+          />
           {onThisPlan != null && <Figure label="On this plan, at the median" value={total(onThisPlan, money)} note="less hire than spot" />}
         </FigureRow>
         <div className="mt-4 flex h-10 items-center gap-[2px]" role="img" aria-label={tr("Saving for each start month, from {from} to {to}", { from: shortDate(s.first_start), to: shortDate(s.last_start) })}>
