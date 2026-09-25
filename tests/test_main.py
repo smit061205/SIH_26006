@@ -380,3 +380,18 @@ def test_route_for_a_voyage_uses_the_planning_transit_time():
     assert body["load_port"]["name"] == "Dalrymple Bay Coal Terminal"
     assert abs(body["coords"][0][0] - body["load_port"]["lon"]) < 1
     assert client.get("/api/routes", params={"origin": "Nowhere", "port": "Paradip"}).status_code == 404
+
+
+def test_forecast_work_is_cached_on_disk_by_its_inputs(tmp_path, monkeypatch):
+    from backend import main
+
+    monkeypatch.setattr(main, "FORECAST_CACHE", tmp_path)
+    calls = []
+    compute = lambda: calls.append(1) or {"model": "arima"}  # noqa: E731
+    assert main._disk_cached("backtest", "Panamax", (12, "2026-09-20"), compute) == {"model": "arima"}
+    # A second server process (or a restart) reads it back instead of recomputing.
+    assert main._disk_cached("backtest", "Panamax", (12, "2026-09-20"), compute) == {"model": "arima"}
+    assert len(calls) == 1 and len(list(tmp_path.glob("backtest-panamax-*.json"))) == 1
+    # Different inputs are a different entry.
+    main._disk_cached("backtest", "Panamax", (26, "2026-09-20"), compute)
+    assert len(calls) == 2

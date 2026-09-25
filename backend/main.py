@@ -4,6 +4,8 @@ of re-implementing feasibility/cost/forecast logic in JavaScript.
 
 Run from the project root: uvicorn backend.main:app --reload --port 8000
 """
+import hashlib
+import json
 import os
 import sys
 import time
@@ -288,6 +290,49 @@ def _series_class_or_400(vessel_class: str) -> str:
 MODEL_LABELS = {"arima": "ARIMA (rate history)", "gbrt_drivers": "Gradient boosting with coal, oil and rupee"}
 
 
+# Choosing each class's model runs a walk-forward backtest: about 20 s of CPU
+# on a laptop, minutes on a small cloud instance. It depends only on the data
+# files and the model code, so it's kept on disk, keyed by their contents.
+# scripts/precompute_forecasts.py fills this while the Docker image is built,
+# so a fresh server answers its first request at once.
+ROOT = Path(__file__).resolve().parent.parent
+FORECAST_CACHE = Path(os.environ.get("FORECAST_CACHE_DIR") or ROOT / "backend" / "var" / "forecast-cache")
+
+
+@lru_cache(maxsize=8)
+def _forecast_inputs(series_class: str) -> str:
+    h = hashlib.sha256()
+    for path in (
+        ROOT / "data" / f"freight_rates_{series_class.lower()}.csv",
+        ROOT / "data" / "market_drivers.csv",
+        ROOT / "src" / "forecast.py",
+        ROOT / "src" / "backtest.py",
+    ):
+        if path.exists():
+            h.update(path.read_bytes())
+    return h.hexdigest()
+
+
+def _disk_cached(kind: str, series_class: str, key: tuple, compute):
+    """compute(), read from disk if these inputs were computed before. A cache
+    that can't be read or written is simply skipped."""
+    name = hashlib.sha256(json.dumps([kind, series_class, *key, _forecast_inputs(series_class)]).encode()).hexdigest()[:24]
+    path = FORECAST_CACHE / f"{kind}-{series_class.lower()}-{name}.json"
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        pass
+    value = compute()
+    try:
+        FORECAST_CACHE.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_suffix(f".{os.getpid()}.tmp")
+        tmp.write_text(json.dumps(value))
+        tmp.replace(path)
+    except OSError:
+        pass
+    return value
+
+
 def _chosen_model(series_class: str, as_of: str) -> str:
     rows = [r for r in _backtest(series_class, FIX_WINDOW_WEEKS, as_of) if r["model"] in MODEL_LABELS]
     return min(rows, key=lambda r: r["mean_mase"])["model"] if rows else "arima"
@@ -298,6 +343,10 @@ def _full_forecast(series_class: str, as_of: str) -> dict:
     """One fit per series (and per data refresh, keyed by as_of), at the
     longest horizon any caller uses; shorter horizons are slices. The model is
     the one that forecast this series best in the backtest."""
+    return _disk_cached("forecast", series_class, (as_of, MAX_FORECAST_WEEKS), lambda: _fit_forecast(series_class, as_of))
+
+
+def _fit_forecast(series_class: str, as_of: str) -> dict:
     series = load_freight_series(series_class)
     model = _chosen_model(series_class, as_of)
     drivers = market_drivers_weekly(series.index) if model == "gbrt_drivers" else None
@@ -353,6 +402,14 @@ def get_forecast(horizon: int = Query(12, ge=1, le=64), vessel_class: str = "Cap
 
 @lru_cache(maxsize=32)
 def _backtest(series_class: str, horizon: int, as_of: str) -> list[dict]:
+    return _disk_cached("backtest", series_class, (horizon, as_of), lambda: _run_backtest(series_class, horizon))
+
+
+# The horizons the Freight outlook offers; the timing advice uses FIX_WINDOW_WEEKS.
+BACKTEST_HORIZONS = (8, 12, 16, 26)
+
+
+def _run_backtest(series_class: str, horizon: int) -> list[dict]:
     series = load_freight_series(series_class)
     models = dict(MODELS)
     drivers = market_drivers_weekly(series.index)

@@ -14,6 +14,13 @@ COPY data/ data/
 COPY scripts/ scripts/
 COPY db/ db/
 
+# Work out every freight-model backtest and forecast now, while the build
+# machine has CPU to spare (a free instance has a tenth of one): without this
+# a fresh server spends minutes on its first Charter plan request.
+RUN python -m scripts.precompute_forecasts
+# One thread per numeric library on the small running instance; more only contend.
+ENV OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+
 # Browsers calling the API must come from one of these origins (comma-separated).
 ENV ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 # Production unless told otherwise: email links never come back in responses.

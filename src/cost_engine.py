@@ -103,12 +103,28 @@ def _tariff_row(tariff_df: pd.DataFrame, charge_type: str, gt: float) -> pd.Seri
     (gt_band_min, gt_band_max] - lower bound exclusive, upper inclusive -
     with a missing bound meaning unbounded, matching how the tariff doc's
     own GT breakpoints are phrased (e.g. "GT<=45000" / "GT>45000")."""
-    candidates = tariff_df[tariff_df["charge_type"] == charge_type]
-    for _, row in candidates.iterrows():
-        lo, hi = row["gt_band_min"], row["gt_band_max"]
-        if (pd.isna(lo) or gt > float(lo)) and (pd.isna(hi) or gt <= float(hi)):
+    for lo, hi, row in _tariff_bands(tariff_df).get(charge_type, ()):
+        if (lo is None or gt > lo) and (hi is None or gt <= hi):
             return row
     raise ValueError(f"No GT-band tariff row for charge_type={charge_type!r} at gt={gt}")
+
+
+# Bands per charge type, built once per tariff table: a plan prices ~200
+# voyages, and scanning the table row by row each time was a third of its cost.
+# The table itself is kept alongside, so its id can't be reused by another.
+_TARIFF_BANDS: dict[int, tuple[pd.DataFrame, dict[str, list]]] = {}
+
+
+def _tariff_bands(tariff_df: pd.DataFrame) -> dict[str, list]:
+    cached = _TARIFF_BANDS.get(id(tariff_df))
+    if cached is not None and cached[0] is tariff_df:
+        return cached[1]
+    bands: dict[str, list] = {}
+    for _, row in tariff_df.iterrows():
+        lo, hi = row["gt_band_min"], row["gt_band_max"]
+        bands.setdefault(row["charge_type"], []).append((None if pd.isna(lo) else float(lo), None if pd.isna(hi) else float(hi), row))
+    _TARIFF_BANDS[id(tariff_df)] = (tariff_df, bands)
+    return bands
 
 
 def _minimum_usd(row: pd.Series) -> float:
