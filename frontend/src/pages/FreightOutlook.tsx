@@ -204,6 +204,7 @@ export default function FreightOutlook() {
         >
           <RateChartPanel data={data} range={range} money={money} bestWeek={bestWeek} />
         </Section>
+        <ForecastBehind data={data} />
       </Refreshing>
 
       <RouteFreight cls={cls} />
@@ -383,6 +384,50 @@ function ContractCover({
               band: pct(split.band_width_pct * 100, 0),
             })}
           </p>
+        </div>
+      )}
+    </Section>
+  );
+}
+
+/** Why the forecast goes where it does: the rate's momentum, its usual season and its level, and for the drivers model, what it leans on. */
+function ForecastBehind({ data }: { data: ForecastResponse }) {
+  const tr = useT();
+  const f = data.explain.factors;
+  const importance = data.explain.importance;
+  return (
+    <Section title="What's behind this forecast" description="The rate's recent momentum, its usual move at this time of year and its level against the last three years.">
+      <p className="mb-5 max-w-[68ch] text-[15px] text-ink">
+        {f.seasonal_pct == null
+          ? tr("The forecast expects {f} over {h} weeks.", { f: pct(f.forecast_change_pct, 1, true), h: f.horizon_weeks })
+          : tr("The forecast expects {f} over {h} weeks; in the last {n} years these weeks moved a median {s}.", {
+              f: pct(f.forecast_change_pct, 1, true),
+              h: f.horizon_weeks,
+              n: f.seasonal_years,
+              s: pct(f.seasonal_pct, 1, true),
+            })}
+      </p>
+      <FigureRow>
+        <Figure label="Last 4 weeks" value={pct(f.momentum_4w_pct, 1, true)} note="momentum" />
+        <Figure label="Last 12 weeks" value={pct(f.momentum_12w_pct, 1, true)} note="momentum" />
+        <Figure label="Usual for these weeks" value={f.seasonal_pct == null ? "–" : pct(f.seasonal_pct, 1, true)} note={tr("median of {n} years", { n: f.seasonal_years })} />
+        <Figure label="Against the 3-year median" value={pct(f.vs_3y_median_pct, 0, true)} note="today's rate" />
+      </FigureRow>
+      {importance && (
+        <div className="mt-6 max-w-xl">
+          <h3 className="mb-3 text-[15px] font-semibold text-ink">{tr("What the model relies on")}</h3>
+          <ul className="space-y-2">
+            {importance.map((r) => (
+              <li key={r.input} className="grid grid-cols-[10rem_minmax(0,1fr)_3.5rem] items-center gap-3 text-[14px]">
+                <span className="text-ink-2">{tr(r.input)}</span>
+                <span className="h-2 overflow-hidden rounded-full bg-sunken">
+                  <span className="block h-full rounded-full bg-series-1" style={{ width: `${Math.max(1, r.share_pct)}%` }} />
+                </span>
+                <span className="text-right tabular-nums text-ink">{num(r.share_pct, r.share_pct < 10 ? 1 : 0)}%</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-[13px] text-ink-3">{tr("Share of the model's accuracy lost when each input is scrambled, over the last two years.")}</p>
         </div>
       )}
     </Section>

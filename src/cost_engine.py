@@ -274,3 +274,55 @@ def compute_landed_cost(
         load_wait_days=load_wait_days,
         discharge_rate_tpd=discharge_rate,
     )
+
+
+def voyage_charter_terms(row: dict, vessel_row, cost_assumptions: dict, bunker_price_usd_per_tonne: float) -> dict:
+    """The same shipment on a voyage charter instead of a time charter.
+
+    Only the ocean part differs (port charges, handling and rail are the same
+    either way), so both are compared on it:
+
+    - Time charter: hire for every day, waiting included, plus all bunkers
+      (the row's hire, waiting hire and bunker cost).
+    - Voyage charter: the owner quotes freight per tonne covering their costs
+      for the sea passage and the laytime (handling at the standard rates,
+      which is what laytime allows), plus a margin; waiting beyond the turn
+      time at either end is paid as demurrage. Despatch would be earned only
+      by working faster than the standard rates, which the plan doesn't assume.
+
+    `row` is one ranked option (src/rank.py); all amounts are per shipment.
+    """
+    voyages = int(row["n_voyages"])
+    tonnes = float(row["cargo_shipped_tonnes"])
+    hire = float(row["hire_rate_usd_per_day"])
+    turn = float(cost_assumptions.get("laytime_turn_time_days", 0.5))
+    margin = float(cost_assumptions.get("voyage_charter_owner_margin_pct", 5)) / 100
+    dem_rate = hire * float(cost_assumptions.get("demurrage_to_hire_ratio", 1.0))
+    des_rate = dem_rate * float(cost_assumptions.get("despatch_to_demurrage_ratio", 0.5))
+
+    sea_days = float(row["transit_days"])
+    laytime = float(row["load_days"]) + float(row["berth_days"])
+    fuel_sea = opt_float(vessel_row, "fuel_sea_t_per_day") or 0.0
+    fuel_port = opt_float(vessel_row, "fuel_port_t_per_day") or 0.0
+    owner_cost = hire * (sea_days + laytime + 2 * turn) + (fuel_sea * sea_days + fuel_port * laytime) * bunker_price_usd_per_tonne
+    freight = owner_cost * (1 + margin) * voyages
+    # Waiting at the loading port, and at the discharge port (berth queue and swell), past the turn time.
+    discharge_wait = float(row["expected_wait_days"]) + float(row["weather_days"])
+    demurrage_days = (max(0.0, float(row["load_wait_days"]) - turn) + max(0.0, discharge_wait - turn)) * voyages
+    demurrage = demurrage_days * dem_rate
+
+    time_charter = float(row["hire_cost_usd"]) + float(row["waiting_hire_usd"]) + float(row["bunker_cost_usd"])
+    voyage_charter = freight + demurrage
+    return {
+        "time_charter_usd": round(time_charter, 2),
+        "time_charter_usd_per_tonne": round(time_charter / tonnes, 4),
+        "voyage_freight_usd_per_tonne": round(freight / tonnes, 4),
+        "voyage_charter_usd": round(voyage_charter, 2),
+        "voyage_charter_usd_per_tonne": round(voyage_charter / tonnes, 4),
+        "laytime_days": round(laytime + 2 * turn, 2),
+        "demurrage_days": round(demurrage_days, 2),
+        "demurrage_usd": round(demurrage, 2),
+        "demurrage_rate_usd_per_day": round(dem_rate, 2),
+        "despatch_rate_usd_per_day": round(des_rate, 2),
+        "cheaper": "voyage" if voyage_charter < time_charter else "time",
+    }

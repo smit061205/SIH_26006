@@ -9,3 +9,7 @@ service_speed_knots,13.5,knots,Laden service speed used to turn sea-route distan
 geared_extra_discharge_tpd,8000,tonnes/day,"Extra discharge rate when a geared ship works its own 4 cranes alongside shore mobile harbour cranes or floating cranes (4 cranes x ~2,000 t/day) - estimate",estimate
 sublet_commission_pct,3.75,percent,Address plus brokerage commission deducted when reletting a time-chartered ship (typical 1.25% + 2.5%),industry_typical
 origin_base_wait_days,1.5,days,Typical wait at the loading terminal in a normal month; scaled up when IMF PortWatch shows it busier than a year ago - estimate,estimate
+demurrage_to_hire_ratio,1.0,ratio of the class's time-charter hire,"Voyage-charter demurrage per day set at the class's time-charter hire rate: dry-bulk demurrage is usually negotiated close to the daily earnings (TCE) the owner gives up while the ship waits. (ADDED 2026-09-25)",typical_industry_practice
+despatch_to_demurrage_ratio,0.5,ratio,"Despatch at half the demurrage rate (DHD), the standard dry-bulk charter-party term (e.g. GENCON 1994 laytime clauses). (ADDED 2026-09-25)",standard_charter_party_term
+laytime_turn_time_days,0.5,days,"Turn time after notice of readiness before laytime counts: 12 hours at each port is the common GENCON-style dry-bulk term. (ADDED 2026-09-25)",standard_charter_party_term
+voyage_charter_owner_margin_pct,5,percent,"Owner's margin over their voyage costs (hire-equivalent days, bunkers) when quoting voyage freight in $/t; illustrative, varies with the market. (ADDED 2026-09-25)",illustrative_placeholder

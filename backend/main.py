@@ -52,7 +52,7 @@ from src.alerts import (
     weather_alerts,
 )
 from src.backtest import compare_models
-from src.cost_engine import voyage_payload_tonnes
+from src.cost_engine import voyage_charter_terms, voyage_payload_tonnes
 from src.data_loader import (
     FREIGHT_SERIES_CLASSES,
     MARKET_DRIVERS,
@@ -86,6 +86,7 @@ from src.rank import origin_row_for, rank_options
 from src.route_freight import route_outlook, route_series, route_terms
 from src.row_utils import opt_float, opt_int, opt_str
 from src.scenario import idle_time_analysis, recommend_contract_split, simulate_port_exclusion, simulate_wait_scenarios
+from src.explain import driver_importance, series_factors
 from src.savings import simulate as simulate_savings
 from src.savings import summarise as savings_summary
 from src.schedule import MONTH_NAMES, build_contract_schedule
@@ -317,6 +318,21 @@ class StressRequest(RankRequest):
     vessel_class: str | None = None
 
 
+@app.post("/api/charter-terms")
+def post_charter_terms(req: StressRequest):
+    """Time charter or voyage charter for the best options: laytime, expected
+    demurrage and the ocean cost each way (src/cost_engine.voyage_charter_terms)."""
+    refs = _refs()
+    ranked = _rank(req, refs, vessel_class=req.vessel_class, port=req.port)
+    vessels = refs["vessels_df"].set_index("vessel_class")
+    bunker = bunker_price_usd_per_tonne(refs["cost_assumptions"])
+    options = []
+    for row in _records(ranked.head(5)):
+        terms = voyage_charter_terms(row, vessels.loc[row["vessel_class"]], refs["cost_assumptions"], bunker)
+        options.append({"port": row["port"], "vessel_class": row["vessel_class"], "n_voyages": row["n_voyages"], **terms})
+    return {"options": options}
+
+
 @app.post("/api/stress")
 def post_stress(req: StressRequest):
     """The recommendation under a shock: a freight or bunker move, longer berth
@@ -491,7 +507,7 @@ def get_forecast(horizon: int = Query(12, ge=1, le=64), vessel_class: str = "Cap
             "history": [{**h, "actual": scale(h["actual"])} for h in fc["history"]],
             "forecast": [{**f, "forecast": scale(f["forecast"]), "lower": scale(f["lower"]), "upper": scale(f["upper"])} for f in fc["forecast"]],
         }
-    return {"vessel_class": vessel_class, "series_class": series_class, "premium": factor, **fc}
+    return {"vessel_class": vessel_class, "series_class": series_class, "premium": factor, **fc, "explain": _explain(series_class, fc["as_of"])}
 
 
 @lru_cache(maxsize=32)
@@ -512,6 +528,31 @@ def _run_backtest(series_class: str, horizon: int) -> list[dict]:
         models["gbrt_drivers"] = partial(gbrt_drivers_forecast, drivers=drivers)
     comparison = compare_models(series, models, horizon=horizon, min_train_size=150, step=20, season_length=52)
     return _records(comparison)
+
+
+# --- what's behind the forecast ----------------------------------------------------
+
+@lru_cache(maxsize=1)
+def _explain_code() -> str:
+    return hashlib.sha256((ROOT / "src" / "explain.py").read_bytes()).hexdigest()[:16]
+
+
+@lru_cache(maxsize=8)
+def _explain(series_class: str, as_of: str) -> dict:
+    """Momentum, season and level behind the forecast; the drivers model's reliance on each input."""
+
+    def compute() -> dict:
+        series = load_freight_series(series_class)
+        full = _full_forecast(series_class, as_of)
+        point = np.array([f["forecast"] for f in full["forecast"]])
+        importance = None
+        if full["model"] == "gbrt_drivers":
+            drivers = market_drivers_weekly(series.index)
+            if drivers is not None:
+                importance = driver_importance(series, drivers)
+        return {"factors": series_factors(series, point, FIX_WINDOW_WEEKS), "importance": importance}
+
+    return _disk_cached("explain", series_class, (as_of, FIX_WINDOW_WEEKS, _explain_code()), compute)
 
 
 # --- what the advice would have saved -----------------------------------------------

@@ -103,6 +103,19 @@ def gbrt_forecast(train: pd.Series, horizon: int, lags=(1, 2, 4, 8, 12, 26, 52))
     return Forecast(point=point, lower=point - _band(train, horizon), upper=point + _band(train, horizon))
 
 
+def drivers_design(train: pd.Series, drivers: pd.DataFrame, lags=(1, 2, 4, 8, 12, 26, 52)):
+    """Training rows for the drivers model: lag features plus each driver's
+    level and 4-week change as known the week before. Returns (rows, feature
+    columns, drivers aligned to the training weeks)."""
+    feat_df = _make_lag_features(train, lags)
+    d = drivers.reindex(train.index).ffill()
+    for col in d.columns:
+        feat_df[f"{col}_level"] = d[col].shift(1).reindex(feat_df.index)
+        feat_df[f"{col}_chg4"] = (d[col] / d[col].shift(4) - 1).shift(1).reindex(feat_df.index)
+    feat_df = feat_df.dropna()
+    return feat_df, [c for c in feat_df.columns if c != "y"], d
+
+
 def gbrt_drivers_forecast(train: pd.Series, horizon: int, drivers: pd.DataFrame | None = None,
                           lags=(1, 2, 4, 8, 12, 26, 52)) -> Forecast:
     """Gradient-boosted trees on lag features plus the market drivers (coal,
@@ -111,15 +124,7 @@ def gbrt_drivers_forecast(train: pd.Series, horizon: int, drivers: pd.DataFrame 
     never sees future coal or oil prices."""
     if drivers is None:
         return gbrt_forecast(train, horizon, lags)
-    feat_df = _make_lag_features(train, lags)
-    d = drivers.reindex(train.index).ffill()
-    driver_cols = []
-    for col in d.columns:
-        feat_df[f"{col}_level"] = d[col].shift(1).reindex(feat_df.index)
-        feat_df[f"{col}_chg4"] = (d[col] / d[col].shift(4) - 1).shift(1).reindex(feat_df.index)
-        driver_cols += [f"{col}_level", f"{col}_chg4"]
-    feat_df = feat_df.dropna()
-    feature_cols = [c for c in feat_df.columns if c != "y"]
+    feat_df, feature_cols, d = drivers_design(train, drivers, lags)
     model = HistGradientBoostingRegressor(max_depth=4, random_state=42)
     model.fit(feat_df[feature_cols], feat_df["y"])
 

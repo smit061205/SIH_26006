@@ -249,3 +249,35 @@ def test_transshipment_cost_charged_per_tonne(ports_df, vessels_df, rail_df, cos
     assert cost.transfer_cost_usd == 0  # the transloading rate covers handling
     parts = cost.hire_cost_usd + cost.waiting_hire_usd + cost.transfer_cost_usd + cost.port_charges_usd + cost.rail_cost_usd
     assert math.isclose(parts + cost.transshipment_cost_usd, cost.total_usd, rel_tol=1e-6)
+
+
+def test_voyage_charter_terms_arithmetic():
+    from src.cost_engine import voyage_charter_terms
+
+    row = {
+        "n_voyages": 2, "cargo_shipped_tonnes": 150_000, "hire_rate_usd_per_day": 20_000,
+        "transit_days": 10.0, "load_days": 2.0, "berth_days": 3.0,
+        "load_wait_days": 1.5, "expected_wait_days": 4.0, "weather_days": 1.0,
+        "hire_cost_usd": 1_000_000, "waiting_hire_usd": 260_000, "bunker_cost_usd": 400_000,
+    }
+    vessel = {"fuel_sea_t_per_day": 30.0, "fuel_port_t_per_day": 4.0}
+    ca = {"laytime_turn_time_days": 0.5, "voyage_charter_owner_margin_pct": 5, "demurrage_to_hire_ratio": 1.0, "despatch_to_demurrage_ratio": 0.5}
+    t = voyage_charter_terms(row, vessel, ca, bunker_price_usd_per_tonne=600)
+    # Owner's costs per voyage: 20k x (10 + 5 + 1) days + (30 x 10 + 4 x 5) t x $600, plus 5%, for two voyages.
+    freight = (20_000 * 16 + (300 + 20) * 600) * 1.05 * 2
+    assert t["voyage_freight_usd_per_tonne"] == round(freight / 150_000, 4)
+    # Waiting past the 12-hour turn time: 1.0 day loading, 4.5 days discharging, per voyage.
+    assert t["demurrage_days"] == 11.0 and t["demurrage_usd"] == 220_000
+    assert t["laytime_days"] == 6.0 and t["despatch_rate_usd_per_day"] == 10_000
+    assert t["time_charter_usd"] == 1_660_000
+    assert t["cheaper"] == ("voyage" if freight + 220_000 < 1_660_000 else "time")
+
+
+def test_charter_terms_endpoint_covers_the_best_options():
+    from tests.auth_helpers import signed_in_client
+
+    body = {"cargo_tonnes": 75000, "month": 10, "origin": "Australia (Hay Point/Dalrymple Bay)", "plant_name": "Bhilai Steel Plant"}
+    options = signed_in_client().post("/api/charter-terms", json=body).json()["options"]
+    assert 1 <= len(options) <= 5
+    for o in options:
+        assert o["voyage_charter_usd"] > 0 and o["time_charter_usd"] > 0 and o["demurrage_days"] >= 0

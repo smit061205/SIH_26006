@@ -418,6 +418,27 @@ export function postStress(body: ShipmentRequest & StressShock & { port?: string
   return post<StressResponse>("/api/stress", body, signal);
 }
 
+export interface CharterTerms {
+  port: string;
+  vessel_class: string;
+  n_voyages: number;
+  time_charter_usd: number;
+  time_charter_usd_per_tonne: number;
+  voyage_freight_usd_per_tonne: number;
+  voyage_charter_usd: number;
+  voyage_charter_usd_per_tonne: number;
+  laytime_days: number;
+  demurrage_days: number;
+  demurrage_usd: number;
+  demurrage_rate_usd_per_day: number;
+  despatch_rate_usd_per_day: number;
+  cheaper: "time" | "voyage";
+}
+
+export function postCharterTerms(body: ShipmentRequest & { port?: string | null; vessel_class?: string | null }, signal?: AbortSignal) {
+  return post<{ options: CharterTerms[] }>("/api/charter-terms", body, signal);
+}
+
 export function postWaitScenario(body: ShipmentRequest, signal?: AbortSignal) {
   return post<{ wait_scenarios: WaitScenarioRow[] }>("/api/scenario/wait", body, signal);
 }

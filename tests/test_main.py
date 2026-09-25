@@ -411,6 +411,24 @@ def test_shipped_forecast_results_match_the_data_and_model_code():
         for name in [main._cache_name("backtest", series_class, (h, as_of)) for h in horizons]
         + [main._cache_name("forecast", series_class, (as_of, main.MAX_FORECAST_WEEKS))]
         + [main._cache_name("savings", series_class, (d, as_of, main.FIX_WINDOW_WEEKS, main._savings_code())) for d in main.SAVINGS_DURATIONS]
+        + [main._cache_name("explain", series_class, (as_of, main.FIX_WINDOW_WEEKS, main._explain_code()))]
         if not (main.FORECAST_BUNDLE / name).exists()
     ]
     assert not missing, f"stale data/forecast-cache, run: python -m scripts.precompute_forecasts --bundle ({len(missing)} missing)"
+
+
+def test_forecast_says_whats_behind_it():
+    from tests.auth_helpers import signed_in_client
+
+    c = signed_in_client()
+    for cls in ("Handysize", "Capesize"):
+        body = c.get("/api/forecast", params={"vessel_class": cls, "horizon": 12}).json()
+        f = body["explain"]["factors"]
+        assert f["horizon_weeks"] == 12 and f["seasonal_years"] >= 3
+        assert {"momentum_4w_pct", "momentum_12w_pct", "vs_3y_median_pct", "forecast_change_pct"} <= set(f)
+        importance = body["explain"]["importance"]
+        if body["model"] == "gbrt_drivers":
+            assert abs(sum(r["share_pct"] for r in importance) - 100) < 0.5
+            assert {r["input"] for r in importance} <= {"Past freight rates", "Coal (Australia)", "Brent crude", "US dollar to rupee"}
+        else:
+            assert importance is None

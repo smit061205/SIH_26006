@@ -15,6 +15,7 @@ import {
   getSavings,
   getTiming,
   postStress,
+  postCharterTerms,
   getWeather,
   postCharterPlan,
   postExcludePort,
@@ -90,6 +91,16 @@ export function useBacktest(horizon: number, vesselClass: string) {
     queryKey: ["backtest", vesselClass, horizon],
     queryFn: ({ signal }) => getBacktest(horizon, vesselClass, signal),
     staleTime: 30 * 60_000,
+    placeholderData: keepPreviousData,
+  });
+}
+
+export function useCharterTerms(body: Parameters<typeof postCharterTerms>[0] | null) {
+  return useQuery({
+    queryKey: ["charter-terms", body],
+    queryFn: ({ signal }) => postCharterTerms(body!, signal),
+    enabled: !!body,
+    staleTime: 10 * 60_000,
     placeholderData: keepPreviousData,
   });
 }

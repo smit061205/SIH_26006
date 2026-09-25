@@ -2,16 +2,16 @@ import { type T, useT } from "../lib/i18n";
 import { Check, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { BarList, InlineBar } from "../components/ui/bars";
-import { EmptyState, ErrorState, PageSkeleton, Refreshing } from "../components/ui/feedback";
+import { EmptyState, ErrorState, PageSkeleton, Refreshing, Skeleton } from "../components/ui/feedback";
 import { Delta, Figure, FigureRow, Verdict } from "../components/ui/figures";
 import { Button } from "../components/ui/inputs";
 import { PageHeader, Section } from "../components/ui/layout";
 import { Tooltip } from "../components/ui/overlay";
 import { MobileItem, MobileList, Table, Td, Th, Tr } from "../components/ui/table";
 import { useMoney } from "../lib/currency";
-import { days, metres, monthLong, num, pct, perTonne, perTonneUnit, tonnes, total } from "../lib/format";
+import { dayRate, days, metres, monthLong, num, pct, perDayUnit, perTonne, perTonneUnit, tonnes, total } from "../lib/format";
 import { COST_COMPONENTS, VESSEL_ABBR, VESSEL_CLASSES, originParts, rejectionCodes, rejectionSentences } from "../lib/labels";
-import { usePorts, useRank, useWeather } from "../lib/queries";
+import { useCharterTerms, usePorts, useRank, useWeather } from "../lib/queries";
 import { ShipTypes } from "../components/ship3d/ShipTypes";
 import { useShipment } from "../lib/shipment";
 import type { FeasibilityRow, RankedRow } from "../types";
@@ -110,19 +110,6 @@ export default function VesselPort() {
             </FigureRow>
 
             <Section
-              title={tr("The {n} ship types", { n: classes.length })}
-              description="Every vessel type this plan can use, to scale, from the smallest Handysize to the Capesize."
-            >
-              <ShipTypes
-                classes={reference?.vessel_classes ?? []}
-                recommended={best.vessel_class}
-                port={best.port}
-                feasibility={feasibility}
-                weather={weather.data}
-              />
-            </Section>
-
-            <Section
               title="Best option for each vessel type"
               description={tr("The cheapest port for each size of ship, and why a size can't be used in {month}.", { month })}
             >
@@ -158,6 +145,27 @@ export default function VesselPort() {
                 <HandlingNote />
               </Section>
             </div>
+
+            <Section
+              title="Time charter or voyage charter"
+              description="The ocean cost of the best options either way: hire and fuel for every day on a time charter, or freight per tonne plus demurrage for waiting on a voyage charter. Port charges, handling and rail are the same either way."
+            >
+              <CharterTermsTable />
+            </Section>
+
+            <Section
+              title={tr("The {n} ship types", { n: classes.length })}
+              description="Every vessel type this plan can use, to scale, from the smallest Handysize to the Capesize."
+            >
+              <ShipTypes
+                classes={reference?.vessel_classes ?? []}
+                recommended={best.vessel_class}
+                port={best.port}
+                feasibility={feasibility}
+                weather={weather.data}
+              />
+            </Section>
+
           </>
         )}
       </Refreshing>
@@ -575,6 +583,72 @@ const HANDLING_LABEL: Record<string, string> = {
 };
 
 /** How each discharge port unloads coal, and what that means for geared and gearless ships. */
+/** Time charter against voyage charter for the best options: laytime, expected demurrage, ocean cost per tonne. */
+function CharterTermsTable() {
+  const tr = useT();
+  const money = useMoney();
+  const { request, shipment } = useShipment();
+  const q = useCharterTerms(request && shipment ? { ...request, port: shipment.fixedPort ?? null, vessel_class: shipment.fixedClass ?? null } : null);
+  if (q.isError) return <ErrorState message="Couldn't compare the charter terms." onRetry={() => void q.refetch()} />;
+  if (!q.data) return <Skeleton className="h-48 w-full" />;
+  const options = q.data.options;
+  if (!options.length) return null;
+  const first = options[0];
+  return (
+    <>
+      <p className="mb-4 max-w-[68ch] text-[15px] text-ink">
+        {first.cheaper === "voyage"
+          ? tr("For {cls} into {port} a voyage charter comes out {d} cheaper: the owner carries the fuel while the ship waits, and demurrage of about {dd} is still less than the hire it replaces.", {
+              cls: tr(first.vessel_class),
+              port: tr(first.port),
+              d: perTonne(first.time_charter_usd_per_tonne - first.voyage_charter_usd_per_tonne, money) + perTonneUnit(),
+              dd: days(first.demurrage_days),
+            })
+          : tr("For {cls} into {port} a time charter comes out {d} cheaper: the owner's margin on voyage freight outweighs what the waiting costs on hire.", {
+              cls: tr(first.vessel_class),
+              port: tr(first.port),
+              d: perTonne(first.voyage_charter_usd_per_tonne - first.time_charter_usd_per_tonne, money) + perTonneUnit(),
+            })}
+      </p>
+      <Table>
+        <thead>
+          <tr>
+            <Th>Option</Th>
+            <Th align="right">Time charter /t</Th>
+            <Th align="right">Voyage freight /t</Th>
+            <Th align="right">Demurrage</Th>
+            <Th align="right">Voyage charter /t</Th>
+            <Th align="right">Laytime</Th>
+          </tr>
+        </thead>
+        <tbody>
+          {options.map((o) => (
+            <Tr key={`${o.port}-${o.vessel_class}`}>
+              <Td className="font-semibold">{tr("{cls} into {port}", { cls: tr(o.vessel_class), port: tr(o.port) })}</Td>
+              <Td align="right" className={o.cheaper === "time" ? "font-semibold text-positive" : undefined}>
+                {perTonne(o.time_charter_usd_per_tonne, money)}
+              </Td>
+              <Td align="right">{perTonne(o.voyage_freight_usd_per_tonne, money)}</Td>
+              <Td align="right" className="text-ink-2">
+                {o.demurrage_days > 0 ? tr("{d}, {amount}", { d: days(o.demurrage_days), amount: total(o.demurrage_usd, money) }) : tr("None")}
+              </Td>
+              <Td align="right" className={o.cheaper === "voyage" ? "font-semibold text-positive" : undefined}>
+                {perTonne(o.voyage_charter_usd_per_tonne, money)}
+              </Td>
+              <Td align="right" className="text-ink-2">{tr("{d} per voyage", { d: days(o.laytime_days) })}</Td>
+            </Tr>
+          ))}
+        </tbody>
+      </Table>
+      <p className="mt-3 text-[13px] text-ink-3">
+        {tr("Demurrage at {rate} a day (the hire rate) for waiting past 12 hours' notice at either port; despatch at half that for finishing early.", {
+          rate: dayRate(first.demurrage_rate_usd_per_day, money) + perDayUnit(),
+        })}
+      </p>
+    </>
+  );
+}
+
 function HandlingNote() {
   const tr = useT();
   const { reference } = useShipment();

@@ -36,6 +36,7 @@ def main_() -> None:
             main._backtest(series_class, horizon, as_of)
         model = main._full_forecast(series_class, as_of)["model"]
         saved = [main._savings(series_class, d, as_of)["median_saving_pct"] for d in main.SAVINGS_DURATIONS]
+        main._explain(series_class, as_of)
         print(f"{series_class}: data to {as_of}, model {model}, median saving vs spot {saved}% (3/6/12 months)", flush=True)
     print(f"Forecast results ready ({time.time() - started:.0f}s)")
 

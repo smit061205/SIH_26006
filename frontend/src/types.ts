@@ -104,6 +104,19 @@ export interface ForecastResponse {
   /** Which model made the forecast: the better of ARIMA and gradient boosting with coal, oil and rupee. */
   model: "arima" | "gbrt_drivers";
   model_label: string;
+  /** What's behind the forecast: the series' momentum, season and level; the drivers model's reliance on each input. */
+  explain: {
+    factors: {
+      horizon_weeks: number;
+      momentum_4w_pct: number;
+      momentum_12w_pct: number;
+      seasonal_pct: number | null;
+      seasonal_years: number;
+      vs_3y_median_pct: number;
+      forecast_change_pct: number;
+    };
+    importance: { input: string; share_pct: number }[] | null;
+  };
 }
 
 export interface BacktestModelRow {
