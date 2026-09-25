@@ -419,3 +419,16 @@ def test_no_password_signs_in_to_a_demo_account():
     assert not verify_password("", stored) and not verify_password("!demo", stored)
     # Refused either way: the .invalid address fails validation before any password check.
     assert new_client().post("/api/auth/login", json={"email": email, "password": "!demo"}).status_code in (401, 422)
+
+
+def test_only_the_demo_is_open_when_password_accounts_are_off(monkeypatch):
+    monkeypatch.setenv("PASSWORD_ACCOUNTS", "0")
+    c = new_client()
+    for path, body in [
+        ("/api/auth/signup", {"name": "A", "email": "a@example.com", "password": PASSWORD, "accept_privacy": True, "accept_terms": True}),
+        ("/api/auth/login", {"email": "a@example.com", "password": PASSWORD}),
+        ("/api/auth/forgot-password", {"email": "a@example.com"}),
+    ]:
+        assert c.post(path, json=body).status_code == 404
+    assert c.post("/api/auth/demo").status_code == 200
+    assert c.get("/api/auth/me").json()["is_demo"] is True

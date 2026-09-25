@@ -31,8 +31,8 @@ each data source is, and what is out of scope.
 
 Everything is in English and Hindi, light and dark, and USD or INR, with
 alerts, saved plans, print, CSV and keyboard shortcuts. **Try the live demo**
-on the landing page opens the planner on a throwaway account (no sign-up;
-deleted after a day).
+on the landing page opens the planner on a throwaway session (no sign-up;
+deleted after a day); it is the only way in.
 
 ## How it's built
 
@@ -74,21 +74,19 @@ npm install   # first time only
 npm run dev   # opens on http://localhost:5173
 ```
 
-The app needs an account: open http://localhost:5173 and choose **Get
-started**. Local settings live in a git-ignored `.env` file at the project
+The site runs as a live demo: open http://localhost:5173 and choose **Try the
+live demo** (no sign-up; the session and anything saved in it are deleted after
+a day). Password accounts are in the code but off; `PASSWORD_ACCOUNTS=1` turns
+them back on. Local settings live in a git-ignored `.env` file at the project
 root (copy `.env.example`); the backend reads it at start-up.
 
-- **Developer code:** with `DEVELOPER_ACCESS_CODE` set in `.env` (keep it
-  private), entering it under "Have a developer code?" at sign-up gives an
-  account that is ready at once, with the developer tools (`/kit`). It also
-  finishes an earlier sign-up whose email was never confirmed. Signed-in
-  accounts can add it on the Account page.
-- **Email:** without a mail server, confirmation and reset links appear on the
-  page (outside `APP_ENV=production`). To send real email through Gmail: turn
-  on 2-Step Verification for the Google account, create an App Password at
-  https://myaccount.google.com/apppasswords, put the address in `SMTP_USER`
-  and the 16-character App Password in `SMTP_PASSWORD` in `.env`, and restart
-  the backend. Gmail allows about 500 messages a day.
+- **Developer tools** (`/kit`) open without signing in in development builds
+  (`npm run dev`).
+- **With password accounts on** (`PASSWORD_ACCOUNTS=1`): `DEVELOPER_ACCESS_CODE`
+  gives an account that is ready at once, with the developer tools; without a
+  mail server, confirmation and reset links appear on the page (outside
+  `APP_ENV=production`); real email goes through Brevo (`BREVO_API_KEY`) or
+  Gmail SMTP (`SMTP_USER` and a 16-character App Password in `SMTP_PASSWORD`).
 
 **First-time Python setup and tests:**
 ```bash

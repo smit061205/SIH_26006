@@ -107,10 +107,10 @@ function MenuAccount({ onDone }: { onDone: () => void }) {
         {user.name}
         {user.is_developer && <DeveloperBadge />}
       </p>
-      <p className="mb-3 truncate text-[13px] text-ink-3">{user.email}</p>
+      {!user.is_demo && <p className="mb-3 truncate text-[13px] text-ink-3">{user.email}</p>}
       <div className="flex gap-4">
         <Link to="/account" onClick={onDone} className="text-[15px] text-accent">
-          {t("Account and privacy")}
+          {t(user.is_demo ? "Demo session" : "Account and privacy")}
         </Link>
         <button
           type="button"
@@ -120,7 +120,7 @@ function MenuAccount({ onDone }: { onDone: () => void }) {
             await logout();
           }}
         >
-          {t("Sign out")}
+          {t(user.is_demo ? "End the demo" : "Sign out")}
         </button>
       </div>
     </div>
@@ -143,7 +143,7 @@ function UserMenu() {
         </Button>
       }
     >
-      <p className="-mt-2 mb-3 truncate text-[13px] text-ink-3">{user.email}</p>
+      {!user.is_demo && <p className="-mt-2 mb-3 truncate text-[13px] text-ink-3">{user.email}</p>}
       {user.is_developer && (
         <div className="mb-3">
           <DeveloperBadge />
@@ -151,7 +151,7 @@ function UserMenu() {
       )}
       <div className="flex flex-col items-start gap-2 border-t border-rule pt-3">
         <Link to="/account" className="text-[14px] text-accent underline-offset-4 hover:underline">
-          {t("Account and privacy")}
+          {t(user.is_demo ? "Demo session" : "Account and privacy")}
         </Link>
         {user.is_developer && (
           <Link to="/kit" className="text-[14px] text-accent underline-offset-4 hover:underline">
@@ -159,7 +159,7 @@ function UserMenu() {
           </Link>
         )}
         <Button variant="text" onClick={signOut}>
-          {t("Sign out")}
+          {t(user.is_demo ? "End the demo" : "Sign out")}
         </Button>
       </div>
     </Popover>

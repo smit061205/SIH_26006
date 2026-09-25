@@ -9,16 +9,11 @@ import { TopBar } from "./components/shell/TopBar";
 import { ErrorState, PageSkeleton } from "./components/ui/feedback";
 import { useAuth } from "./lib/auth";
 import { translate, useLang, useT } from "./lib/i18n";
-import { safeNext } from "./lib/nextPath";
 import { focusInitialHash, redirect, usePathname } from "./lib/router";
 import { ShipmentProvider } from "./lib/shipment";
 import NotFound from "./pages/NotFound";
 
 const Landing = lazy(() => import("./pages/Landing"));
-const Auth = lazy(() => import("./pages/Auth"));
-const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
-const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
-const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 
@@ -34,11 +29,6 @@ const Kit = lazy(() => import("./pages/Kit"));
 /** Open to anyone. */
 const PUBLIC: Record<string, { title: string; render: () => ReactNode }> = {
   "/": { title: "Charter planning for coking coal", render: () => <Landing /> },
-  "/login": { title: "Sign in", render: () => <Auth tab="signin" /> },
-  "/signup": { title: "Create your account", render: () => <Auth tab="signup" /> },
-  "/verify-email": { title: "Confirm your email", render: () => <VerifyEmail /> },
-  "/forgot-password": { title: "Reset your password", render: () => <ForgotPassword /> },
-  "/reset-password": { title: "Choose a new password", render: () => <ResetPassword /> },
   "/privacy": { title: "Privacy notice", render: () => <Privacy /> },
   "/terms": { title: "Terms of use", render: () => <Terms /> },
 };
@@ -66,14 +56,14 @@ const DEV_KIT_PAGE = {
   ),
 };
 
-/** Pages a signed-in person doesn't need: they go straight to the app. */
-const SIGNED_IN_SKIPS = new Set(["/", "/login", "/signup"]);
+/** The landing page isn't needed once in the demo: it goes straight to the app. */
+const SIGNED_IN_SKIPS = new Set(["/"]);
 
 export default function App() {
   const pathname = usePathname();
   const trimmed = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   const path = REDIRECTS[trimmed] ?? trimmed;
-  const { status, user, retry } = useAuth();
+  const { status, user, retry, startDemo } = useAuth();
   const devTools = import.meta.env.DEV || !!user?.is_developer;
   const lang = useLang();
   // In development builds the developer tools open without signing in (sample data; the notices need an account).
@@ -89,15 +79,17 @@ export default function App() {
     else if (pathname !== trimmed) redirect(trimmed + window.location.hash);
   }, [trimmed, pathname]);
 
-  // Signed in: skip the landing and sign-in pages. Signed out: app pages ask to sign in first.
+  // In the demo: skip the landing page. Not yet: opening an app page (a shared plan link, say)
+  // starts a demo there and then, so the link works; if that fails, back to the landing page.
+  const demoStarted = useRef(false);
   useEffect(() => {
     if (status === "signed-in" && SIGNED_IN_SKIPS.has(path)) {
-      if (path === "/login") redirect(safeNext(new URLSearchParams(window.location.search).get("next")), false);
-      else redirect("/plan", path === "/"); // old "/?…" plan links keep their query
-    } else if (status === "signed-out" && isAppPage) {
-      redirect(`/login?next=${encodeURIComponent(window.location.pathname + window.location.search + window.location.hash)}`);
+      redirect("/plan", path === "/"); // old "/?…" plan links keep their query
+    } else if (status === "signed-out" && isAppPage && !demoStarted.current) {
+      demoStarted.current = true;
+      startDemo().catch(() => redirect("/"));
     }
-  }, [status, path, isAppPage]);
+  }, [status, path, isAppPage, startDemo]);
 
   useEffect(() => {
     const label = nav?.label ?? publicPage?.title ?? (path === "/account" ? "Account" : path === "/kit" ? "Developer tools" : null);
@@ -163,7 +155,7 @@ function SkipLink() {
   );
 }
 
-/** Tells a demo visitor what the account is and how to get their own. */
+/** Tells a demo visitor what the session is, and how to leave it. */
 function DemoBanner() {
   const t = useT();
   const { user, logout } = useAuth();
@@ -171,9 +163,9 @@ function DemoBanner() {
   return (
     <div className="border-b border-rule bg-accent-tint">
       <div className="mx-auto flex max-w-[1264px] flex-wrap items-center justify-between gap-x-4 gap-y-1.5 px-4 py-2 sm:px-6 lg:px-8">
-        <p className="text-[13.5px] text-ink-2">{t("You're using a demo account. Everything in it is deleted after a day.")}</p>
-        <button type="button" onClick={() => void logout("/signup")} className="text-[13.5px] font-semibold text-accent underline-offset-4 hover:underline">
-          {t("Create your own account")}
+        <p className="text-[13.5px] text-ink-2">{t("You're in the live demo. Anything you save is deleted after a day.")}</p>
+        <button type="button" onClick={() => void logout()} className="text-[13.5px] font-semibold text-accent underline-offset-4 hover:underline">
+          {t("End the demo")}
         </button>
       </div>
     </div>

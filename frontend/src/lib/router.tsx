@@ -65,7 +65,7 @@ export function focusInitialHash() {
 
 /** Public and account pages: their query strings (sign-in links, one-time
  *  tokens) belong to them alone, and they don't take the app's inputs. */
-const OWN_QUERY = new Set(["/", "/login", "/signup", "/verify-email", "/forgot-password", "/reset-password", "/privacy", "/terms", "/account"]);
+const OWN_QUERY = new Set(["/", "/privacy", "/terms", "/account"]);
 
 /** The query a link to `to` should carry: its own, else the current page's
  *  shared inputs when moving between app pages, else none. */

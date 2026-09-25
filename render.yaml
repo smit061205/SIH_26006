@@ -27,25 +27,16 @@ services:
         value: "1"
       - key: COOKIE_SAMESITE
         value: lax
-      # Accounts in Postgres. Render's free database is deleted 30 days after
-      # it's created, so use a permanent free one (Neon: neon.tech) and paste
-      # its connection string here in the dashboard.
+      # The site is a live demo (no sign-up or email): sessions live in the
+      # server's SQLite file. Only with PASSWORD_ACCOUNTS=1 are a permanent
+      # Postgres (AUTH_DB_URL, e.g. Neon) and email (Brevo) needed.
+      - key: PASSWORD_ACCOUNTS
+        value: "0"
       - key: AUTH_DB_URL
         sync: false
-      # Email: Render's free plan blocks outgoing SMTP, so send through Brevo's
-      # HTTPS API (free, 300 a day; MAIL_FROM must be a sender verified there).
       - key: BREVO_API_KEY
         sync: false
       - key: MAIL_FROM
-        sync: false
-      # Only for a paid instance or another host that allows SMTP.
-      - key: SMTP_HOST
-        sync: false
-      - key: SMTP_PORT
-        sync: false
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASSWORD
         sync: false
       - key: DEVELOPER_ACCESS_CODE
         sync: false

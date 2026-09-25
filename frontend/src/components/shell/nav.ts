@@ -10,4 +10,10 @@ export const NAV = [
 /** Old addresses that still need to work. */
 export const REDIRECTS: Record<string, string> = {
   "/nomination": "/vessel-port",
+  // Sign-in and sign-up were replaced by the live demo.
+  "/login": "/",
+  "/signup": "/",
+  "/verify-email": "/",
+  "/forgot-password": "/",
+  "/reset-password": "/",
 };

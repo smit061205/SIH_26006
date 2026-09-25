@@ -50,6 +50,16 @@ from src.users import (
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
+
+def _password_accounts() -> None:
+    """Sign-up, sign-in and the password and email flows are off unless
+    PASSWORD_ACCOUNTS=1: the site runs as a live demo (POST /api/auth/demo)."""
+    if os.environ.get("PASSWORD_ACCOUNTS") != "1":
+        raise HTTPException(status_code=404, detail="Sign-in is turned off. Use the live demo.")
+
+
+PASSWORD_ONLY = [Depends(_password_accounts)]
+
 # Housekeeping the privacy notice promises: expired sessions and old sign-in
 # records go - at start-up and then once a day while the server runs.
 def _purge_daily() -> None:
@@ -200,7 +210,7 @@ class SignupRequest(BaseModel):
 CHECK_EMAIL = "If this email can be used, we've sent a link to confirm it. Check your inbox."
 
 
-@router.post("/signup")
+@router.post("/signup", dependencies=PASSWORD_ONLY)
 def signup(req: SignupRequest, request: Request):
     if not (req.accept_privacy and req.accept_terms):
         raise HTTPException(status_code=400, detail="Please agree to the privacy notice and the terms to create an account.")
@@ -299,7 +309,7 @@ class DeveloperRequest(BaseModel):
     code: str = Field(min_length=1, max_length=100)
 
 
-@router.post("/developer")
+@router.post("/developer", dependencies=PASSWORD_ONLY)
 def become_developer(req: DeveloperRequest, request: Request, user: User = Depends(require_user)):
     """Adds developer access to the signed-in account."""
     _no_demo(user)
@@ -318,7 +328,7 @@ class TokenRequest(BaseModel):
     token: str = Field(min_length=10, max_length=200)
 
 
-@router.post("/verify-email")
+@router.post("/verify-email", dependencies=PASSWORD_ONLY)
 def verify_email(req: TokenRequest, request: Request):
     with db() as s:
         user = redeem_email_token(s, req.token, "verify")
@@ -335,7 +345,7 @@ class EmailRequest(BaseModel):
     email: EmailStr
 
 
-@router.post("/resend-verification")
+@router.post("/resend-verification", dependencies=PASSWORD_ONLY)
 def resend_verification(req: EmailRequest, request: Request):
     link = None
     # Over the limit: the same answer, but nothing is sent.
@@ -375,7 +385,7 @@ def _ip_limited(ip: str) -> bool:
     return len(window) > IP_LIMIT
 
 
-@router.post("/login")
+@router.post("/login", dependencies=PASSWORD_ONLY)
 def login(req: LoginRequest, request: Request, response: Response):
     ip = _ip(request)
     if _ip_limited(ip):
@@ -543,7 +553,7 @@ def update_me(req: ProfileUpdate, user: User = Depends(require_user)):
 
 # --- passwords --------------------------------------------------------------
 
-@router.post("/forgot-password")
+@router.post("/forgot-password", dependencies=PASSWORD_ONLY)
 def forgot_password(req: EmailRequest, request: Request):
     link = None
     if _mail_limited(req.email, _ip(request)):
@@ -574,7 +584,7 @@ def _revoke_sessions(s, user_id: int, keep_id: int | None = None) -> None:
     s.execute(q)
 
 
-@router.post("/reset-password")
+@router.post("/reset-password", dependencies=PASSWORD_ONLY)
 def reset_password(req: ResetRequest, request: Request):
     with db() as s:
         user = redeem_email_token(s, req.token, "reset")
@@ -600,7 +610,7 @@ class ChangePassword(BaseModel):
     new_password: str = Field(max_length=256)
 
 
-@router.post("/change-password")
+@router.post("/change-password", dependencies=PASSWORD_ONLY)
 def change_password(req: ChangePassword, request: Request, user: User = Depends(require_user)):
     _no_demo(user)
     if not verify_password(req.current_password, user.password_hash):

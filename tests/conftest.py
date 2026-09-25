@@ -15,6 +15,8 @@ os.environ["SMTP_HOST"] = ""
 os.environ["BREVO_API_KEY"] = ""
 os.environ["APP_ENV"] = "test"
 os.environ["DEVELOPER_ACCESS_CODE"] = "test-dev-code"
+# The password-account flows are off in production (live demo only); the tests keep them covered.
+os.environ["PASSWORD_ACCOUNTS"] = "1"
 
 import pytest
 

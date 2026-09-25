@@ -188,11 +188,11 @@ function Hero() {
               {t("Try the live demo")}
               <ArrowRight size={16} aria-hidden />
             </DemoButton>
-            <Link to="/signup" className="inline-flex items-center gap-2 rounded-lg border border-rule-strong bg-surface px-5 py-3 text-[15px] font-semibold text-ink transition-colors hover:bg-hover">
-              {t("Create an account")}
-            </Link>
+            <a href="#features" className="inline-flex items-center gap-2 rounded-lg border border-rule-strong bg-surface px-5 py-3 text-[15px] font-semibold text-ink transition-colors hover:bg-hover">
+              {t("See what it does")}
+            </a>
           </div>
-          <p className="mt-3 text-[13.5px] text-ink-3">{t("The demo needs no sign-up: a fresh account opens straight into the planner.")}</p>
+          <p className="mt-3 text-[13.5px] text-ink-3">{t("No sign-up: the planner opens straight away, and anything you save is deleted after a day.")}</p>
           <ul className="mt-9 grid gap-2.5 text-[14.5px] text-ink-2 sm:grid-cols-2">
             {[
               "Live sea state and port traffic at every port",
@@ -655,6 +655,7 @@ function Coverage() {
     <section className="border-y border-rule bg-sunken/60 py-24">
       <div className={wrap}>
         <SectionHead
+          id="coverage"
           center
           eyebrow="Coverage"
           title="Every route from mine to plant"
@@ -705,14 +706,14 @@ function DataAndTrust() {
     ["Sea routes", "Distances over real shipping lanes (Malacca, Suez, the open ocean)."],
   ];
   const security = [
-    { icon: KeyRound, title: "Passwords stay secret", body: "Stored only as a salted scrypt hash. At least 8 characters with a capital, a number and a symbol, and never a commonly used password." },
-    { icon: Lock, title: "Private sessions", body: "Secure, HttpOnly cookies. See where you're signed in and sign out any device." },
-    { icon: ShieldCheck, title: "Your data, your call", body: "Download everything we hold or delete your account at any time, as India's DPDP Act provides." },
+    { icon: KeyRound, title: "No sign-up, no personal data", body: "The live demo asks for no name, email or password: a throwaway session opens the planner." },
+    { icon: Lock, title: "Private sessions", body: "Each visitor gets their own session in a Secure, HttpOnly cookie; your plant stock and saved plans aren't shared." },
+    { icon: ShieldCheck, title: "Nothing kept", body: "A demo session and anything saved in it are deleted after a day, or at once when you end the demo." },
   ];
   return (
     <section className="border-y border-rule bg-sunken/60 py-24">
       <div className={wrap}>
-        <SectionHead id="data" eyebrow="Data and trust" title="Public data you can check, and an account you control" />
+        <SectionHead id="data" eyebrow="Data and trust" title="Public data you can check, and a demo that keeps nothing" />
         <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
           <div className="rounded-2xl border border-rule bg-surface p-6">
             <h3 className="flex items-center gap-2.5 text-[15.5px] font-semibold text-ink">
@@ -757,7 +758,7 @@ function Faq() {
     ["Does it book ships?", "No. It works out and explains the options; your team fixes charters as it does today."],
     ["How reliable is the freight forecast?", "Each forecast comes with the range that 80% of outcomes fall in, and the Freight outlook page shows how the model has done on past weeks."],
     ["Where does the voyage and port data come from?", "Public sources: sea forecasts, port traffic, published port limits, market series and rail tariffs. Each figure shows the date it's from."],
-    ["Who can create an account?", "Anyone with an email address; a work email is best. We confirm the address before the first sign-in."],
+    ["Do I need an account?", "No. Try the live demo opens the planner straight away, with no sign-up. Anything you save in it is deleted after a day."],
     ["Does it work on a phone?", "Yes. Every page works on a phone; the 3D ships and globe become to-scale drawings on small screens."],
   ];
   return (
@@ -791,15 +792,12 @@ function FinalCta() {
           <div aria-hidden className="absolute inset-0 -z-10 opacity-60" style={{ backgroundImage: CHART_BG.replaceAll("%231e3a5f", "%23ffffff"), backgroundSize: "640px 420px" }} />
           <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_50%_0%,rgba(255,255,255,0.14),transparent_70%)]" />
           <h2 className="serif mx-auto max-w-[24ch] text-[32px] font-semibold leading-tight text-white sm:text-[40px]">{t("Plan your next coking-coal shipment with the whole voyage in view.")}</h2>
-          <p className="mx-auto mt-4 max-w-[56ch] text-[16.5px] leading-relaxed text-white/80">{t("Create an account in a minute. Your plant is chosen for you when you plan a shipment.")}</p>
+          <p className="mx-auto mt-4 max-w-[56ch] text-[16.5px] leading-relaxed text-white/80">{t("No sign-up: open the planner, set a shipment and see the plan, the saving and the risks in seconds.")}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <DemoButton className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-[15px] font-semibold text-accent shadow-sm hover:bg-white/90 disabled:opacity-70">
               {t("Try the live demo")}
               <ArrowRight size={16} aria-hidden />
             </DemoButton>
-            <Link to="/signup" className="rounded-lg border border-white/40 px-5 py-3 text-[15px] font-semibold text-white hover:bg-white/10">
-              {t("Create your account")}
-            </Link>
           </div>
         </div>
       </div>

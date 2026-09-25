@@ -114,14 +114,7 @@ export function PublicHeader({ sections = false }: { sections?: boolean }) {
               {t("Open the app")}
             </Link>
           ) : (
-            <>
-              <Link to="/login" className="hidden rounded-lg px-3 py-2 text-[14px] font-semibold text-ink-2 hover:text-ink sm:inline-block">
-                {t("Sign in")}
-              </Link>
-              <Link to="/signup" className="rounded-lg bg-accent px-4 py-2 text-[14px] font-semibold text-surface shadow-sm hover:bg-accent-hover">
-                {t("Get started")}
-              </Link>
-            </>
+            <DemoButton className="rounded-lg bg-accent px-4 py-2 text-[14px] font-semibold text-surface shadow-sm hover:bg-accent-hover disabled:opacity-70" />
           )}
           {sections && (
             <button
@@ -147,13 +140,6 @@ export function PublicHeader({ sections = false }: { sections?: boolean }) {
                 </a>
               </li>
             ))}
-            {!signedIn && (
-              <li className="sm:hidden">
-                <Link to="/login" className="block rounded-md px-3 py-2.5 text-[15px] font-semibold text-accent hover:bg-hover">
-                  {t("Sign in")}
-                </Link>
-              </li>
-            )}
           </ul>
         </nav>
       )}
@@ -174,11 +160,11 @@ export function PublicFooter() {
       ],
     },
     {
-      title: "Account",
+      title: "Explore",
       links: [
-        ["/signup", "Create an account"],
-        ["/login", "Sign in"],
-        ["/forgot-password", "Reset your password"],
+        ["/#coverage", "Coverage", true],
+        ["/#data", "Data and trust", true],
+        ["/#faq", "FAQ", true],
       ],
     },
     {
@@ -220,22 +206,5 @@ export function PublicFooter() {
         <p className="mx-auto max-w-[1264px] px-4 py-5 text-[12.5px] text-ink-3 sm:px-6 lg:px-8">© 2026 Freightwise</p>
       </div>
     </footer>
-  );
-}
-
-/** A centred card for sign-in, sign-up and the other account steps. */
-export function AuthLayout({ title, subtitle, children, footer }: { title: string; subtitle?: ReactNode; children: ReactNode; footer?: ReactNode }) {
-  const t = useT();
-  return (
-    <div className="flex flex-1 items-start justify-center px-4 py-10 sm:py-16">
-      <div className="w-full max-w-[440px]">
-        <div className="rounded-[var(--radius-surface)] border border-rule bg-surface p-6 sm:p-8">
-          <h1 className="serif text-[26px] font-semibold leading-tight text-ink">{t(title)}</h1>
-          {subtitle && <p className="mt-2 text-[15px] text-ink-2">{subtitle}</p>}
-          <div className="mt-6">{children}</div>
-        </div>
-        {footer && <div className="mt-5 text-center text-[14px] text-ink-2">{footer}</div>}
-      </div>
-    </div>
   );
 }
