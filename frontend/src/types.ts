@@ -313,6 +313,15 @@ export interface CharterPlanResponse {
   } | null;
   schedule: ScheduleResponse | null;
   timing: TimingResponse | null;
+  /** Sailing slower to meet the berth instead of waiting at anchor, per shipment; null when the queue is short. */
+  virtual_arrival: {
+    speed_knots: number;
+    service_speed_knots: number;
+    anchorage_days_avoided: number;
+    fuel_saved_t: number;
+    fuel_saved_usd: number;
+    co2_saved_t: number;
+  } | null;
   plant:
     | (PlantCover & {
         arrival_in_days: number;

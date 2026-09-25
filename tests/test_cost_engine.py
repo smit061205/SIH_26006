@@ -281,3 +281,21 @@ def test_charter_terms_endpoint_covers_the_best_options():
     assert 1 <= len(options) <= 5
     for o in options:
         assert o["voyage_charter_usd"] > 0 and o["time_charter_usd"] > 0 and o["demurrage_days"] >= 0
+
+
+def test_virtual_arrival_saves_fuel_without_changing_arrival():
+    from src.cost_engine import virtual_arrival
+
+    ca = {"service_speed_knots": 13.5, "slow_steaming_min_knots": 10, "co2_per_tonne_fuel": 3.151}
+    vessel = {"fuel_sea_t_per_day": 30.0, "fuel_port_t_per_day": 4.0}
+    row = {"expected_wait_days": 3.0, "transit_days": 15.0, "n_voyages": 1}
+    va = virtual_arrival(row, vessel, ca, bunker_price_usd_per_tonne=600)
+    v2 = 13.5 * 15 / 18
+    saved = 30 * 15 * (1 - (v2 / 13.5) ** 2) + 4 * 3
+    assert va["speed_knots"] == round(v2, 1) and va["anchorage_days_avoided"] == 3.0
+    assert va["fuel_saved_t"] == round(saved) and va["co2_saved_t"] == round(saved * 3.151)
+    # Never slower than the minimum: a long queue is only partly absorbed.
+    long_queue = virtual_arrival({**row, "expected_wait_days": 30.0}, vessel, ca, 600)
+    assert long_queue["speed_knots"] == 10.0 and long_queue["anchorage_days_avoided"] < 30
+    # A short queue isn't worth it.
+    assert virtual_arrival({**row, "expected_wait_days": 0.2}, vessel, ca, 600) is None

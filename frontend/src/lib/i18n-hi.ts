@@ -1310,4 +1310,12 @@ export const HI: Record<string, string> = {
   "Laytime": "लेटाइम",
   "Print or save PDF": "प्रिंट करें या PDF सहेजें",
   "Download CSV": "CSV डाउनलोड करें",
+  "Arrive when the berth is free": "बर्थ खाली होने पर पहुँचें",
+  "{port} usually has a {d} berth queue. Sailing at {v} knots instead of {v0} arrives as a berth frees up, with the same arrival and hire, and no days at anchor.": "{port} पर आमतौर पर {d} की बर्थ कतार रहती है। {v0} के बजाय {v} नॉट पर चलने से जहाज़ बर्थ खाली होते ही पहुँचता है, पहुँचने का समय और किराया वही, और लंगर पर कोई दिन नहीं।",
+  "Fuel saved": "बचा ईंधन",
+  "{t} t": "{t} t",
+  "Worth": "मूल्य",
+  "CO₂ avoided": "टाली गई CO₂",
+  "Days at anchor avoided": "लंगर पर टाले गए दिन",
+  "Per month's shipment. Agree the arrival time with the port and the owner (IMO virtual arrival).": "प्रति माह की खेप। पहुँचने का समय बंदरगाह और मालिक से तय करें (IMO वर्चुअल अराइवल)।",
 };

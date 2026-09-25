@@ -52,7 +52,7 @@ from src.alerts import (
     weather_alerts,
 )
 from src.backtest import compare_models
-from src.cost_engine import voyage_charter_terms, voyage_payload_tonnes
+from src.cost_engine import virtual_arrival, voyage_charter_terms, voyage_payload_tonnes
 from src.data_loader import (
     FREIGHT_SERIES_CLASSES,
     MARKET_DRIVERS,
@@ -1311,9 +1311,16 @@ def post_charter_plan(req: CharterPlanRequest, request: Request):
         fix_by = (date.today() + timedelta(days=int(days_to_fix))).isoformat() if days_to_fix is not None and days_to_fix >= 0 else None
         plant = {**cover, **arrival, "fix_by_date": fix_by, "fastest_option": fastest}
 
+    vessels = refs["vessels_df"].set_index("vessel_class")
+    arrival = virtual_arrival(
+        _records(top.to_frame().T)[0], vessels.loc[top["vessel_class"]], refs["cost_assumptions"],
+        bunker_price_usd_per_tonne(refs["cost_assumptions"]),
+    )
     return {
         "inputs": req.model_dump(),
         "laycan": laycan,
+        # Sail slower to meet the berth instead of waiting at anchor (per shipment).
+        "virtual_arrival": arrival,
         "recommendation": {
             "basis": basis,
             "top": _records(top.to_frame().T)[0],

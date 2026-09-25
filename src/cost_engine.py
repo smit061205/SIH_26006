@@ -326,3 +326,36 @@ def voyage_charter_terms(row: dict, vessel_row, cost_assumptions: dict, bunker_p
         "despatch_rate_usd_per_day": round(des_rate, 2),
         "cheaper": "voyage" if voyage_charter < time_charter else "time",
     }
+
+
+def virtual_arrival(row: dict, vessel_row, cost_assumptions: dict, bunker_price_usd_per_tonne: float) -> dict | None:
+    """Sail slower and arrive when the berth frees up, instead of steaming at
+    service speed to wait at anchor (the IMO's "virtual arrival" / just-in-time
+    arrival). The arrival time doesn't change, so hire doesn't either; what
+    changes is fuel: a ship's daily consumption rises with the cube of speed,
+    so over the same distance it burns fuel in proportion to speed squared,
+    and the anchorage days (with their port fuel) disappear. None when the
+    berth queue is too short to be worth it.
+
+    `row` is one ranked option (src/rank.py); amounts are per shipment.
+    """
+    queue = float(row["expected_wait_days"])  # the berth queue; swell days can't be planned around
+    transit = float(row["transit_days"])
+    if queue < 0.5 or transit <= 0:
+        return None
+    v1 = float(cost_assumptions.get("service_speed_knots", 13.5))
+    v_min = float(cost_assumptions.get("slow_steaming_min_knots", 10))
+    absorbed = min(queue, transit * (v1 / v_min - 1))
+    v2 = v1 * transit / (transit + absorbed)
+    fuel_sea = opt_float(vessel_row, "fuel_sea_t_per_day") or 0.0
+    fuel_port = opt_float(vessel_row, "fuel_port_t_per_day") or 0.0
+    voyages = int(row["n_voyages"])
+    saved_t = (fuel_sea * transit * (1 - (v2 / v1) ** 2) + fuel_port * absorbed) * voyages
+    return {
+        "speed_knots": round(v2, 1),
+        "service_speed_knots": v1,
+        "anchorage_days_avoided": round(absorbed * voyages, 1),
+        "fuel_saved_t": round(saved_t, 0),
+        "fuel_saved_usd": round(saved_t * bunker_price_usd_per_tonne, 0),
+        "co2_saved_t": round(saved_t * float(cost_assumptions.get("co2_per_tonne_fuel", 3.151)), 0),
+    }

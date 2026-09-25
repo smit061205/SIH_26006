@@ -204,8 +204,9 @@ export default function CharterPlan() {
             {data.schedule && <ScheduleCard schedule={data.schedule} />}
           </div>
 
-          <div className="lg:col-start-2 lg:row-start-2">
+          <div className="space-y-8 lg:col-start-2 lg:row-start-2">
             <PlantStock plan={data} />
+            <VirtualArrival plan={data} />
           </div>
         </div>
         <div className="mt-8">
@@ -218,6 +219,46 @@ export default function CharterPlan() {
         <ComparePlans />
       </div>
     </>
+  );
+}
+
+/** Idle time at the discharge port, cut by sailing to meet the berth instead of queueing at anchor. */
+function VirtualArrival({ plan }: { plan: CharterPlanResponse }) {
+  const tr = useT();
+  const money = useMoney();
+  const va = plan.virtual_arrival;
+  if (!va) return null;
+  const top = plan.recommendation!.top;
+  return (
+    <SideBlock title="Arrive when the berth is free">
+      <p className="text-[14.5px] text-ink-2">
+        {tr("{port} usually has a {d} berth queue. Sailing at {v} knots instead of {v0} arrives as a berth frees up, with the same arrival and hire, and no days at anchor.", {
+          port: tr(top.port),
+          d: days(top.expected_wait_days),
+          v: num(va.speed_knots, 1),
+          v0: num(va.service_speed_knots, 1),
+        })}
+      </p>
+      <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5 text-[14px]">
+        <div>
+          <dt className="text-ink-3">{tr("Fuel saved")}</dt>
+          <dd className="font-semibold tabular-nums text-ink">{tr("{t} t", { t: num(va.fuel_saved_t) })}</dd>
+        </div>
+        <div>
+          <dt className="text-ink-3">{tr("Worth")}</dt>
+          <dd className="font-semibold tabular-nums text-ink">{total(va.fuel_saved_usd, money)}</dd>
+        </div>
+        <div>
+          <dt className="text-ink-3">{tr("CO₂ avoided")}</dt>
+          <dd className="font-semibold tabular-nums text-ink">{tr("{t} t", { t: num(va.co2_saved_t) })}</dd>
+        </div>
+        <div>
+          <dt className="text-ink-3">{tr("Days at anchor avoided")}</dt>
+          <dd className="font-semibold tabular-nums text-ink">{num(va.anchorage_days_avoided, 1)}</dd>
+        </div>
+      </dl>
+      <p className="mt-2 text-[13px] text-ink-3">{tr("Per month's shipment. Agree the arrival time with the port and the owner (IMO virtual arrival).")}</p>
+    </SideBlock>
   );
 }
 
