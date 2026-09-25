@@ -479,8 +479,9 @@ def start_demo(request: Request, response: Response):
         user = User(
             email=f"demo-{secrets.token_hex(8)}@demo.invalid",
             name="Demo planner",
-            # Unusable: nobody knows it, so the account can only be reached through this session.
-            password_hash=hash_password(secrets.token_urlsafe(32)),
+            # Not a hash: no password can match it, so the account is reachable only through
+            # this session. (Hashing a random one would cost seconds of CPU on a small server.)
+            password_hash="!demo",
             email_verified_at=now(),
             consent_version=CONSENT_VERSION,
             consent_at=now(),

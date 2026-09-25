@@ -407,3 +407,15 @@ def test_brevo_api_is_used_when_configured(monkeypatch):
     assert sent["url"] == mailer.BREVO_URL and sent["key"] == "test-key"
     assert sent["body"]["sender"] == {"name": "Freightwise", "email": "planner@example.com"}
     assert sent["body"]["to"] == [{"email": "x@example.com"}]
+
+
+def test_no_password_signs_in_to_a_demo_account():
+    from src.users import User, db, verify_password
+
+    c = new_client()
+    email = c.post("/api/auth/demo").json()["email"]
+    with db() as s:
+        stored = s.query(User).filter(User.email == email).one().password_hash
+    assert not verify_password("", stored) and not verify_password("!demo", stored)
+    # Refused either way: the .invalid address fails validation before any password check.
+    assert new_client().post("/api/auth/login", json={"email": email, "password": "!demo"}).status_code in (401, 422)
