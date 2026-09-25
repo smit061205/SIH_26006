@@ -72,8 +72,12 @@ Redeploy the service after changing them.
 - **The API sleeps.** Render's free web service sleeps after about 15 minutes
   idle; the first request then takes up to a minute (the app shows "Can't
   reach the Freightwise service … retrying" and recovers by itself). Before a
-  demo, open `/api/health` a few minutes ahead, or ping it every 10 minutes
-  with a free uptime monitor. Render's Starter plan doesn't sleep.
+  demo, open `/api/health` a few minutes ahead. The repository keeps it awake
+  on its own: `.github/workflows/keep-alive.yml` pings `/api/health` about
+  every 2 minutes from GitHub (free for public repositories; check it under
+  Actions → Keep Render awake), and `python scripts/keep_alive.py` does the
+  same from any computer. One always-on free service fits in Render's 750
+  free hours a month. Render's Starter plan doesn't sleep at all.
 - **The free database expires.** Render deletes a free Postgres database about
   30 days after it's created. Before then, upgrade it, or point `AUTH_DB_URL`
   at a permanent free Postgres such as Neon (`postgres://` URLs are accepted).

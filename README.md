@@ -118,7 +118,10 @@ DATABASE_URL=postgresql://freightwise:freightwise@localhost:5432/freightwise \
 **Deploying:** the web app on Vercel (`frontend/vercel.json`) and the API
 with its Postgres account store on Render (`render.yaml`); Vercel forwards
 `/api/*` to Render so the session cookie stays first-party. Step by step in
-**[docs/DEPLOY.md](docs/DEPLOY.md)**.
+**[docs/DEPLOY.md](docs/DEPLOY.md)**. Render's free plan sleeps after 15 idle
+minutes; `.github/workflows/keep-alive.yml` pings `/api/health` about every
+2 minutes from GitHub, and `python scripts/keep_alive.py` does the same from
+any computer.
 
 ## Project layout
 
