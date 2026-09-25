@@ -1,0 +1,36 @@
+# Deploys the backend to the Hugging Face Space on every push to main that
+# touches it (the web app deploys on Vercel by itself).
+# Needs, under GitHub → Settings → Secrets and variables → Actions:
+#   secret   HF_TOKEN  a Hugging Face access token with write access
+#   variable HF_SPACE  the Space, e.g. smit061205/freightwise-api
+name: Deploy API to Hugging Face
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - "src/**"
+      - "data/**"
+      - "scripts/**"
+      - "db/**"
+      - "requirements.txt"
+      - "deploy/hf-space/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-hf-space
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: vars.HF_SPACE != ''
+    steps:
+      - uses: actions/checkout@v4
+      - run: scripts/build_hf_space.sh "$RUNNER_TEMP/space" "${{ vars.HF_SPACE }}"
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}

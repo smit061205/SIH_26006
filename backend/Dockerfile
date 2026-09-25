@@ -1,5 +1,6 @@
 # Build context is the project root (see docker-compose.yml), because this
-# image needs src/ and data/ which live outside backend/.
+# image needs src/ and data/ which live outside backend/. The Hugging Face
+# Space uses this same file as its root Dockerfile (scripts/build_hf_space.sh).
 FROM python:3.13-slim
 
 WORKDIR /app
@@ -18,6 +19,9 @@ COPY db/ db/
 # machine has CPU to spare (a free instance has a tenth of one): without this
 # a fresh server spends minutes on its first Charter plan request.
 RUN python -m scripts.precompute_forecasts
+# Hugging Face Spaces run the container as user 1000: let it own the app so
+# the forecast cache stays writable (hosts that run as root are unaffected).
+RUN useradd -m -u 1000 app && chown -R app /app
 # One thread per numeric library on the small running instance; more only contend.
 ENV OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 
