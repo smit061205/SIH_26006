@@ -1308,4 +1308,6 @@ export const HI: Record<string, string> = {
   "Demurrage": "डेमरेज",
   "Voyage charter /t": "वॉयज चार्टर /t",
   "Laytime": "लेटाइम",
+  "Print or save PDF": "प्रिंट करें या PDF सहेजें",
+  "Download CSV": "CSV डाउनलोड करें",
 };

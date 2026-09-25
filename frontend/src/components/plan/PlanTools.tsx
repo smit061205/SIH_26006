@@ -1,6 +1,6 @@
 import { ErrorState } from "../ui/feedback";
 import { useT } from "../../lib/i18n";
-import { Printer, Trash2 } from "lucide-react";
+import { Download, Printer, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useCurrency, useMoney } from "../../lib/currency";
 import { days, durationLabel, longDate, monthLong, perTonne, perTonneUnit, splitPercents, tonnes, total } from "../../lib/format";
@@ -21,9 +21,68 @@ function defaultPlanName(s: Shipment) {
   }`;
 }
 
+/** A CSV cell: quoted when it holds a comma, quote or line break. */
+function cell(v: string | number | null | undefined) {
+  const text = v == null ? "" : String(v);
+  return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+}
+
+/** The plan as a CSV a desk can file or paste into a spreadsheet: the recommendation, then the schedule. */
+function planCsv(shipment: Shipment, plan: CharterPlanResponse): string {
+  const rec = plan.recommendation!;
+  const top = rec.top;
+  const lines: (string | number | null | undefined)[][] = [
+    ["Freightwise charter plan"],
+    ["Plant", shipment.plant],
+    ["Load port", shipment.origin],
+    ["Cargo per month (t)", shipment.cargoTonnes],
+    ["Starting month", monthLong(shipment.month)],
+    ["Contract", shipment.duration ? `${shipment.duration} months` : "Single spot voyage"],
+    ["Laycan", `${plan.laycan.start} to ${plan.laycan.end}`],
+    [],
+    ["Recommendation", `${top.vessel_class} into ${top.port}`],
+    ["Landed cost (USD/t)", rec.usd_per_tonne_over_contract],
+    ["Total (USD)", Math.round(rec.total_usd_over_contract)],
+    ["Voyages", rec.total_voyages],
+    ["At the plant in (days)", top.total_lead_days],
+  ];
+  if (plan.timing) {
+    lines.push(["When to fix", plan.timing.signal.replace("_", " ")], ["Best fixing week", plan.timing.best_fix.date]);
+    if (shipment.duration) lines.push(["On contract (%)", plan.timing.contract.contract_pct]);
+  }
+  if (plan.schedule) {
+    lines.push([], ["Month", "Port", "Vessel", "Voyages", "USD/t", "Total USD", "Spot total USD", "Wait (days)", "Monsoon"]);
+    for (const m of plan.schedule.months) {
+      lines.push([
+        m.month_label,
+        m.port,
+        m.vessel_class,
+        m.n_voyages,
+        m.usd_per_tonne,
+        m.total_usd == null ? null : Math.round(m.total_usd),
+        m.spot_total_usd == null ? null : Math.round(m.spot_total_usd),
+        m.expected_wait_days,
+        m.monsoon ? "yes" : "",
+      ]);
+    }
+  }
+  return lines.map((row) => row.map(cell).join(",")).join("\n") + "\n";
+}
+
+function downloadCsv(name: string, csv: string) {
+  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 /** Print, and save or reopen plans kept in this browser. */
 export function PlanActions() {
   const { shipment } = useShipment();
+  // The page's own plan query: already loaded, so the CSV needs no extra request.
+  const plan = useCharterPlan(shipment);
   const saved = useSavedPlans();
   const [name, setName] = useState("");
   const [justSaved, setJustSaved] = useState(false);
@@ -31,12 +90,19 @@ export function PlanActions() {
   if (!shipment) return null;
   const query = shipmentQuery(shipment);
   const isSaved = saved.some((p) => p.query === query);
+  const csvName = `freightwise-plan-${defaultPlanName(shipment).replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase()}.csv`;
   return (
     <>
       <Button onClick={() => window.print()}>
         <Printer size={15} strokeWidth={1.75} aria-hidden />
-        {tr("Print plan")}
+        {tr("Print or save PDF")}
       </Button>
+      {plan.data?.recommendation && (
+        <Button onClick={() => downloadCsv(csvName, planCsv(shipment, plan.data!))}>
+          <Download size={15} strokeWidth={1.75} aria-hidden />
+          {tr("Download CSV")}
+        </Button>
+      )}
       <Popover
         title="Saved plans"
         trigger={<Button>{tr(isSaved ? "Saved" : "Save")}</Button>}

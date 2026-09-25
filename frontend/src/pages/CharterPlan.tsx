@@ -197,7 +197,9 @@ export default function CharterPlan() {
               </PlanCard>
             )}
 
-            <StressTest plan={data} />
+            <div className="print:hidden">
+              <StressTest plan={data} />
+            </div>
 
             {data.schedule && <ScheduleCard schedule={data.schedule} />}
           </div>
