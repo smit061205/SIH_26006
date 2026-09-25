@@ -5,5 +5,7 @@
   try {
     var t = localStorage.getItem("fw-theme");
     if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-  } catch (e) {}
+  } catch {
+    // Storage blocked: the OS theme applies.
+  }
 })();

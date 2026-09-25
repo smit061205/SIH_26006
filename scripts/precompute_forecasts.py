@@ -1,26 +1,43 @@
-"""Works out every freight-model backtest and forecast the app serves, and
-stores them in the forecast cache (backend/var/forecast-cache), so a new
-server answers its first Charter plan or Freight outlook request at once
-instead of spending minutes of CPU on it. The Docker build runs this.
+"""Works out every freight-model backtest and forecast the app serves and
+stores them, so a server answers its first Charter plan or Freight outlook
+request at once instead of spending minutes of CPU on it.
 
-Run from the project root: python -m scripts.precompute_forecasts
+  python -m scripts.precompute_forecasts --bundle   # refresh data/forecast-cache (commit it)
+  python -m scripts.precompute_forecasts            # fill in anything missing (the Docker build)
+
+Run --bundle after changing the freight series, market drivers or the model
+code; tests/test_main.py fails while the shipped results are out of date.
 """
+import sys
 import time
 
-from backend.main import BACKTEST_HORIZONS, FIX_WINDOW_WEEKS, FORECAST_CACHE, _backtest, _full_forecast
+from backend import main
 from src.data_loader import FREIGHT_SERIES_CLASSES, load_freight_series
 
 
-def main() -> None:
-    started = time.time()
+def targets():
+    """(series_class, as_of, horizons) for everything the app serves."""
     for series_class in FREIGHT_SERIES_CLASSES:
         as_of = load_freight_series(series_class).index[-1].strftime("%Y-%m-%d")
-        for horizon in sorted({*BACKTEST_HORIZONS, FIX_WINDOW_WEEKS}):
-            _backtest(series_class, horizon, as_of)
-        model = _full_forecast(series_class, as_of)["model"]
+        yield series_class, as_of, sorted({*main.BACKTEST_HORIZONS, main.FIX_WINDOW_WEEKS})
+
+
+def main_() -> None:
+    bundle = "--bundle" in sys.argv[1:]
+    if bundle:
+        # Start clean so results for old inputs don't linger; write straight into the bundle.
+        main.FORECAST_BUNDLE.mkdir(parents=True, exist_ok=True)
+        for old in main.FORECAST_BUNDLE.glob("*.json"):
+            old.unlink()
+        main.FORECAST_CACHE = main.FORECAST_BUNDLE
+    started = time.time()
+    for series_class, as_of, horizons in targets():
+        for horizon in horizons:
+            main._backtest(series_class, horizon, as_of)
+        model = main._full_forecast(series_class, as_of)["model"]
         print(f"{series_class}: data to {as_of}, model {model}", flush=True)
-    print(f"Forecast cache ready in {FORECAST_CACHE} ({time.time() - started:.0f}s)")
+    print(f"Forecast results ready ({time.time() - started:.0f}s)")
 
 
 if __name__ == "__main__":
-    main()
+    main_()

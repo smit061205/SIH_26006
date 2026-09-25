@@ -15,15 +15,15 @@ COPY data/ data/
 COPY scripts/ scripts/
 COPY db/ db/
 
-# Work out every freight-model backtest and forecast now, while the build
-# machine has CPU to spare (a free instance has a tenth of one): without this
-# a fresh server spends minutes on its first Charter plan request.
+# One thread per numeric library: build machines and small instances report
+# more cores than they're allowed to use, and extra threads only contend.
+ENV OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 LOKY_MAX_CPU_COUNT=1
+# The freight models' results ship in data/forecast-cache; this only fills in
+# anything missing, so the build normally takes a second here.
 RUN python -m scripts.precompute_forecasts
 # Hugging Face Spaces run the container as user 1000: let it own the app so
 # the forecast cache stays writable (hosts that run as root are unaffected).
 RUN useradd -m -u 1000 app && chown -R app /app
-# One thread per numeric library on the small running instance; more only contend.
-ENV OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 
 # Browsers calling the API must come from one of these origins (comma-separated).
 ENV ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173

@@ -324,11 +324,14 @@ MODEL_LABELS = {"arima": "ARIMA (rate history)", "gbrt_drivers": "Gradient boost
 
 
 # Choosing each class's model runs a walk-forward backtest: about 20 s of CPU
-# on a laptop, minutes on a small cloud instance. It depends only on the data
-# files and the model code, so it's kept on disk, keyed by their contents.
-# scripts/precompute_forecasts.py fills this while the Docker image is built,
-# so a fresh server answers its first request at once.
+# on a laptop, far longer on a small cloud instance or build machine. It
+# depends only on the data files and the model code, so results are kept on
+# disk, keyed by their contents. The repository ships them in
+# data/forecast-cache (python -m scripts.precompute_forecasts --bundle, and a
+# test fails when they're out of date); anything missing is computed once and
+# kept in FORECAST_CACHE.
 ROOT = Path(__file__).resolve().parent.parent
+FORECAST_BUNDLE = ROOT / "data" / "forecast-cache"
 FORECAST_CACHE = Path(os.environ.get("FORECAST_CACHE_DIR") or ROOT / "backend" / "var" / "forecast-cache")
 
 
@@ -346,21 +349,26 @@ def _forecast_inputs(series_class: str) -> str:
     return h.hexdigest()
 
 
+def _cache_name(kind: str, series_class: str, key: tuple) -> str:
+    digest = hashlib.sha256(json.dumps([kind, series_class, *key, _forecast_inputs(series_class)]).encode()).hexdigest()[:24]
+    return f"{kind}-{series_class.lower()}-{digest}.json"
+
+
 def _disk_cached(kind: str, series_class: str, key: tuple, compute):
     """compute(), read from disk if these inputs were computed before. A cache
     that can't be read or written is simply skipped."""
-    name = hashlib.sha256(json.dumps([kind, series_class, *key, _forecast_inputs(series_class)]).encode()).hexdigest()[:24]
-    path = FORECAST_CACHE / f"{kind}-{series_class.lower()}-{name}.json"
-    try:
-        return json.loads(path.read_text())
-    except (OSError, ValueError):
-        pass
+    name = _cache_name(kind, series_class, key)
+    for folder in (FORECAST_BUNDLE, FORECAST_CACHE):
+        try:
+            return json.loads((folder / name).read_text())
+        except (OSError, ValueError):
+            pass
     value = compute()
     try:
         FORECAST_CACHE.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(f".{os.getpid()}.tmp")
+        tmp = (FORECAST_CACHE / name).with_suffix(f".{os.getpid()}.tmp")
         tmp.write_text(json.dumps(value))
-        tmp.replace(path)
+        tmp.replace(FORECAST_CACHE / name)
     except OSError:
         pass
     return value

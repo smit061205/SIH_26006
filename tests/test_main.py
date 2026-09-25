@@ -385,6 +385,7 @@ def test_route_for_a_voyage_uses_the_planning_transit_time():
 def test_forecast_work_is_cached_on_disk_by_its_inputs(tmp_path, monkeypatch):
     from backend import main
 
+    monkeypatch.setattr(main, "FORECAST_BUNDLE", tmp_path / "shipped")
     monkeypatch.setattr(main, "FORECAST_CACHE", tmp_path)
     calls = []
     compute = lambda: calls.append(1) or {"model": "arima"}  # noqa: E731
@@ -395,3 +396,20 @@ def test_forecast_work_is_cached_on_disk_by_its_inputs(tmp_path, monkeypatch):
     # Different inputs are a different entry.
     main._disk_cached("backtest", "Panamax", (26, "2026-09-20"), compute)
     assert len(calls) == 2
+
+
+def test_shipped_forecast_results_match_the_data_and_model_code():
+    """data/forecast-cache must cover what the app serves, or a fresh server (and
+    the Docker build) spends minutes recomputing. Refresh it with
+    python -m scripts.precompute_forecasts --bundle."""
+    from backend import main
+    from scripts.precompute_forecasts import targets
+
+    missing = [
+        name
+        for series_class, as_of, horizons in targets()
+        for name in [main._cache_name("backtest", series_class, (h, as_of)) for h in horizons]
+        + [main._cache_name("forecast", series_class, (as_of, main.MAX_FORECAST_WEEKS))]
+        if not (main.FORECAST_BUNDLE / name).exists()
+    ]
+    assert not missing, f"stale data/forecast-cache, run: python -m scripts.precompute_forecasts --bundle ({len(missing)} missing)"
